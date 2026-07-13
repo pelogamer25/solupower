@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Laocoön — Pio Clementino Museum, Vatican</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --text:          #eef1f4;
+    --text-soft:     #c3cbd2;
+    --text-muted:    #8b949d;
+    --text-label:    #7d868f;
+    --line:          rgba(255,255,255,.14);
+    --line-soft:     rgba(255,255,255,.08);
+    --radius:        22px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html,body{ height:100%; }
+
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--text);
+    min-height:100dvh;
+    display:grid;
+    place-items:center;
+    padding:48px 24px;
+    -webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(120% 120% at 32% 24%, #6c7681 0%, #525c66 34%, #3b434c 64%, #2b3138 100%);
+  }
+
+  /* ---------------- Card ---------------- */
+  .stage{ perspective:2200px; width:100%; max-width:1120px; }
+
+  .card{
+    position:relative;
+    display:grid;
+    grid-template-columns:78px 1fr 296px;
+    aspect-ratio:16/9;
+    min-height:560px;
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid var(--line-soft);
+    background:linear-gradient(135deg, rgba(150,160,170,.20), rgba(70,80,90,.14));
+    backdrop-filter:blur(26px) saturate(120%);
+    -webkit-backdrop-filter:blur(26px) saturate(120%);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.10) inset,
+      0 40px 80px -30px rgba(10,14,18,.75),
+      0 20px 60px -40px rgba(0,0,0,.6);
+  }
+
+  /* ---------------- Left rail ---------------- */
+  .rail{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+    padding:30px 0 34px;
+    border-right:1px solid var(--line-soft);
+  }
+  .logo{
+    font-family:'Playfair Display',serif;
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:-1px;
+    color:var(--text);
+    line-height:1;
+  }
+  .rail-btn{
+    background:none; border:0; padding:10px; cursor:pointer;
+    color:var(--text-soft);
+    display:grid; place-items:center;
+    transition:color .2s ease, transform .2s ease;
+  }
+  .rail-btn:hover{ color:#fff; transform:translateY(-1px); }
+  .rail-btn:focus-visible{ outline:2px solid rgba(255,255,255,.5); outline-offset:3px; border-radius:8px; }
+
+  /* ---------------- Main ---------------- */
+  .main{
+    position:relative;
+    padding:30px 42px 34px;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    font-size:13px;
+    letter-spacing:.02em;
+  }
+  .nav .place{ color:var(--text-soft); font-weight:500; }
+  .nav .sep{ width:26px; height:1px; background:var(--line); }
+  .nav .years{ display:flex; gap:20px; }
+  .year{
+    background:none; border:0; cursor:pointer;
+    font:inherit; color:var(--text-muted);
+    letter-spacing:.06em;
+    padding:2px 0;
+    position:relative;
+    transition:color .2s ease;
+  }
+  .year:hover{ color:var(--text-soft); }
+  .year.active{ color:#fff; font-weight:600; }
+  .year:focus-visible{ outline:2px solid rgba(255,255,255,.5); outline-offset:3px; border-radius:6px; }
+
+  .arrows{ display:flex; gap:12px; }
+  .arrow{
+    width:36px; height:36px; border-radius:50%;
+    display:grid; place-items:center; cursor:pointer;
+    color:var(--text-soft);
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.04);
+    transition:all .2s ease;
+  }
+  .arrow:hover{ color:#fff; background:rgba(255,255,255,.12); }
+  .arrow:focus-visible{ outline:2px solid rgba(255,255,255,.5); outline-offset:2px; }
+
+  /* Hero */
+  .hero{
+    margin-top:auto;
+    max-width:360px;
+  }
+  .title{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:clamp(48px,6.4vw,80px);
+    line-height:.98;
+    letter-spacing:-.01em;
+    color:#fff;
+  }
+  .subtitle{
+    margin-top:14px;
+    font-size:15px;
+    font-weight:400;
+    color:var(--text-soft);
+  }
+  .desc{
+    margin-top:34px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--text-muted);
+    max-width:270px;
+  }
+  .learn{
+    margin-top:30px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:none; border:0; cursor:pointer;
+    font:inherit; font-size:12.5px; letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+    padding-bottom:6px;
+    border-bottom:1px solid var(--line);
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .learn:hover{ color:#fff; border-color:rgba(255,255,255,.5); }
+  .learn:focus-visible{ outline:2px solid rgba(255,255,255,.5); outline-offset:4px; }
+
+  /* Carousel dots */
+  .dots{
+    position:absolute;
+    left:42px; bottom:34px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:rgba(255,255,255,.28);
+    border:0; padding:0; cursor:pointer;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .dot:hover{ background:rgba(255,255,255,.55); }
+  .dot.active{ background:#fff; transform:scale(1.25); }
+  .dot:focus-visible{ outline:2px solid rgba(255,255,255,.5); outline-offset:3px; }
+
+  /* ---------------- Sidebar ---------------- */
+  .sidebar{
+    display:flex;
+    flex-direction:column;
+    border-left:1px solid var(--line-soft);
+    background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
+  }
+  .doc{
+    display:flex; align-items:center; gap:14px;
+    padding:26px 30px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .doc-thumb{
+    width:44px; height:44px; border-radius:50%;
+    flex-shrink:0;
+    background:
+      radial-gradient(70% 70% at 35% 30%, #c9cfd5 0%, #9099a1 45%, #5c646c 100%);
+    box-shadow:0 0 0 1px rgba(255,255,255,.12) inset;
+  }
+  .doc-label{ font-size:13px; color:var(--text-soft); font-weight:500; }
+
+  .meta{
+    flex:1;
+    padding:30px 30px 0;
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+  }
+  .meta-block .k{
+    font-size:11px;
+    letter-spacing:.05em;
+    color:var(--text-label);
+    margin-bottom:8px;
+  }
+  .meta-block .v{
+    font-size:13.5px;
+    line-height:1.5;
+    color:var(--text);
+    font-weight:500;
+  }
+
+  .social{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:24px 30px 30px;
+    color:var(--text-soft);
+  }
+  .social a{
+    color:var(--text-soft);
+    display:grid; place-items:center;
+    transition:color .2s ease, transform .2s ease;
+  }
+  .social a:hover{ color:#fff; transform:translateY(-2px); }
+  .social a:focus-visible{ outline:2px solid rgba(255,255,255,.5); outline-offset:3px; border-radius:6px; }
+
+  /* ---------------- Responsive ---------------- */
+  @media (max-width:900px){
+    body{ padding:24px 14px; }
+    .card{
+      grid-template-columns:1fr;
+      grid-template-rows:auto auto auto;
+      aspect-ratio:auto;
+      min-height:0;
+    }
+    .rail{
+      flex-direction:row;
+      padding:16px 24px;
+      border-right:0;
+      border-bottom:1px solid var(--line-soft);
+    }
+    .main{ padding:28px 26px 90px; min-height:520px; }
+    .hero{ margin-top:64px; }
+    .sidebar{
+      border-left:0;
+      border-top:1px solid var(--line-soft);
+    }
+    .meta{ padding-bottom:30px; }
+  }
+  @media (max-width:480px){
+    .nav{ gap:14px; }
+    .nav .years{ gap:14px; }
+    .main{ padding:26px 20px 84px; }
+    .dots{ left:20px; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+  <main class="stage">
+    <div class="card">
+
+      <!-- Left rail -->
+      <nav class="rail" aria-label="Primary">
+        <div class="logo" aria-label="Museum logo">R</div>
+        <button class="rail-btn" aria-label="Open menu">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+            <line x1="3" y1="7"  x2="19" y2="7"/>
+            <line x1="3" y1="11" x2="14" y2="11"/>
+            <line x1="3" y1="15" x2="17" y2="15"/>
+          </svg>
+        </button>
+        <button class="rail-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="9" cy="9" r="6"/>
+            <line x1="14" y1="14" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Main -->
+      <section class="main">
+        <div class="topbar">
+          <div class="nav">
+            <span class="place">Octagonal Court</span>
+            <span class="sep" aria-hidden="true"></span>
+            <div class="years">
+              <button class="year active" aria-current="true">1506</button>
+              <button class="year">1540</button>
+              <button class="year">1822</button>
+            </div>
+          </div>
+          <div class="arrows">
+            <button class="arrow" aria-label="Previous">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="8.5,3 4.5,7 8.5,11"/>
+              </svg>
+            </button>
+            <button class="arrow" aria-label="Next">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="5.5,3 9.5,7 5.5,11"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero">
+          <h1 class="title">Laoco&ouml;n</h1>
+          <p class="subtitle">Pio Clementino Museum, Vatican</p>
+          <p class="desc">The Laocoon statue was discovered in January 1506 buried in the ground of a Rome vineyard owned by Felice de&rsquo; Fredis.</p>
+          <button class="learn">Learn more</button>
+        </div>
+
+        <div class="dots" role="tablist" aria-label="Slides">
+          <button class="dot active" aria-label="Slide 1" aria-selected="true"></button>
+          <button class="dot" aria-label="Slide 2"></button>
+          <button class="dot" aria-label="Slide 3"></button>
+          <button class="dot" aria-label="Slide 4"></button>
+          <button class="dot" aria-label="Slide 5"></button>
+        </div>
+      </section>
+
+      <!-- Sidebar -->
+      <aside class="sidebar" aria-label="Artwork details">
+        <div class="doc">
+          <div class="doc-thumb" aria-hidden="true"></div>
+          <span class="doc-label">Laoco&ouml;n documentary</span>
+        </div>
+
+        <div class="meta">
+          <div class="meta-block">
+            <div class="k">Collection</div>
+            <div class="v">Vatican Museums,<br>Museo Pio-Clementino</div>
+          </div>
+          <div class="meta-block">
+            <div class="k">Sculptors</div>
+            <div class="v">Athanadoros,<br>Hagesander, Polydoros</div>
+          </div>
+          <div class="meta-block">
+            <div class="k">Material</div>
+            <div class="v">Parian marble</div>
+          </div>
+          <div class="meta-block">
+            <div class="k">Date Created</div>
+            <div class="v">40 &ndash; 20 BCE</div>
+          </div>
+        </div>
+
+        <div class="social">
+          <a href="#" aria-label="Facebook">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.04-1.3-.13-2.46-.13-2.43 0-4.1 1.48-4.1 4.2v2.34H7.7V13h2.74v8h3.06z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17" cy="7" r="1.1" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Share">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="2.4"/>
+              <circle cx="6" cy="12" r="2.4"/>
+              <circle cx="18" cy="19" r="2.4"/>
+              <line x1="8.1" y1="10.9" x2="15.9" y2="6.1"/>
+              <line x1="8.1" y1="13.1" x2="15.9" y2="17.9"/>
+            </svg>
+          </a>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+</body>
+</html>
