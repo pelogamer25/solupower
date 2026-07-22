@@ -9,8 +9,8 @@ export default function About() {
       <div className="container-x">
         <SectionHeading
           eyebrow="Sobre nosotros"
-          title="Ingeniería que respalda cada operación"
-          description="Somos un equipo especializado en soluciones de limpieza y mantenimiento industrial. Combinamos tecnología, método y un compromiso real con la excelencia de nuestros clientes."
+          title="Soluciones Industriales Inteligentes"
+          description="SOLUPOWER es una empresa colombiana especializada en soluciones integrales para la limpieza y el mantenimiento industrial. Optimizamos la operación de nuestros clientes con equipos, maquinaria, insumos y servicios especializados que incrementan la productividad, reducen costos operativos y garantizan ambientes seguros y eficientes."
         />
 
         {/* Stats */}

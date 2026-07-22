@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contacto | Equipos de limpieza industrial en Bogotá",
+  title: "Contacto | Equipos de limpieza industrial en Medellín y Bogotá",
   description:
     "Contáctanos para venta, alquiler o mantenimiento de equipos de limpieza industrial. Teléfono, correo, WhatsApp y formulario. SOLUPOWER, Colombia.",
   path: "/contacto",
@@ -36,6 +36,7 @@ export default function ContactoPage() {
                 <h2 className="font-display text-lg font-semibold text-ink">Datos de contacto</h2>
                 <ul className="mt-5 space-y-4">
                   <ContactItem icon={<Phone size={16} />} href={siteConfig.contact.phoneHref} label={siteConfig.contact.phone} />
+                  <ContactItem icon={<Phone size={16} />} href={siteConfig.contact.phone2Href} label={siteConfig.contact.phone2} />
                   <ContactItem icon={<Mail size={16} />} href={`mailto:${siteConfig.contact.email}`} label={siteConfig.contact.email} />
                   <ContactItem icon={<MessageCircle size={16} />} href={siteConfig.contact.whatsapp} label="WhatsApp" external />
                   <ContactItem icon={<MapPin size={16} />} label={siteConfig.contact.address} />

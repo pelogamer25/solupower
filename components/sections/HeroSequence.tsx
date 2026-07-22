@@ -163,7 +163,7 @@ export default function HeroSequence() {
                 </span>
               </h1>
               <p className="mt-6 max-w-md text-lg text-white/80">
-                Venta, alquiler y mantenimiento especializado de equipos de limpieza industrial.
+                Suministro, renting, mantenimiento y servicio técnico especializado de equipos de limpieza industrial.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <Button href="/cotizacion" variant="primary" icon={<ArrowRight size={17} />}>
@@ -300,7 +300,7 @@ function StaticHero() {
             Soluciones industriales para empresas que buscan excelencia.
           </h1>
           <p className="mt-6 max-w-md text-lg text-white/80">
-            Venta, alquiler y mantenimiento especializado de equipos de limpieza industrial.
+            Suministro, renting, mantenimiento y servicio técnico especializado de equipos de limpieza industrial.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Button href="/cotizacion" variant="primary" icon={<ArrowRight size={17} />}>

@@ -1,11 +1,18 @@
 "use client";
 
 import { useRef, useState, useCallback } from "react";
+import Image from "next/image";
 import { MoveHorizontal } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 
+interface BeforeAfterProps {
+  /** Real photos (from /public/antes-despues). Missing → gradient placeholder. */
+  antes?: string;
+  despues?: string;
+}
+
 /** Interactive before/after comparator with a draggable handle. */
-export default function BeforeAfter() {
+export default function BeforeAfter({ antes, despues }: BeforeAfterProps) {
   const [pos, setPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
@@ -45,7 +52,18 @@ export default function BeforeAfter() {
             <div className="relative h-full w-full overflow-hidden rounded-[1.9rem]">
               {/* AFTER (base layer) */}
               <div className="absolute inset-0 bg-[linear-gradient(120deg,#1E5FBF,#35B6D8_55%,#22A79B)]">
-                <div className="grain absolute inset-0 opacity-30" />
+                {despues ? (
+                  <Image
+                    src={despues}
+                    alt="Superficie después de la intervención de SOLUPOWER"
+                    fill
+                    sizes="100vw"
+                    className="object-cover"
+                    draggable={false}
+                  />
+                ) : (
+                  <div className="grain absolute inset-0 opacity-30" />
+                )}
                 <Label side="right">Después</Label>
               </div>
 
@@ -55,7 +73,18 @@ export default function BeforeAfter() {
                 style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
               >
                 <div className="absolute inset-0 bg-[linear-gradient(120deg,#6b7280,#4b5563_55%,#374151)]">
-                  <div className="grain absolute inset-0 opacity-50" />
+                  {antes ? (
+                    <Image
+                      src={antes}
+                      alt="Superficie antes de la intervención de SOLUPOWER"
+                      fill
+                      sizes="100vw"
+                      className="object-cover"
+                      draggable={false}
+                    />
+                  ) : (
+                    <div className="grain absolute inset-0 opacity-50" />
+                  )}
                   <Label side="left">Antes</Label>
                 </div>
               </div>

@@ -47,7 +47,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "¿En qué zonas prestan servicio?",
     answer:
-      "Operamos en Bogotá y a nivel nacional. Escríbenos por WhatsApp o el formulario y coordinamos la atención en tu ubicación.",
+      "Operamos en Medellín y Bogotá. Escríbenos por WhatsApp o el formulario y coordinamos la atención en tu ubicación.",
   },
   {
     question: "¿Cómo solicito una cotización?",
@@ -57,10 +57,10 @@ export const faqItems: FaqItem[] = [
 ];
 
 export const stats: Stat[] = [
-  { value: "+12", label: "Años de experiencia" },
-  { value: "+500", label: "Proyectos ejecutados" },
-  { value: "+150", label: "Clientes industriales" },
-  { value: "24/7", label: "Soporte técnico" },
+  { value: "4", label: "Líneas de servicio integrales" },
+  { value: "2", label: "Ciudades: Medellín y Bogotá" },
+  { value: "+13", label: "Equipos en catálogo" },
+  { value: "3 en 1", label: "Fregadoras: lavan, refriegan y secan" },
 ];
 
 export const values: Value[] = [
@@ -86,33 +86,63 @@ export const values: Value[] = [
   },
 ];
 
+// Real lines of work from the SOLUPOWER portfolio (no invented clients or metrics).
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "planta-logistica-alto-transito",
-    client: "Centro logístico nacional",
-    sector: "Logística",
-    title: "Restauración de 8.000 m² de piso en operación continua",
+    slug: "recuperacion-de-superficies",
+    sector: "Pisos industriales",
+    title: "Recuperación de superficies: antes y después",
     summary:
-      "Recuperamos un piso de concreto de alto tránsito con desbaste, pulido y sellado, sin detener la operación del centro de distribución.",
-    metric: "8.000 m² recuperados",
+      "Recuperamos superficies deterioradas con pulido de concreto con discos especializados, aplicación de pintura epóxica y demarcaciones, y acabado liso para terminación de pintura.",
+    metric: "Antes / Después",
+    details: [
+      "Pulido de concreto con discos especializados",
+      "Aplicación de pintura epóxica y demarcaciones",
+      "Acabado liso para terminación de pintura",
+      "Mantenimiento de pisos de concreto: discos híbridos, resinas metálicas, sellado e hidrófugo",
+    ],
   },
   {
-    slug: "planta-alimentos-mantenimiento",
-    client: "Planta de alimentos",
-    sector: "Manufactura",
-    title: "Plan de mantenimiento preventivo para flota de scrubbers",
+    slug: "cristalizado-y-pulido-de-pisos",
+    sector: "Mantenimiento de pisos",
+    title: "Cristalizado, abrillantado y pulido diamantado",
     summary:
-      "Implementamos un cronograma preventivo que redujo drásticamente las paradas por falla y extendió la vida útil de los equipos.",
-    metric: "-60% de paradas",
+      "Mantenimiento de pisos y toda clase de superficies: cristalizado de mármol, granito y concreto; abrillantado natural y efecto espejo; y pulido y diamantado, incluidas baldosas.",
+    metric: "Efecto espejo",
+    details: [
+      "Cristalizado de mármol, granito y concreto",
+      "Abrillantado natural y efecto espejo",
+      "Pulido y diamantado (mármol, granito, concreto y baldosas)",
+      "Proceso hidrófugo, resane y fraguado de juntas",
+    ],
   },
   {
-    slug: "parqueadero-pintura-epoxica",
-    client: "Complejo corporativo",
-    sector: "Inmobiliario",
-    title: "Recubrimiento epóxico en parqueadero de 5 niveles",
+    slug: "lavado-y-desinfeccion-de-alfombras",
+    sector: "Limpieza y desinfección",
+    title: "Lavado y desinfección de alfombras y mobiliario",
     summary:
-      "Aplicamos un sistema epóxico de alta resistencia con demarcación de seguridad, elevando durabilidad y estética del espacio.",
-    metric: "5 niveles intervenidos",
+      "Lavado profundo en proceso semihúmedo con equipos de inyección y extracción: eliminación de manchas, extracción de agentes contaminantes y recuperación de fibras. También sillas, muebles y colchones.",
+    metric: "Proceso semihúmedo",
+    details: [
+      "Lavado profundo en proceso semihúmedo",
+      "Equipos industriales especializados que protegen la fibra",
+      "Eliminación de manchas y extracción de contaminantes",
+      "Recuperación de fibras con insumos altamente eficientes",
+      "Lavado profesional de sillas, muebles y colchones",
+    ],
+  },
+  {
+    slug: "lavado-profundo-de-pisos",
+    sector: "Limpieza y desinfección",
+    title: "Lavado profundo y desmanche de pisos",
+    summary:
+      "Lavado industrial de superficies duras como piedra, concreto, terrazo y otras superficies de alto tráfico, con equipos industriales que maximizan la eficiencia del proceso.",
+    metric: "Alto tráfico",
+    details: [
+      "Superficies duras: piedra, concreto y terrazo",
+      "Superficies de alto tráfico",
+      "Equipos industriales que maximizan la eficiencia",
+    ],
   },
 ];
 
@@ -155,14 +185,18 @@ export function getPost(slug: string) {
 }
 
 export const clients: string[] = [
-  "Grupo Andino",
-  "LogiCorp",
-  "Alimentos del Valle",
-  "MetroPlaza",
-  "Constructora Sur",
-  "IndustriaTech",
-  "Puerto Central",
-  "RetailMax",
+  "York Luxury Suites by BlueDoors",
+  "BMW Autogermana",
+  "Marriott Medellín",
+  "Estelar",
+  "Bimbo",
+  "Grupo Eulen",
+  "Greater Medellín Convention & Visitors Bureau",
+  "JM Martínez",
+  "Cinemas Procinal",
+  "Bambú",
+  "Bodytech",
+  "Estelar Milla de Oro",
 ];
 
 export const galleryItems = [

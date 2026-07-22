@@ -14,6 +14,7 @@ import { pageMetadata, productJsonLd, jsonLdScript } from "@/lib/seo";
 import { products, getProduct, formatCOP } from "@/lib/data/products";
 import { getProductSeo } from "@/lib/data/seoContent";
 import { getRelated } from "@/lib/data/relations";
+import { productPhoto } from "@/lib/productPhoto";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -50,6 +51,7 @@ export default async function ProductoDetailPage(props: {
   const seo = getProductSeo(product.slug);
   const related = getRelated(product.slug);
   const ctaService = related.servicios[0]?.slug ?? "alquiler";
+  const photo = productPhoto(product.slug);
 
   return (
     <>
@@ -72,19 +74,32 @@ export default async function ProductoDetailPage(props: {
         <div className="container-x grid gap-6 lg:grid-cols-2">
           <Reveal>
             <GlassCard className="p-2">
-              <div className={`relative aspect-[4/3] w-full overflow-hidden rounded-[1.7rem] bg-gradient-to-br ${visual[product.accent]}`}>
-                {product.imageIndex !== undefined && (
+              {photo ? (
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.7rem] bg-white">
                   <Image
-                    src={`/hero/frame-${String(product.imageIndex).padStart(2, "0")}.jpg`}
+                    src={photo}
                     alt={`${product.name} — equipos de limpieza industrial SOLUPOWER en Colombia`}
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover mix-blend-luminosity opacity-90"
+                    className="object-contain p-6"
                   />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-tr from-brand-deep/30 via-transparent to-white/10" />
-              </div>
+                </div>
+              ) : (
+                <div className={`relative aspect-[4/3] w-full overflow-hidden rounded-[1.7rem] bg-gradient-to-br ${visual[product.accent]}`}>
+                  {product.imageIndex !== undefined && (
+                    <Image
+                      src={`/hero/frame-${String(product.imageIndex).padStart(2, "0")}.jpg`}
+                      alt={`${product.name} — equipos de limpieza industrial SOLUPOWER en Colombia`}
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover mix-blend-luminosity opacity-90"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-brand-deep/30 via-transparent to-white/10" />
+                </div>
+              )}
             </GlassCard>
           </Reveal>
 

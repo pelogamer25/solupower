@@ -1,0 +1,29 @@
+COMO AGREGAR LAS FOTOS DE LOS PRODUCTOS
+=======================================
+
+Guarda cada foto en ESTA carpeta (public/products) con el nombre EXACTO de la
+lista de abajo. Se aceptan .png, .jpg, .jpeg o .webp (mejor PNG con fondo blanco
+o transparente). En cuanto el archivo exista, la foto aparece sola en la tarjeta
+y en la ficha del producto; si falta, se muestra el degradado por defecto.
+
+Nombre de archivo  ->  Producto
+---------------------------------
+brilladora-industrial-17            ->  Brilladora industrial 17
+brilladora-industrial-k-20          ->  Brilladora industrial K-20
+fregadora-hombre-a-pie              ->  Fregadora hombre a pie
+grande-brio-ride-on-75-650-ecoray   ->  Grande Brio Ride on 75 – 650 Ecoray
+grande-brio-ride-on-145-1000-plus   ->  Grande Brio Ride on 145-1000 Plus
+barredora-u-200                     ->  Barredora U 200
+barredora-u-190                     ->  Barredora U 190
+barredora-u90                       ->  Barredora U90
+durasweep-70bt                      ->  Durasweep 70BT
+hidrolavadora-blitz                 ->  Hidrolavadora Blitz
+hidrolavadora-industrial-1900-psi   ->  Hidrolavadora Industrial 1900 PSI
+hidrolavadora-annovi-kb-813         ->  Hidrolavadora Annovi 1900 PSI KB 813
+extractora-jb-175                   ->  Extractora JB-175
+
+Ejemplo: la foto de la Brilladora 17 debe llamarse
+  brilladora-industrial-17.png
+
+IMPORTANTE: recuerda quitar el logo IMPOWER / INDPOWER de las imagenes antes de
+guardarlas (segun la nota de la presentacion).

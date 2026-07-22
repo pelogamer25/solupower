@@ -3,6 +3,7 @@ import PageHeader from "@/components/layout/PageHeader";
 import Gallery from "@/components/sections/Gallery";
 import ContactCta from "@/components/sections/ContactCta";
 import { pageMetadata } from "@/lib/seo";
+import { workPhotos } from "@/lib/workPhotos";
 
 export const metadata: Metadata = pageMetadata({
   title: "Galería de proyectos",
@@ -20,7 +21,7 @@ export default function GaleriaPage() {
         description="Superficies transformadas y equipos en operación. Explora una muestra de lo que hacemos."
         crumbs={[{ name: "Galería", path: "/galeria" }]}
       />
-      <Gallery />
+      <Gallery photos={workPhotos()} />
       <ContactCta />
     </>
   );

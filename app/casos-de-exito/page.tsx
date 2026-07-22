@@ -9,9 +9,9 @@ import { pageMetadata } from "@/lib/seo";
 import { caseStudies } from "@/lib/data/content";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Casos de éxito",
+  title: "Casos de éxito | Trabajo real de SOLUPOWER",
   description:
-    "Proyectos reales de limpieza, restauración y mantenimiento industrial ejecutados por SOLUPOWER, con resultados medibles para nuestros clientes.",
+    "El trabajo real de SOLUPOWER: recuperación de superficies, cristalizado y pulido de pisos, lavado de alfombras y mobiliario, y lavado profundo de pisos.",
   path: "/casos-de-exito",
 });
 
@@ -20,8 +20,8 @@ export default function CasosPage() {
     <>
       <PageHeader
         eyebrow="Casos de éxito"
-        title="Resultados que hablan por nosotros"
-        description="Una selección de proyectos donde nuestra ingeniería marcó la diferencia."
+        title="Así trabajamos: resultados visibles"
+        description="El trabajo real de SOLUPOWER en recuperación de superficies, mantenimiento de pisos y limpieza y desinfección profesional."
         crumbs={[{ name: "Casos de éxito", path: "/casos-de-exito" }]}
       />
 

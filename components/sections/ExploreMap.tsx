@@ -67,7 +67,7 @@ export default function ExploreMap() {
                 <ArrowUpRight size={16} className="text-brand-blue transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
               <ul className="mt-4 space-y-2.5">
-                {products.map((p) => (
+                {products.slice(0, 6).map((p) => (
                   <li key={p.slug}>
                     <Link
                       href={`/productos/${p.slug}`}
@@ -77,6 +77,14 @@ export default function ExploreMap() {
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <Link
+                    href="/productos"
+                    className="text-sm font-medium text-brand-blue transition-colors hover:text-brand-deep"
+                  >
+                    Ver catálogo completo
+                  </Link>
+                </li>
               </ul>
             </GlassCard>
           </Reveal>

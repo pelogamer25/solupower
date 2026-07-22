@@ -18,9 +18,10 @@ export function GET() {
 
 > ${siteConfig.legalName}. ${siteConfig.metaDescription}
 
-${siteConfig.name} es una empresa colombiana especializada en la venta, alquiler,
-mantenimiento y servicio técnico de equipos de limpieza industrial, con sede en
-Bogotá y cobertura en Colombia.
+${siteConfig.name} es una empresa colombiana especializada en soluciones integrales
+para la limpieza y el mantenimiento industrial: suministro de equipos, renting,
+mantenimiento y servicio técnico especializado, con sede en Medellín y cobertura
+en Medellín y Bogotá.
 
 ## Servicios
 ${services.map((s) => line(s.title, `/servicios/${s.slug}`, s.excerpt)).join("\n")}

@@ -41,7 +41,7 @@ export default async function ServicioDetailPage(props: {
 
   const seo = getServiceSeo(service.slug);
   const related = getRelated(service.slug);
-  const ctaProduct = related.productos[0]?.slug ?? "hidrolavadoras-industriales";
+  const ctaProduct = related.productos[0]?.slug ?? "hidrolavadora-industrial-1900-psi";
 
   return (
     <>

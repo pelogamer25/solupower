@@ -1,0 +1,16 @@
+FOTOS DEL DESLIZADOR "ANTES Y DESPUÉS" (página de inicio)
+=========================================================
+
+Pon en ESTA carpeta (public/antes-despues) exactamente DOS fotos:
+
+  antes.jpg     -> la foto del ANTES  (superficie sin intervenir)
+  despues.jpg   -> la foto del DESPUÉS (superficie ya trabajada)
+
+Notas:
+- También sirven .png, .jpeg o .webp (ej.: antes.png y despues.png).
+- "despues" sin tilde es lo recomendado, pero "después.jpg" también funciona.
+- Ideal: las dos fotos del MISMO lugar y desde el MISMO ángulo,
+  para que el deslizador compare bien.
+- Si falta alguna, el deslizador muestra el degradado de siempre.
+
+No hay que tocar código: guarda las fotos y refresca la página.

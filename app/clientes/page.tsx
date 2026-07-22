@@ -27,8 +27,8 @@ export default function ClientesPage() {
         <div className="container-x grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {clients.map((name, i) => (
             <Reveal key={name} delay={(i % 4) * 0.06}>
-              <GlassCard className="flex h-28 items-center justify-center p-6">
-                <span className="font-display text-lg font-semibold tracking-tight text-ink-soft">{name}</span>
+              <GlassCard className="flex min-h-28 h-full items-center justify-center p-6">
+                <span className="text-center font-display text-lg font-semibold tracking-tight text-ink-soft">{name}</span>
               </GlassCard>
             </Reveal>
           ))}

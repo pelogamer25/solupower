@@ -1,0 +1,14 @@
+FOTOS DEL TRABAJO REAL DE SOLUPOWER
+===================================
+
+Suelta en ESTA carpeta (public/trabajos) las fotos de trabajos reales:
+antes/después, equipos en operación, superficies recuperadas, etc.
+
+- El NOMBRE del archivo NO importa (puede tener espacios o tildes).
+- Formatos aceptados: .png, .jpg, .jpeg, .webp, .avif, .gif
+- Las fotos aparecen automáticamente en:
+    * La Galería (página /galeria y sección del inicio)
+    * Las páginas de Casos de éxito
+- Si la carpeta está vacía, el sitio muestra los placeholders de siempre.
+
+No hay que tocar código: agrega o quita fotos y refresca la página.

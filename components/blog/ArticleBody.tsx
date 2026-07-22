@@ -74,8 +74,8 @@ function RestaurarPisos() {
       <p>
         Con la base lista se pasa al pulido progresivo con discos de grano cada vez más fino hasta
         alcanzar el nivel de brillo deseado. Para el mantenimiento del brillo en el tiempo, y en
-        superficies de porcelanato o granito, entran las{" "}
-        <L slug="brilladoras-industriales" />, que dan el acabado espejo característico de un piso
+        superficies de porcelanato o granito, entra la{" "}
+        <L slug="brilladora-industrial-17" />, que da el acabado espejo característico de un piso
         bien cuidado.
       </p>
 
@@ -174,8 +174,8 @@ function ElegirHidrolavadora() {
         Si el uso es esporádico o quieres probar un modelo antes de decidir, el{" "}
         <L slug="alquiler" /> es la vía más inteligente: accedes al equipo por el tiempo que lo
         necesitas, con soporte incluido. Si el uso es intensivo y permanente, la compra amortiza
-        rápido. Puedes ver todas las opciones en nuestra línea de{" "}
-        <L slug="hidrolavadoras-industriales" />.
+        rápido. Puedes ver todas las opciones, como la{" "}
+        <L slug="hidrolavadora-industrial-1900-psi" />, en nuestro catálogo de productos.
       </p>
 
       <h2>Complementa tu equipo</h2>

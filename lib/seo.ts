@@ -68,8 +68,9 @@ export function organizationJsonLd() {
     foundingDate: siteConfig.foundingYear,
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Bogotá",
-      addressRegion: "Cundinamarca",
+      streetAddress: siteConfig.contact.address,
+      addressLocality: "Medellín",
+      addressRegion: "Antioquia",
       addressCountry: "CO",
     },
     sameAs: [
@@ -97,8 +98,8 @@ export function localBusinessJsonLd() {
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.contact.address,
-      addressLocality: "Bogotá",
-      addressRegion: "Cundinamarca",
+      addressLocality: "Medellín",
+      addressRegion: "Antioquia",
       addressCountry: "CO",
     },
     geo: {

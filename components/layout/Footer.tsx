@@ -12,7 +12,9 @@ import { anchors } from "@/lib/data/relations";
 const columns: { title: string; links: { href: string; label: string }[] }[] = [
   {
     title: "Productos",
-    links: products.map((p) => ({ href: `/productos/${p.slug}`, label: anchors[p.slug] ?? p.name })),
+    links: products
+      .slice(0, 6)
+      .map((p) => ({ href: `/productos/${p.slug}`, label: anchors[p.slug] ?? p.name })),
   },
   {
     title: "Servicios",
@@ -93,9 +95,12 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 grid gap-6 border-t border-white/40 pt-8 md:grid-cols-3">
+        <div className="mt-12 grid gap-6 border-t border-white/40 pt-8 md:grid-cols-2 lg:grid-cols-4">
           <ContactRow icon={<Phone size={16} />} href={siteConfig.contact.phoneHref}>
             {siteConfig.contact.phone}
+          </ContactRow>
+          <ContactRow icon={<Phone size={16} />} href={siteConfig.contact.phone2Href}>
+            {siteConfig.contact.phone2}
           </ContactRow>
           <ContactRow icon={<Mail size={16} />} href={`mailto:${siteConfig.contact.email}`}>
             {siteConfig.contact.email}

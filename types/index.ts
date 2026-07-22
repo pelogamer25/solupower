@@ -48,11 +48,14 @@ export interface Value {
 
 export interface CaseStudy {
   slug: string;
-  client: string;
+  /** Optional client name — omitted when the entry showcases a line of work. */
+  client?: string;
   sector: string;
   title: string;
   summary: string;
   metric: string;
+  /** What the work includes (real process steps / scope). */
+  details?: string[];
 }
 
 export interface Post {

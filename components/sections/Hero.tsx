@@ -81,8 +81,8 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.7, ease }}
               className="mt-7 max-w-md text-lg leading-relaxed text-ink-soft"
             >
-              Venta, alquiler y mantenimiento especializado de equipos de limpieza
-              industrial. Ingeniería y precisión para operaciones que no se detienen.
+              Suministro, renting, mantenimiento y servicio técnico especializado de equipos
+              de limpieza industrial. Soluciones que optimizan tu operación.
             </motion.p>
 
             <motion.div

@@ -16,7 +16,7 @@ export interface SeoSection {
 }
 
 export const productSeo: Record<string, SeoSection[]> = {
-  "hidrolavadoras-industriales": [
+  "hidrolavadora-industrial-1900-psi": [
     {
       h2: "¿Qué es una hidrolavadora industrial?",
       intro:
@@ -66,14 +66,14 @@ export const productSeo: Record<string, SeoSection[]> = {
         { h3: "Agua caliente", body: "El agua caliente disuelve grasas pesadas y acelera el secado en zonas de producción." },
         {
           h3: "Alta presión",
-          body: "Para acabados de piso de alto tránsito el hidrolavado se combina con",
-          link: "brilladoras-industriales",
+          body: "Para acabados de piso de alto tránsito el hidrolavado se combina con la",
+          link: "brilladora-industrial-17",
         },
       ],
     },
   ],
 
-  "brilladoras-industriales": [
+  "brilladora-industrial-17": [
     {
       h2: "¿Qué es una brilladora industrial?",
       intro:
@@ -231,8 +231,8 @@ export const productSeo: Record<string, SeoSection[]> = {
         },
         {
           h3: "Concreto pulido de acabado espejo",
-          body: "El brillo final se logra combinando el desbaste con",
-          link: "brilladoras-industriales",
+          body: "El brillo final se logra combinando el desbaste con la",
+          link: "brilladora-industrial-17",
         },
       ],
     },
@@ -283,13 +283,13 @@ export const serviceSeo: Record<string, SeoSection[]> = {
       blocks: [
         {
           h3: "Equipos de lavado a presión",
-          body: "Las más solicitadas para servicio pesado son las",
-          link: "hidrolavadoras-industriales",
+          body: "La más solicitada para servicio pesado es la",
+          link: "hidrolavadora-industrial-1900-psi",
         },
         {
           h3: "Equipos de acabado de pisos",
-          body: "Para brillo y mantenimiento de superficies ofrecemos",
-          link: "brilladoras-industriales",
+          body: "Para brillo y mantenimiento de superficies ofrecemos la",
+          link: "brilladora-industrial-17",
         },
       ],
     },
@@ -303,8 +303,8 @@ export const serviceSeo: Record<string, SeoSection[]> = {
       blocks: [
         {
           h3: "Alquiler para picos de operación",
-          body: "Los equipos más pedidos por temporada son las",
-          link: "hidrolavadoras-industriales",
+          body: "El equipo más pedido por temporada es la",
+          link: "hidrolavadora-industrial-1900-psi",
         },
         {
           h3: "Grandes superficies por proyecto",
@@ -338,8 +338,8 @@ export const serviceSeo: Record<string, SeoSection[]> = {
       blocks: [
         {
           h3: "Diagnóstico y reparación",
-          body: "El servicio cubre equipos de lavado como las",
-          link: "hidrolavadoras-industriales",
+          body: "El servicio cubre equipos de lavado como la",
+          link: "hidrolavadora-industrial-1900-psi",
         },
         {
           h3: "Del correctivo al preventivo",
@@ -348,8 +348,8 @@ export const serviceSeo: Record<string, SeoSection[]> = {
         },
         {
           h3: "Cuidado de equipos de acabado",
-          body: "También calibramos y afinamos las",
-          link: "brilladoras-industriales",
+          body: "También calibramos y afinamos la",
+          link: "brilladora-industrial-17",
         },
       ],
     },
@@ -393,8 +393,8 @@ export const serviceSeo: Record<string, SeoSection[]> = {
         },
         {
           h3: "Acabado y brillo",
-          body: "El pulido final se realiza con",
-          link: "brilladoras-industriales",
+          body: "El pulido final se realiza con la",
+          link: "brilladora-industrial-17",
         },
         {
           h3: "Protección de larga duración",
@@ -423,8 +423,8 @@ export const serviceSeo: Record<string, SeoSection[]> = {
       blocks: [
         {
           h3: "Equipos de lavado a presión",
-          body: "Para grasa y suciedad incrustada usamos",
-          link: "hidrolavadoras-industriales",
+          body: "Para grasa y suciedad incrustada usamos la",
+          link: "hidrolavadora-industrial-1900-psi",
         },
         {
           h3: "Control de polvo y residuos",

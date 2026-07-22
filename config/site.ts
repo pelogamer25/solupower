@@ -1,20 +1,21 @@
 export const siteConfig = {
   name: "SOLUPOWER",
   legalName: "Soluciones Industriales RM S.A.S.",
+  tagline: "Soluciones Industriales Inteligentes",
   shortDesc:
-    "Venta, alquiler y mantenimiento especializado de equipos de limpieza industrial.",
+    "Soluciones integrales para la limpieza y el mantenimiento industrial: equipos, insumos, renting y servicio técnico especializado.",
   // Full description (for the About/Organization context — can be long).
   description:
-    "SOLUPOWER (Soluciones Industriales RM S.A.S.) — venta, alquiler y servicio técnico de equipos de limpieza industrial: hidrolavadoras, brilladoras, aspiradoras, scrubbers y más. Ingeniería, precisión y excelencia.",
+    "SOLUPOWER (Soluciones Industriales RM S.A.S.) es una empresa colombiana especializada en soluciones integrales para la limpieza y el mantenimiento industrial: suministro de equipos de limpieza profesional e industrial, mantenimiento y limpieza de superficies, servicio técnico especializado y renting (alquiler) de equipos.",
   // SEO meta description (≤155 chars, avoids SERP truncation).
   metaDescription:
-    "Venta, alquiler y servicio técnico de equipos de limpieza industrial en Bogotá y Colombia: hidrolavadoras, brilladoras, scrubbers y más.",
+    "Suministro, renting y servicio técnico de equipos de limpieza industrial en Medellín y Bogotá: brilladoras, hidrolavadoras, fregadoras, aspiradoras y más.",
   url: "https://www.solupower.co",
   locale: "es_CO",
   themeColor: "#F5F7FA",
-  // TODO: confirmar datos reales de negocio (afectan SEO local / LocalBusiness schema).
-  geo: { latitude: 4.711, longitude: -74.0721 },
-  areaServed: ["Bogotá", "Cundinamarca", "Colombia"],
+  // Sede: Calle 20A No. 79–32, Medellín (coordenadas aproximadas del sector).
+  geo: { latitude: 6.2442, longitude: -75.5812 },
+  areaServed: ["Medellín", "Bogotá", "Colombia"],
   priceRange: "$$",
   openingHours: [
     "Mo-Fr 08:00-18:00",
@@ -34,11 +35,13 @@ export const siteConfig = {
     "pintura epóxica",
   ],
   contact: {
-    phone: "+57 300 000 0000",
-    phoneHref: "tel:+573000000000",
-    whatsapp: "https://wa.me/573000000000",
-    email: "contacto@solupower.co",
-    address: "Bogotá D.C., Colombia",
+    phone: "+57 310 788 9380",
+    phoneHref: "tel:+573107889380",
+    phone2: "+57 311 260 1454",
+    phone2Href: "tel:+573112601454",
+    whatsapp: "https://wa.me/573107889380",
+    email: "Solucionesindustrailes.rm04@gmail.com",
+    address: "Calle 20A No. 79–32, Medellín, Colombia",
   },
   social: {
     instagram: "https://instagram.com/solupower",

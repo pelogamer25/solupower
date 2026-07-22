@@ -29,7 +29,7 @@ export default function PillarSection({ variant }: PillarSectionProps) {
   const isProducts = variant === "productos";
   const crossLinks = isProducts
     ? ["servicio-tecnico", "alquiler", "mantenimiento-industrial"]
-    : ["hidrolavadoras-industriales", "scrubbers", "brilladoras-industriales"];
+    : ["hidrolavadora-industrial-1900-psi", "scrubbers", "brilladora-industrial-17"];
 
   const relatedPosts = posts.slice(0, 3);
   const relatedCases = caseStudies.slice(0, 3);

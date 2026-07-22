@@ -13,6 +13,8 @@ import ContactCta from "@/components/sections/ContactCta";
 import { pageMetadata, jsonLdScript } from "@/lib/seo";
 import { services } from "@/lib/data/services";
 import { siteConfig } from "@/config/site";
+import { workPhotos } from "@/lib/workPhotos";
+import { beforeAfterPhotos } from "@/lib/beforeAfterPhotos";
 
 export const metadata: Metadata = pageMetadata({
   title: "Soluciones industriales para empresas que buscan excelencia",
@@ -44,10 +46,10 @@ export default function HomePage() {
       <Services />
       <About />
       <Products />
-      <BeforeAfter />
+      <BeforeAfter {...beforeAfterPhotos()} />
       <Process />
       <Clients />
-      <Gallery />
+      <Gallery photos={workPhotos()} />
       <Faq />
       <ExploreMap />
       <ContactCta />

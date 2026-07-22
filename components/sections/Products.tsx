@@ -1,10 +1,12 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import { products } from "@/lib/data/products";
+import { productPhoto } from "@/lib/productPhoto";
 
 const visual: Record<string, string> = {
   blue: "from-brand-deep via-brand-blue to-brand-cyan",
@@ -14,6 +16,10 @@ const visual: Record<string, string> = {
 };
 
 export default function Products() {
+  // Homepage previews only products with a real photo (for now);
+  // the full catalog lives on /productos.
+  const featured = products.filter((p) => productPhoto(p.slug));
+
   return (
     <section id="productos" className="relative py-28 sm:py-36" aria-label="Productos">
       <div className="container-x">
@@ -25,15 +31,31 @@ export default function Products() {
         />
 
         <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((product, i) => (
+          {featured.map((product, i) => {
+            const photo = productPhoto(product.slug);
+            return (
             <Reveal key={product.slug} delay={(i % 3) * 0.08}>
               <GlassCard as="article" className="group h-full">
                 <Link href={`/productos/${product.slug}`} className="block">
-                  {/* Visual placeholder — swap for optimized next/image photography */}
                   <div className="relative m-2 h-44 overflow-hidden rounded-3xl">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${visual[product.accent]}`} />
-                    <div className="grain absolute inset-0 opacity-40" />
-                    <div className="absolute inset-0 bg-[radial-gradient(80%_80%_at_30%_20%,rgba(255,255,255,0.5),transparent)]" />
+                    {photo ? (
+                      <>
+                        <div className="absolute inset-0 bg-white" />
+                        <Image
+                          src={photo}
+                          alt={`${product.name} — SOLUPOWER`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <div className={`absolute inset-0 bg-gradient-to-br ${visual[product.accent]}`} />
+                        <div className="grain absolute inset-0 opacity-40" />
+                        <div className="absolute inset-0 bg-[radial-gradient(80%_80%_at_30%_20%,rgba(255,255,255,0.5),transparent)]" />
+                      </>
+                    )}
                     <span className="absolute left-4 top-4 rounded-full bg-white/85 px-3 py-1 text-xs font-medium text-ink backdrop-blur-md">
                       {product.category}
                     </span>
@@ -64,7 +86,14 @@ export default function Products() {
                 </div>
               </GlassCard>
             </Reveal>
-          ))}
+            );
+          })}
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <Button href="/productos" variant="primary" icon={<ArrowRight size={17} />}>
+            Ver catálogo completo
+          </Button>
         </div>
       </div>
     </section>

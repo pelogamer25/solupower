@@ -8,9 +8,9 @@ import { pageMetadata } from "@/lib/seo";
 import { stats, values } from "@/lib/data/content";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Nosotros | Empresa de limpieza industrial en Bogotá",
+  title: "Nosotros | Limpieza y mantenimiento industrial en Medellín y Bogotá",
   description:
-    "Conoce a SOLUPOWER (Soluciones Industriales RM S.A.S.): nuestra historia, misión, valores y la experiencia que respalda cada proyecto de limpieza y mantenimiento industrial.",
+    "Conoce a SOLUPOWER (Soluciones Industriales RM S.A.S.): empresa colombiana especializada en soluciones integrales para la limpieza y el mantenimiento industrial.",
   path: "/nosotros",
 });
 
@@ -19,8 +19,8 @@ export default function NosotrosPage() {
     <>
       <PageHeader
         eyebrow="Sobre nosotros"
-        title="Ingeniería, precisión y compromiso industrial"
-        description="Somos un equipo especializado en soluciones de limpieza y mantenimiento industrial. Nacimos para elevar el estándar del sector, combinando tecnología con un servicio verdaderamente cercano."
+        title="Soluciones Industriales Inteligentes"
+        description="SOLUPOWER es una empresa colombiana especializada en soluciones integrales para la limpieza y el mantenimiento industrial. Más que un proveedor, somos un aliado estratégico de nuestros clientes."
         crumbs={[{ name: "Nosotros", path: "/nosotros" }]}
       />
 
@@ -28,16 +28,16 @@ export default function NosotrosPage() {
         <div className="container-x grid gap-6 lg:grid-cols-3">
           {[
             {
-              t: "Nuestra historia",
-              d: "Más de una década resolviendo los retos de limpieza y mantenimiento de plantas, bodegas y grandes superficies en Colombia.",
+              t: "¿Quiénes somos?",
+              d: "SOLUPOWER es una empresa colombiana especializada en soluciones integrales para la limpieza y el mantenimiento industrial, con cobertura en Medellín y Bogotá.",
             },
             {
-              t: "Nuestra misión",
-              d: "Ofrecer soluciones industriales confiables que optimicen la operación de nuestros clientes con estándares de excelencia.",
+              t: "Nuestro enfoque",
+              d: "Optimizar la operación de nuestros clientes mediante el suministro de equipos, maquinaria, insumos y servicios especializados que incrementan la productividad, reducen costos operativos y garantizan ambientes seguros y eficientes.",
             },
             {
-              t: "Nuestra visión",
-              d: "Ser el aliado de referencia en equipos y servicios de limpieza industrial, reconocidos por innovación y resultados.",
+              t: "Un aliado estratégico",
+              d: "Más que un proveedor, acompañamos a las organizaciones en la transformación de sus procesos de limpieza y mantenimiento, incorporando innovación, tecnología y prácticas sostenibles que generan resultados medibles.",
             },
           ].map((item, i) => (
             <Reveal key={item.t} delay={i * 0.08}>
