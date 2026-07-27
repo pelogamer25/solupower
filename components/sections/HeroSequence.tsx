@@ -12,6 +12,7 @@ import {
 import { ArrowRight, MessageCircle, ChevronDown } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import Button from "@/components/ui/Button";
+import { useCoarsePointer } from "@/lib/useCoarsePointer";
 
 const FRAME_COUNT = 40;
 const framePath = (i: number) => `/hero/frame-${String(i).padStart(2, "0")}.jpg`;
@@ -27,8 +28,20 @@ export default function HeroSequence() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
+  /** Pre-decoded, pre-cropped GPU bitmaps (mobile): drawing = trivial blit. */
+  const bitmapsRef = useRef<(ImageBitmap | null)[]>([]);
+  const lastIndexRef = useRef(-1);
+  /** Frame interpolation: a rAF loop lerps `current` toward the scroll target. */
+  const targetRef = useRef(0);
+  const currentRef = useRef(0);
+  const rafRef = useRef(0);
+  const runningRef = useRef(false);
   const [posterReady, setPosterReady] = useState(false);
   const reduce = useReducedMotion();
+  // Mobile: degrade the expensive parts (canvas DPR, scroll-linked blur/zoom).
+  const coarse = useCoarsePointer();
+  const coarseRef = useRef(false);
+  coarseRef.current = coarse;
 
   const { scrollYProgress } = useScroll({
     target: wrapRef,
@@ -51,12 +64,54 @@ export default function HeroSequence() {
     imagesRef.current = imgs;
 
     let cancelled = false;
-    const preloadRest = () => {
+    const preloadRest = async () => {
       if (cancelled) return;
       for (let i = 1; i < FRAME_COUNT; i++) {
         const img = new Image();
         img.src = framePath(i);
         imgs[i] = img;
+      }
+      // Decode every frame OFF the scroll path (first-draw JPEG decode on the
+      // main thread is the #1 cause of scrub jank on phones). On mobile, also
+      // pre-crop + pre-scale each frame to the exact canvas size as ImageBitmap
+      // so every subsequent draw is a trivial 1:1 GPU blit.
+      const canvas = canvasRef.current;
+      const makeBitmaps =
+        coarseRef.current && typeof window.createImageBitmap === "function" && canvas;
+      for (let i = 0; i < FRAME_COUNT; i++) {
+        if (cancelled) return;
+        const img = imgs[i];
+        if (!img) continue;
+        try {
+          await img.decode();
+          if (makeBitmaps) {
+            const cw = canvas.clientWidth;
+            const ch = canvas.clientHeight;
+            if (cw > 0 && ch > 0) {
+              // center-crop the source to the canvas aspect, then resize
+              const ir = img.naturalWidth / img.naturalHeight;
+              const cr = cw / ch;
+              let sw = img.naturalWidth;
+              let sh = img.naturalHeight;
+              let sx = 0;
+              let sy = 0;
+              if (ir > cr) {
+                sw = sh * cr;
+                sx = (img.naturalWidth - sw) / 2;
+              } else {
+                sh = sw / cr;
+                sy = (img.naturalHeight - sh) / 2;
+              }
+              bitmapsRef.current[i] = await createImageBitmap(img, sx, sy, sw, sh, {
+                resizeWidth: cw,
+                resizeHeight: ch,
+                resizeQuality: "medium",
+              });
+            }
+          }
+        } catch {
+          /* frame stays as plain <img>; cover-draw fallback handles it */
+        }
       }
     };
 
@@ -77,15 +132,20 @@ export default function HeroSequence() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // ---- Canvas drawing (cover fit, DPR-aware) ----
+  // ---- Canvas drawing (cover fit, DPR-aware; opaque ctx = faster compositing) ----
   function drawFrame(index: number) {
     const canvas = canvasRef.current;
+    if (!canvas) return;
+    const bitmap = bitmapsRef.current[index];
     const img = imagesRef.current[index];
-    if (!canvas || !img || !img.complete || img.naturalWidth === 0) return;
-    const ctx = canvas.getContext("2d");
+    const source: ImageBitmap | HTMLImageElement | null =
+      bitmap ?? (img && img.complete && img.naturalWidth > 0 ? img : null);
+    if (!source) return;
+    const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Mobile GPUs: draw at 1x — the frame is 100svh, DPR2 means 4x the pixels.
+    const dpr = coarseRef.current ? 1 : Math.min(window.devicePixelRatio || 1, 2);
     const cw = canvas.clientWidth;
     const ch = canvas.clientHeight;
     if (canvas.width !== cw * dpr || canvas.height !== ch * dpr) {
@@ -94,8 +154,15 @@ export default function HeroSequence() {
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
+    const sw = "naturalWidth" in source ? source.naturalWidth : source.width;
+    const sh = "naturalHeight" in source ? source.naturalHeight : source.height;
+    if (sw === cw && sh === ch) {
+      // pre-cropped bitmap: 1:1 blit, nothing to compute
+      ctx.drawImage(source, 0, 0, cw, ch);
+      return;
+    }
     // cover
-    const ir = img.naturalWidth / img.naturalHeight;
+    const ir = sw / sh;
     const cr = cw / ch;
     let dw = cw;
     let dh = ch;
@@ -103,15 +170,50 @@ export default function HeroSequence() {
     else dw = ch * ir;
     const dx = (cw - dw) / 2;
     const dy = (ch - dh) / 2;
-    ctx.clearRect(0, 0, cw, ch);
-    ctx.drawImage(img, dx, dy, dw, dh);
+    ctx.drawImage(source, dx, dy, dw, dh);
   }
 
-  // ---- Map scroll -> frame ----
+  // ---- Map scroll -> frame via an interpolated rAF loop ----
+  // Scroll only updates the *target*; a self-stopping rAF loop lerps the
+  // current frame toward it (max one draw per display frame, smooth catch-up,
+  // zero work once settled). This is what makes the scrub feel fluid on touch.
+  function tick() {
+    const target = targetRef.current;
+    const cur = currentRef.current;
+    const next = Math.abs(target - cur) < 0.04 ? target : cur + (target - cur) * 0.24;
+    currentRef.current = next;
+    const index = Math.round(next);
+    if (index !== lastIndexRef.current) {
+      lastIndexRef.current = index;
+      drawFrame(index);
+    }
+    if (next !== target) {
+      rafRef.current = requestAnimationFrame(tick);
+    } else {
+      runningRef.current = false;
+    }
+  }
+
+  function kick() {
+    if (runningRef.current) return;
+    runningRef.current = true;
+    rafRef.current = requestAnimationFrame(tick);
+  }
+
   useMotionValueEvent(scrollYProgress, "change", (p) => {
-    const index = Math.min(FRAME_COUNT - 1, Math.max(0, Math.round(p * (FRAME_COUNT - 1))));
-    requestAnimationFrame(() => drawFrame(index));
+    targetRef.current = Math.min(FRAME_COUNT - 1, Math.max(0, p * (FRAME_COUNT - 1)));
+    kick();
   });
+
+  // stop the loop cleanly on unmount; free decoded bitmaps
+  useEffect(() => {
+    const bitmaps = bitmapsRef.current;
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      runningRef.current = false;
+      for (const b of bitmaps) b?.close?.();
+    };
+  }, []);
 
   useEffect(() => {
     const onResize = () => {
@@ -135,11 +237,15 @@ export default function HeroSequence() {
 
   return (
     <section aria-label="Introducción SOLUPOWER" className="relative">
-      {/* Tall driver: ~5 viewport-heights of scroll to scrub the sequence */}
-      <div ref={wrapRef} className="relative h-[500vh]">
+      {/* Tall driver: scroll scrubs the sequence (shorter ride on mobile) */}
+      <div ref={wrapRef} className="relative h-[300vh] md:h-[500vh]">
         {/* Pinned stage */}
         <div className="sticky top-0 h-[100svh] overflow-hidden">
-          <motion.div style={{ scale, opacity: cinematicFade }} className="absolute inset-0">
+          {/* Mobile: no scroll-linked zoom — rescaling a full-screen canvas re-rasterizes every frame */}
+          <motion.div
+            style={coarse ? { opacity: cinematicFade } : { scale, opacity: cinematicFade }}
+            className="absolute inset-0"
+          >
             <canvas ref={canvasRef} className="h-full w-full" aria-hidden />
           </motion.div>
 
@@ -154,7 +260,7 @@ export default function HeroSequence() {
 
           {/* --- Progressive company info, phased over the footage --- */}
           <div className="container-x absolute inset-0 z-10 flex items-center">
-            <Phase p={scrollYProgress} range={[0.0, 0.06, 0.2, 0.26]}>
+            <Phase p={scrollYProgress} range={[0.0, 0.06, 0.2, 0.26]} still={coarse}>
               <Eyebrow>Soluciones Industriales RM S.A.S.</Eyebrow>
               <h1 className="mt-5 max-w-2xl font-display text-hero font-semibold text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.35)]">
                 Soluciones industriales para empresas que buscan{" "}
@@ -175,7 +281,7 @@ export default function HeroSequence() {
               </div>
             </Phase>
 
-            <Phase p={scrollYProgress} range={[0.28, 0.34, 0.46, 0.52]}>
+            <Phase p={scrollYProgress} range={[0.28, 0.34, 0.46, 0.52]} still={coarse}>
               <Eyebrow>Ingeniería y precisión</Eyebrow>
               <h2 className="mt-5 max-w-2xl font-display text-display font-semibold text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.35)]">
                 Más de una década elevando el estándar de la industria.
@@ -186,7 +292,7 @@ export default function HeroSequence() {
               </p>
             </Phase>
 
-            <Phase p={scrollYProgress} range={[0.54, 0.6, 0.72, 0.78]}>
+            <Phase p={scrollYProgress} range={[0.54, 0.6, 0.72, 0.78]} still={coarse}>
               <Eyebrow>Nuestro respaldo</Eyebrow>
               <div className="mt-6 grid max-w-2xl grid-cols-2 gap-x-10 gap-y-8 sm:grid-cols-4">
                 {[
@@ -203,7 +309,7 @@ export default function HeroSequence() {
               </div>
             </Phase>
 
-            <Phase p={scrollYProgress} range={[0.8, 0.86, 0.98, 1.0]} last>
+            <Phase p={scrollYProgress} range={[0.8, 0.86, 0.98, 1.0]} last still={coarse}>
               <Eyebrow>Comencemos</Eyebrow>
               <h2 className="mt-5 max-w-2xl font-display text-display font-semibold text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.35)]">
                 Todo lo que tu operación necesita, en un solo lugar.
@@ -230,11 +336,14 @@ function Phase({
   p,
   range,
   last = false,
+  still = false,
   children,
 }: {
   p: MotionValue<number>;
   range: [number, number, number, number];
   last?: boolean;
+  /** Mobile: skip the scroll-linked blur filter (repaints are too expensive). */
+  still?: boolean;
   children: React.ReactNode;
 }) {
   const [a, b, c, d] = range;
@@ -245,7 +354,7 @@ function Phase({
 
   return (
     <motion.div
-      style={{ opacity, y, filter }}
+      style={still ? { opacity, y } : { opacity, y, filter }}
       className="pointer-events-none absolute inset-x-0 px-[inherit]"
     >
       {/* re-enable pointer events for actual controls */}

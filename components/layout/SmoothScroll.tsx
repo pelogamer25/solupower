@@ -12,13 +12,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Touch devices scroll natively: Lenis' smooth-wheel adds nothing there,
+    // and its permanent rAF loop costs battery/frames on mobile. Skip entirely.
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    if (reduce || coarse) return;
+
     gsap.registerPlugin(ScrollTrigger);
 
     const lenis = new Lenis({
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: !reduce,
-      touchMultiplier: 1.4,
+      smoothWheel: true,
     });
 
     lenis.on("scroll", ScrollTrigger.update);

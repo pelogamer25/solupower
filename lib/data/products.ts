@@ -1,3 +1,4 @@
+import { Disc3, Droplets, Wind, SprayCan, Brush, Sofa, Bot, type LucideIcon } from "lucide-react";
 import type { Product } from "@/types";
 
 export const productCategories = [
@@ -8,8 +9,42 @@ export const productCategories = [
   "Barredoras",
   "Extractoras",
   "Robots",
-  "Destroncadoras",
 ] as const;
+
+export interface ProductCategory {
+  /** URL slug: /productos/categoria/<slug> */
+  slug: string;
+  /** Must match Product.category exactly. */
+  name: (typeof productCategories)[number];
+  /** Short SEO description shown on the category card and page intro. */
+  tagline: string;
+  icon: LucideIcon;
+  accent: "blue" | "teal" | "cyan" | "green";
+}
+
+/** Category taxonomy — drives the products dropdown, the /productos pillar and the per-type pages. */
+export const productCategoryMeta: ProductCategory[] = [
+  { slug: "brilladoras", name: "Brilladoras", accent: "blue", icon: Disc3, tagline: "Brilladoras industriales de alta velocidad para pulir y abrillantar pisos de alto tránsito." },
+  { slug: "hidrolavadoras", name: "Hidrolavadoras", accent: "cyan", icon: Droplets, tagline: "Hidrolavadoras industriales de agua fría y caliente y alta presión para el lavado más exigente." },
+  { slug: "aspiradoras", name: "Aspiradoras", accent: "teal", icon: Wind, tagline: "Aspiradoras profesionales e industriales para sólidos y líquidos, con uno, dos o tres motores." },
+  { slug: "scrubbers", name: "Scrubbers", accent: "blue", icon: SprayCan, tagline: "Fregadoras (scrubbers) que lavan, refriegan, aspiran y secan grandes superficies en una sola pasada." },
+  { slug: "barredoras", name: "Barredoras", accent: "green", icon: Brush, tagline: "Barredoras industriales de conducción y a batería para grandes áreas y alto tráfico." },
+  { slug: "extractoras", name: "Extractoras", accent: "teal", icon: Sofa, tagline: "Extractoras para el lavado profesional de alfombras, muebles y superficies textiles." },
+  { slug: "robots", name: "Robots", accent: "green", icon: Bot, tagline: "Robots de limpieza autónomos e inteligentes con control desde app y carga automática." },
+];
+
+export function getCategoryMeta(slug: string) {
+  return productCategoryMeta.find((c) => c.slug === slug);
+}
+/** Category slug for a product's category name (for building URLs/breadcrumbs). */
+export function categorySlugOf(name: string) {
+  return productCategoryMeta.find((c) => c.name === name)?.slug;
+}
+/** All products of a category, by category slug. */
+export function productsInCategory(slug: string) {
+  const meta = getCategoryMeta(slug);
+  return meta ? products.filter((p) => p.category === meta.name) : [];
+}
 
 export const products: Product[] = [
   {
@@ -59,22 +94,6 @@ export const products: Product[] = [
     ],
     accent: "green",
     imageIndex: 36,
-  },
-  {
-    slug: "desbastadoras",
-    name: "Destroncadora",
-    category: "Destroncadoras",
-    excerpt: "Desbasta, nivela, rebaja, pule y brilla sobre concreto, granito y terrazo.",
-    description:
-      "Destroncadora ideal para desbastar, nivelar, rebajar, pulir y brillar. Aplicable sobre concreto, granito y terrazo.",
-    specs: [
-      { label: "Funciones", value: "Desbasta, nivela y rebaja" },
-      { label: "Acabado", value: "Pule y brilla" },
-      { label: "Superficies", value: "Concreto, granito y terrazo" },
-      { label: "Uso", value: "Preparación de superficies" },
-    ],
-    accent: "cyan",
-    imageIndex: 2,
   },
 
   // ---------------------------------------------------------------------------

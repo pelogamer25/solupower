@@ -11,7 +11,7 @@ import ContextualCta from "@/components/seo/ContextualCta";
 import RelatedContent from "@/components/seo/RelatedContent";
 import ContactCta from "@/components/sections/ContactCta";
 import { pageMetadata, productJsonLd, jsonLdScript } from "@/lib/seo";
-import { products, getProduct, formatCOP } from "@/lib/data/products";
+import { products, getProduct, formatCOP, categorySlugOf } from "@/lib/data/products";
 import { getProductSeo } from "@/lib/data/seoContent";
 import { getRelated } from "@/lib/data/relations";
 import { productPhoto } from "@/lib/productPhoto";
@@ -52,6 +52,7 @@ export default async function ProductoDetailPage(props: {
   const related = getRelated(product.slug);
   const ctaService = related.servicios[0]?.slug ?? "alquiler";
   const photo = productPhoto(product.slug);
+  const catSlug = categorySlugOf(product.category);
 
   return (
     <>
@@ -66,6 +67,7 @@ export default async function ProductoDetailPage(props: {
         description={product.description}
         crumbs={[
           { name: "Productos", path: "/productos" },
+          ...(catSlug ? [{ name: product.category, path: `/productos/categoria/${catSlug}` }] : []),
           { name: product.name, path: `/productos/${product.slug}` },
         ]}
       />

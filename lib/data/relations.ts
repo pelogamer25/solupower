@@ -51,16 +51,11 @@ export const anchors: Record<string, string> = {
   "venta-de-maquinaria": "venta de maquinaria industrial",
   alquiler: "alquiler de maquinaria de limpieza",
   "servicio-tecnico": "servicio técnico para maquinaria industrial",
-  "mantenimiento-industrial": "mantenimiento industrial preventivo",
-  "restauracion-de-pisos": "restauración de pisos industriales",
-  "limpieza-especializada": "limpieza industrial especializada",
-  "pintura-epoxica": "pintura epóxica para pisos industriales",
-  "mantenimientos-locativos": "mantenimientos locativos",
+  "restauracion-de-pisos": "mantenimiento y limpieza de superficies",
   // productos
   "aspiradoras-industriales": "aspiradoras industriales",
   scrubbers: "scrubbers industriales",
   "robots-de-limpieza": "robots de limpieza industrial",
-  desbastadoras: "desbastadoras de concreto",
   "brilladora-industrial-17": "brilladora industrial 17",
   "brilladora-industrial-k-20": "brilladora industrial K-20",
   "fregadora-hombre-a-pie": "fregadora hombre a pie",
@@ -91,7 +86,7 @@ const graph: Record<string, RelatedRef[]> = {
   "hidrolavadora-industrial-1900-psi": [
     { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "servicio", slug: "alquiler" },
-    { kind: "servicio", slug: "limpieza-especializada" },
+    { kind: "servicio", slug: "restauracion-de-pisos" },
     { kind: "producto", slug: "aspiradoras-industriales" },
     { kind: "producto", slug: "brilladora-industrial-17" },
     { kind: "producto", slug: "scrubbers" },
@@ -110,9 +105,9 @@ const graph: Record<string, RelatedRef[]> = {
     { kind: "caso", slug: "recuperacion-de-superficies" },
   ],
   "aspiradoras-industriales": [
-    { kind: "servicio", slug: "limpieza-especializada" },
+    { kind: "servicio", slug: "restauracion-de-pisos" },
     { kind: "servicio", slug: "servicio-tecnico" },
-    { kind: "servicio", slug: "mantenimiento-industrial" },
+    { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "producto", slug: "scrubbers" },
     { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
     { kind: "producto", slug: "robots-de-limpieza" },
@@ -120,9 +115,9 @@ const graph: Record<string, RelatedRef[]> = {
     { kind: "caso", slug: "lavado-profundo-de-pisos" },
   ],
   scrubbers: [
-    { kind: "servicio", slug: "limpieza-especializada" },
+    { kind: "servicio", slug: "restauracion-de-pisos" },
     { kind: "servicio", slug: "alquiler" },
-    { kind: "servicio", slug: "mantenimiento-industrial" },
+    { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "producto", slug: "aspiradoras-industriales" },
     { kind: "producto", slug: "robots-de-limpieza" },
     { kind: "producto", slug: "brilladora-industrial-17" },
@@ -130,8 +125,8 @@ const graph: Record<string, RelatedRef[]> = {
     { kind: "caso", slug: "lavado-profundo-de-pisos" },
   ],
   "robots-de-limpieza": [
-    { kind: "servicio", slug: "limpieza-especializada" },
-    { kind: "servicio", slug: "mantenimiento-industrial" },
+    { kind: "servicio", slug: "restauracion-de-pisos" },
+    { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "producto", slug: "scrubbers" },
     { kind: "producto", slug: "aspiradoras-industriales" },
@@ -139,20 +134,10 @@ const graph: Record<string, RelatedRef[]> = {
     { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
     { kind: "caso", slug: "lavado-profundo-de-pisos" },
   ],
-  desbastadoras: [
-    { kind: "servicio", slug: "restauracion-de-pisos" },
-    { kind: "servicio", slug: "pintura-epoxica" },
-    { kind: "servicio", slug: "servicio-tecnico" },
-    { kind: "producto", slug: "brilladora-industrial-17" },
-    { kind: "producto", slug: "scrubbers" },
-    { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
-    { kind: "blog", slug: "como-restaurar-pisos-industriales" },
-    { kind: "caso", slug: "recuperacion-de-superficies" },
-  ],
 
   // ---------------- Servicios (cluster: Servicios de limpieza y mantenimiento) ----------------
   "servicio-tecnico": [
-    { kind: "servicio", slug: "mantenimiento-industrial" },
+    { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "servicio", slug: "alquiler" },
     { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
     { kind: "producto", slug: "brilladora-industrial-17" },
@@ -163,7 +148,7 @@ const graph: Record<string, RelatedRef[]> = {
   alquiler: [
     { kind: "servicio", slug: "venta-de-maquinaria" },
     { kind: "servicio", slug: "servicio-tecnico" },
-    { kind: "servicio", slug: "mantenimiento-industrial" },
+    { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
     { kind: "producto", slug: "scrubbers" },
     { kind: "producto", slug: "aspiradoras-industriales" },
@@ -179,56 +164,22 @@ const graph: Record<string, RelatedRef[]> = {
     { kind: "blog", slug: "elegir-hidrolavadora-industrial" },
     { kind: "caso", slug: "lavado-profundo-de-pisos" },
   ],
-  "mantenimiento-industrial": [
-    { kind: "servicio", slug: "servicio-tecnico" },
-    { kind: "servicio", slug: "mantenimientos-locativos" },
-    { kind: "servicio", slug: "alquiler" },
-    { kind: "producto", slug: "scrubbers" },
-    { kind: "producto", slug: "aspiradoras-industriales" },
-    { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
-    { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
-    { kind: "caso", slug: "lavado-profundo-de-pisos" },
-  ],
   "restauracion-de-pisos": [
-    { kind: "servicio", slug: "pintura-epoxica" },
-    { kind: "servicio", slug: "limpieza-especializada" },
-    { kind: "servicio", slug: "mantenimientos-locativos" },
+    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "servicio", slug: "alquiler" },
+    { kind: "servicio", slug: "venta-de-maquinaria" },
     { kind: "producto", slug: "desbastadoras" },
     { kind: "producto", slug: "brilladora-industrial-17" },
+    { kind: "producto", slug: "extractora-jb-175" },
     { kind: "blog", slug: "como-restaurar-pisos-industriales" },
-    { kind: "caso", slug: "recuperacion-de-superficies" },
-  ],
-  "limpieza-especializada": [
-    { kind: "servicio", slug: "restauracion-de-pisos" },
-    { kind: "servicio", slug: "mantenimiento-industrial" },
-    { kind: "servicio", slug: "alquiler" },
-    { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
-    { kind: "producto", slug: "aspiradoras-industriales" },
-    { kind: "producto", slug: "scrubbers" },
-    { kind: "blog", slug: "como-restaurar-pisos-industriales" },
-    { kind: "caso", slug: "recuperacion-de-superficies" },
-  ],
-  "pintura-epoxica": [
-    { kind: "servicio", slug: "restauracion-de-pisos" },
-    { kind: "servicio", slug: "mantenimientos-locativos" },
-    { kind: "producto", slug: "desbastadoras" },
-    { kind: "blog", slug: "como-restaurar-pisos-industriales" },
-    { kind: "caso", slug: "recuperacion-de-superficies" },
-  ],
-  "mantenimientos-locativos": [
-    { kind: "servicio", slug: "mantenimiento-industrial" },
-    { kind: "servicio", slug: "pintura-epoxica" },
-    { kind: "servicio", slug: "limpieza-especializada" },
-    { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
-    { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
     { kind: "caso", slug: "recuperacion-de-superficies" },
   ],
 
   // ---------------- Blog ----------------
   "como-restaurar-pisos-industriales": [
     { kind: "servicio", slug: "restauracion-de-pisos" },
-    { kind: "servicio", slug: "pintura-epoxica" },
-    { kind: "servicio", slug: "limpieza-especializada" },
+    { kind: "servicio", slug: "restauracion-de-pisos" },
+    { kind: "servicio", slug: "restauracion-de-pisos" },
     { kind: "producto", slug: "desbastadoras" },
     { kind: "producto", slug: "brilladora-industrial-17" },
     { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
@@ -244,7 +195,7 @@ const graph: Record<string, RelatedRef[]> = {
     { kind: "caso", slug: "recuperacion-de-superficies" },
   ],
   "mantenimiento-preventivo-maquinaria": [
-    { kind: "servicio", slug: "mantenimiento-industrial" },
+    { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "producto", slug: "scrubbers" },
     { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
@@ -255,27 +206,27 @@ const graph: Record<string, RelatedRef[]> = {
   // ---------------- Casos de éxito (líneas de trabajo reales) ----------------
   "recuperacion-de-superficies": [
     { kind: "servicio", slug: "restauracion-de-pisos" },
-    { kind: "servicio", slug: "pintura-epoxica" },
+    { kind: "servicio", slug: "restauracion-de-pisos" },
     { kind: "producto", slug: "desbastadoras" },
     { kind: "producto", slug: "brilladora-industrial-17" },
     { kind: "blog", slug: "como-restaurar-pisos-industriales" },
   ],
   "cristalizado-y-pulido-de-pisos": [
     { kind: "servicio", slug: "restauracion-de-pisos" },
-    { kind: "servicio", slug: "mantenimiento-industrial" },
+    { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "producto", slug: "brilladora-industrial-17" },
     { kind: "producto", slug: "desbastadoras" },
     { kind: "blog", slug: "como-restaurar-pisos-industriales" },
   ],
   "lavado-y-desinfeccion-de-alfombras": [
-    { kind: "servicio", slug: "limpieza-especializada" },
+    { kind: "servicio", slug: "restauracion-de-pisos" },
     { kind: "producto", slug: "extractora-jb-175" },
     { kind: "producto", slug: "aspiradoras-industriales" },
     { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
   ],
   "lavado-profundo-de-pisos": [
-    { kind: "servicio", slug: "limpieza-especializada" },
-    { kind: "servicio", slug: "mantenimiento-industrial" },
+    { kind: "servicio", slug: "restauracion-de-pisos" },
+    { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "producto", slug: "scrubbers" },
     { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
     { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
@@ -312,7 +263,18 @@ export interface GroupedRelated {
 
 /** Resolve all related entities for a given slug, grouped by kind. */
 export function getRelated(slug: string): GroupedRelated {
-  const items = (graph[slug] ?? []).map(resolve).filter(Boolean) as RelatedItem[];
+  const seen = new Set<string>();
+  const items = (graph[slug] ?? [])
+    .map(resolve)
+    .filter((item): item is RelatedItem => {
+      // Drop unresolved (deleted) entities, self-references, and duplicates —
+      // this makes slug repointing safe (collisions collapse to one link).
+      if (!item || item.slug === slug) return false;
+      const key = `${item.kind}:${item.slug}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
   return {
     all: items,
     servicios: items.filter((i) => i.kind === "servicio"),

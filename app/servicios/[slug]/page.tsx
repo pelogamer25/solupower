@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Check, ArrowRight } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
@@ -13,6 +14,7 @@ import { pageMetadata, serviceJsonLd, jsonLdScript } from "@/lib/seo";
 import { services, getService } from "@/lib/data/services";
 import { getServiceSeo } from "@/lib/data/seoContent";
 import { getRelated } from "@/lib/data/relations";
+import { serviceImage } from "@/lib/serviceImage";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -42,6 +44,7 @@ export default async function ServicioDetailPage(props: {
   const seo = getServiceSeo(service.slug);
   const related = getRelated(service.slug);
   const ctaProduct = related.productos[0]?.slug ?? "hidrolavadora-industrial-1900-psi";
+  const photo = serviceImage(service.slug);
 
   return (
     <>
@@ -63,6 +66,29 @@ export default async function ServicioDetailPage(props: {
           Solicitar cotización
         </Button>
       </PageHeader>
+
+      {/* Real work photo of this service */}
+      {photo && (
+        <section className="pb-4 pt-2" aria-label="Trabajo real">
+          <div className="container-x">
+            <Reveal>
+              <div className="glass relative aspect-[16/8] w-full overflow-hidden rounded-5xl p-2 sm:aspect-[16/6]">
+                <div className="relative h-full w-full overflow-hidden rounded-[1.7rem]">
+                  <Image
+                    src={photo}
+                    alt={`${service.title} — trabajo real de SOLUPOWER`}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 1100px"
+                    className="object-cover"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent" />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       <section className="py-12" aria-label="Detalles del servicio">
         <div className="container-x grid gap-6 lg:grid-cols-[1.4fr_1fr]">

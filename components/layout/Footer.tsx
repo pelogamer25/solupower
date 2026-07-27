@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site";
 import Logo from "@/components/ui/Logo";
 import Button from "@/components/ui/Button";
 import { services } from "@/lib/data/services";
-import { products } from "@/lib/data/products";
+import { productCategoryMeta } from "@/lib/data/products";
 import { posts } from "@/lib/data/content";
 import { anchors } from "@/lib/data/relations";
 
@@ -12,9 +12,10 @@ import { anchors } from "@/lib/data/relations";
 const columns: { title: string; links: { href: string; label: string }[] }[] = [
   {
     title: "Productos",
-    links: products
-      .slice(0, 6)
-      .map((p) => ({ href: `/productos/${p.slug}`, label: anchors[p.slug] ?? p.name })),
+    links: productCategoryMeta.map((c) => ({
+      href: `/productos/categoria/${c.slug}`,
+      label: c.name,
+    })),
   },
   {
     title: "Servicios",

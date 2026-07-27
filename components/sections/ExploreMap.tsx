@@ -4,7 +4,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import GlassCard from "@/components/ui/GlassCard";
 import { services } from "@/lib/data/services";
-import { products } from "@/lib/data/products";
+import { productCategoryMeta } from "@/lib/data/products";
 import { anchors, pillars } from "@/lib/data/relations";
 
 /**
@@ -67,24 +67,16 @@ export default function ExploreMap() {
                 <ArrowUpRight size={16} className="text-brand-blue transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
               <ul className="mt-4 space-y-2.5">
-                {products.slice(0, 6).map((p) => (
-                  <li key={p.slug}>
+                {productCategoryMeta.map((c) => (
+                  <li key={c.slug}>
                     <Link
-                      href={`/productos/${p.slug}`}
+                      href={`/productos/categoria/${c.slug}`}
                       className="text-sm text-ink-soft transition-colors hover:text-brand-blue"
                     >
-                      {anchors[p.slug] ?? p.name}
+                      {c.name}
                     </Link>
                   </li>
                 ))}
-                <li>
-                  <Link
-                    href="/productos"
-                    className="text-sm font-medium text-brand-blue transition-colors hover:text-brand-deep"
-                  >
-                    Ver catálogo completo
-                  </Link>
-                </li>
               </ul>
             </GlassCard>
           </Reveal>

@@ -129,7 +129,7 @@ export default async function CasoDetailPage(props: {
 
       <ContextualCta
         lead="¿Tu operación necesita un trabajo como este? Empieza por nuestro servicio de"
-        slug={related.servicios[0]?.slug ?? "mantenimiento-industrial"}
+        slug={related.servicios[0]?.slug ?? "servicio-tecnico"}
         tail=" y diseñamos una solución a tu medida."
         cta={{ href: "/cotizacion", label: "Solicitar cotización" }}
       />

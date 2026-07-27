@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
+import { useCoarsePointer } from "@/lib/useCoarsePointer";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
@@ -26,6 +27,9 @@ export default function Reveal({
   blur = true,
 }: RevealProps) {
   const reduce = useReducedMotion();
+  // Mobile: animating blur() during scroll is a jank source — fade+slide only.
+  const coarse = useCoarsePointer();
+  const withBlur = blur && !coarse;
 
   const from =
     direction === "up"
@@ -41,12 +45,12 @@ export default function Reveal({
   const variants: Variants = {
     hidden: reduce
       ? { opacity: 0 }
-      : { opacity: 0, filter: blur ? "blur(12px)" : "blur(0px)", ...from },
+      : { opacity: 0, ...(withBlur ? { filter: "blur(12px)" } : {}), ...from },
     visible: {
       opacity: 1,
       x: 0,
       y: 0,
-      filter: "blur(0px)",
+      ...(withBlur ? { filter: "blur(0px)" } : {}),
       transition: {
         duration: 0.85,
         delay,

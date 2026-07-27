@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
 import { services } from "@/lib/data/services";
-import { products } from "@/lib/data/products";
+import { products, productCategoryMeta } from "@/lib/data/products";
 import { posts, caseStudies } from "@/lib/data/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -35,6 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const categoryRoutes = productCategoryMeta.map((c) => ({
+    url: `${base}/productos/categoria/${c.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
   const productRoutes = products.map((p) => ({
     url: `${base}/productos/${p.slug}`,
     lastModified: now,
@@ -56,5 +63,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...productRoutes, ...postRoutes, ...caseRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...categoryRoutes, ...productRoutes, ...postRoutes, ...caseRoutes];
 }

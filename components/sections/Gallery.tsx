@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { galleryItems } from "@/lib/data/content";
+import { useCoarsePointer } from "@/lib/useCoarsePointer";
 
 // Illustrative industrial frames (public/hero) mapped to each gallery item.
 const frames = [10, 18, 26, 33, 4, 12];
@@ -36,6 +37,8 @@ interface GalleryProps {
 
 export default function Gallery({ photos = [] }: GalleryProps) {
   const [active, setActive] = useState<number | null>(null);
+  // Mobile: entrance without blur filter (GPU-expensive during scroll).
+  const coarse = useCoarsePointer();
 
   const tiles: Tile[] = photos.length
     ? photos.map((src) => ({ src, real: true }))
@@ -66,8 +69,8 @@ export default function Gallery({ photos = [] }: GalleryProps) {
               type="button"
               onClick={() => setActive(i)}
               aria-label={tile.title ?? `Ver foto ${i + 1} de trabajo real de SOLUPOWER`}
-              initial={{ opacity: 0, scale: 0.94, filter: "blur(10px)" }}
-              whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              initial={coarse ? { opacity: 0, scale: 0.96 } : { opacity: 0, scale: 0.94, filter: "blur(10px)" }}
+              whileInView={coarse ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{ duration: 0.7, delay: (i % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
               className="group glass relative aspect-square overflow-hidden rounded-4xl p-1.5 text-left"

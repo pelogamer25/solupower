@@ -28,7 +28,7 @@ function InlineLink({ slug }: { slug: string }) {
 export default function PillarSection({ variant }: PillarSectionProps) {
   const isProducts = variant === "productos";
   const crossLinks = isProducts
-    ? ["servicio-tecnico", "alquiler", "mantenimiento-industrial"]
+    ? ["servicio-tecnico", "alquiler", "restauracion-de-pisos"]
     : ["hidrolavadora-industrial-1900-psi", "scrubbers", "brilladora-industrial-17"];
 
   const relatedPosts = posts.slice(0, 3);

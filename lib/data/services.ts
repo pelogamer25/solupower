@@ -1,13 +1,4 @@
-import {
-  Wrench,
-  Package,
-  Cog,
-  ShieldCheck,
-  Layers,
-  Sparkles,
-  PaintRoller,
-  Building2,
-} from "lucide-react";
+import { Wrench, Package, Layers } from "lucide-react";
 import type { Service } from "@/types";
 
 export const services: Service[] = [
@@ -57,69 +48,19 @@ export const services: Service[] = [
     accent: "cyan",
   },
   {
-    slug: "mantenimiento-industrial",
-    title: "Mantenimiento de equipos",
-    excerpt: "Preventivos y correctivos que evitan paradas y optimizan costos.",
-    description:
-      "Mantenimientos preventivos y correctivos para equipos de limpieza, con mano de obra calificada y stock de repuestos y consumibles. Planes de contratación anual para optimizar costos y mantenimientos periódicos.",
-    icon: Cog,
-    features: ["Preventivos y correctivos", "Stock de repuestos y consumibles", "Planes de contratación anual"],
-    accent: "green",
-  },
-  {
     slug: "restauracion-de-pisos",
-    title: "Mantenimiento de pisos y superficies",
-    excerpt: "Cristalizado, abrillantado y pulido diamantado para toda clase de superficies.",
+    title: "Mantenimiento y limpieza de superficies",
+    excerpt: "Cristalizado y pulido de pisos, y lavado profesional de alfombras y mobiliario.",
     description:
-      "Mantenimiento de pisos y toda clase de superficies: cristalizado de mármol, granito y concreto; abrillantado natural y efecto espejo; pulido y diamantado de mármol, granito, concreto y baldosas; y servicios especializados como proceso hidrófugo, resane y fraguado de juntas y recuperación de superficies.",
+      "Mantenimiento de pisos y toda clase de superficies (cristalizado, abrillantado, pulido y diamantado de mármol, granito, concreto y baldosas) junto con limpieza y desinfección profesional de alfombras, mobiliario y pisos: lavado profundo en proceso semihúmedo con equipos de inyección y extracción, eliminación de manchas y recuperación de fibras y superficies.",
     icon: Layers,
     features: [
-      "Cristalizado (mármol, granito, concreto)",
-      "Abrillantado natural y efecto espejo",
-      "Pulido y diamantado",
-      "Hidrófugo, resane y recuperación de superficies",
+      "Cristalizado, abrillantado y pulido diamantado",
+      "Mármol, granito, concreto y baldosas",
+      "Lavado y desinfección de alfombras y mobiliario",
+      "Lavado profundo de pisos y superficies de alto tráfico",
     ],
     accent: "blue",
-  },
-  {
-    slug: "limpieza-especializada",
-    title: "Limpieza y desinfección",
-    excerpt: "Lavado y desinfección de alfombras, mobiliario y pisos.",
-    description:
-      "Lavado y desinfección de alfombras con lavado profundo en proceso semihúmedo, extracción de agentes contaminantes, eliminación de manchas y recuperación de fibras; lavado profesional de sillas, muebles y colchones mediante equipos de inyección y extracción; y lavado profundo y desmanche de pisos duros como piedra, concreto, terrazo y otras superficies de alto tráfico.",
-    icon: Sparkles,
-    features: [
-      "Alfombras: proceso semihúmedo que protege la fibra",
-      "Mobiliario: sillas, muebles y colchones",
-      "Pisos de piedra, concreto y terrazo",
-      "Insumos altamente eficientes",
-    ],
-    accent: "teal",
-  },
-  {
-    slug: "pintura-epoxica",
-    title: "Pintura epóxica y demarcaciones",
-    excerpt: "Recubrimientos y demarcaciones de alta resistencia para pisos de concreto.",
-    description:
-      "Aplicación de pintura epóxica y demarcaciones: pulido de concreto con discos especializados y acabado liso para terminación de pintura. Mantenimiento de pisos de concreto con pulido de discos híbridos, resinas metálicas, sellado e hidrófugo.",
-    icon: PaintRoller,
-    features: [
-      "Pulido de concreto con discos especializados",
-      "Acabado liso para terminación de pintura",
-      "Resinas metálicas y sellado",
-      "Proceso hidrófugo",
-    ],
-    accent: "cyan",
-  },
-  {
-    slug: "mantenimientos-locativos",
-    title: "Mantenimientos locativos",
-    excerpt: "Reformas y acabados para conservar tus instalaciones.",
-    description:
-      "Servicios de mantenimiento locativo para conservar tus instalaciones en óptimas condiciones: reformas en drywall, estuco, pintura y cubiertas.",
-    icon: Building2,
-    features: ["Reformas en drywall", "Estuco y pintura", "Cubiertas"],
-    accent: "green",
   },
 ];
 

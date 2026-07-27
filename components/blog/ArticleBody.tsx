@@ -63,11 +63,11 @@ function RestaurarPisos() {
 
       <h3>1. Preparación y nivelación de la superficie</h3>
       <p>
-        Todo empieza por remover recubrimientos viejos, pegamentos y contaminantes, y por nivelar
-        las irregularidades. Aquí el equipo protagonista son las{" "}
-        <L slug="desbastadoras" />, que abren el poro del concreto y dejan una base uniforme sobre
-        la cual el resto del proceso adhiere de forma duradera. Una preparación deficiente es la
-        causa número uno de que una restauración “bonita” falle a los pocos meses.
+        las irregularidades. Aquí el equipo protagonista es la maquinaria de desbaste y pulido de
+        nuestro servicio de <L slug="restauracion-de-pisos" />, que abre el poro del concreto y deja
+        una base uniforme sobre la cual el resto del proceso adhiere de forma duradera. Una
+        preparación deficiente es la causa número uno de que una restauración “bonita” falle a los
+        pocos meses.
       </p>
 
       <h3>2. Pulido y acabado</h3>
@@ -83,9 +83,8 @@ function RestaurarPisos() {
       <p>
         El último paso es proteger. Según el uso del área, el sellado puede ir desde un endurecedor
         penetrante hasta un recubrimiento de alta resistencia. En plantas, laboratorios y zonas de
-        producción, la opción más robusta suele ser la{" "}
-        <L slug="pintura-epoxica" />, que aporta resistencia química y mecánica además de un acabado
-        estético y fácil de limpiar.
+        producción, la opción más robusta suele ser la pintura epóxica, que aporta resistencia
+        química y mecánica además de un acabado estético y fácil de limpiar.
       </p>
 
       <h2>Restaurar sin detener la operación</h2>
@@ -234,8 +233,8 @@ function MantenimientoPreventivo() {
       <p>
         Usar repuestos originales y llevar un historial por equipo permite anticipar reemplazos y
         detectar patrones de falla. Esa trazabilidad es parte de un buen{" "}
-        <L slug="servicio-tecnico" /> y de nuestro programa de{" "}
-        <L slug="mantenimiento-industrial" />.
+        <L slug="servicio-tecnico" /> y de un plan de{" "}
+        <L slug="mantenimiento-preventivo-maquinaria" />.
       </p>
 
       <h2>El impacto real en costos</h2>

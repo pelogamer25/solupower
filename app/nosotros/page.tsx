@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
@@ -6,6 +9,7 @@ import GlassCard from "@/components/ui/GlassCard";
 import ContactCta from "@/components/sections/ContactCta";
 import { pageMetadata } from "@/lib/seo";
 import { stats, values } from "@/lib/data/content";
+import { workPhotos } from "@/lib/workPhotos";
 
 export const metadata: Metadata = pageMetadata({
   title: "Nosotros | Limpieza y mantenimiento industrial en Medellín y Bogotá",
@@ -15,6 +19,10 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function NosotrosPage() {
+  const photos = workPhotos();
+  const teamPhoto = photos[0];
+  const strip = photos.slice(1, 7);
+
   return (
     <>
       <PageHeader
@@ -23,6 +31,32 @@ export default function NosotrosPage() {
         description="SOLUPOWER es una empresa colombiana especializada en soluciones integrales para la limpieza y el mantenimiento industrial. Más que un proveedor, somos un aliado estratégico de nuestros clientes."
         crumbs={[{ name: "Nosotros", path: "/nosotros" }]}
       />
+
+      {/* Team photo */}
+      {teamPhoto && (
+        <section className="pb-6 pt-2" aria-label="Nuestro equipo">
+          <div className="container-x">
+            <Reveal>
+              <div className="glass relative aspect-[16/9] w-full overflow-hidden rounded-5xl p-2 sm:aspect-[16/7]">
+                <div className="relative h-full w-full overflow-hidden rounded-[1.7rem]">
+                  <Image
+                    src={teamPhoto}
+                    alt="Equipo de SOLUPOWER — Soluciones Industriales RM S.A.S."
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 1100px"
+                    className="object-cover"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
+                  <span className="absolute bottom-5 left-5 rounded-full bg-white/85 px-4 py-2 text-sm font-medium text-ink backdrop-blur-md">
+                    Nuestro equipo
+                  </span>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       <section className="py-16" aria-label="Historia">
         <div className="container-x grid gap-6 lg:grid-cols-3">
@@ -81,6 +115,42 @@ export default function NosotrosPage() {
           </div>
         </div>
       </section>
+
+      {/* Real work photos */}
+      {strip.length > 0 && (
+        <section className="py-12" aria-label="Nuestro trabajo">
+          <div className="container-x">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <SectionHeading eyebrow="Nuestro trabajo" title="Resultados que se ven" />
+              <Link
+                href="/galeria"
+                className="group inline-flex items-center gap-1.5 text-sm font-medium text-brand-blue"
+              >
+                Ver la galería completa
+                <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </div>
+            <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+              {strip.map((src, i) => (
+                <Reveal key={src} delay={(i % 3) * 0.06}>
+                  <div className="glass relative aspect-[4/3] overflow-hidden rounded-4xl p-1.5">
+                    <div className="relative h-full w-full overflow-hidden rounded-[1.6rem]">
+                      <Image
+                        src={src}
+                        alt="Trabajo real de limpieza y mantenimiento industrial de SOLUPOWER"
+                        fill
+                        loading="lazy"
+                        sizes="(max-width: 640px) 50vw, 33vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <ContactCta />
     </>

@@ -30,7 +30,7 @@ export const productSeo: Record<string, SeoSection[]> = {
         {
           h3: "Aplicaciones en hospitales y clínicas",
           body: "En entornos hospitalarios la desinfección profunda de superficies es crítica; por eso la integramos dentro de nuestra",
-          link: "limpieza-especializada",
+          link: "restauracion-de-pisos",
         },
         {
           h3: "Aplicaciones en centros comerciales",
@@ -96,8 +96,8 @@ export const productSeo: Record<string, SeoSection[]> = {
       blocks: [
         {
           h3: "Preparación previa de la superficie",
-          body: "Un acabado perfecto empieza por nivelar el piso con",
-          link: "desbastadoras",
+          body: "Un acabado perfecto empieza por preparar y nivelar la superficie dentro de nuestro servicio de",
+          link: "restauracion-de-pisos",
         },
         {
           h3: "Disponibilidad flexible",
@@ -127,7 +127,7 @@ export const productSeo: Record<string, SeoSection[]> = {
         {
           h3: "Limpieza de polvo fino",
           body: "En procesos que generan partículas se integran dentro de nuestra",
-          link: "limpieza-especializada",
+          link: "restauracion-de-pisos",
         },
       ],
     },
@@ -137,7 +137,7 @@ export const productSeo: Record<string, SeoSection[]> = {
         {
           h3: "Operación continua",
           body: "La disponibilidad permanente se asegura con un plan de",
-          link: "mantenimiento-industrial",
+          link: "servicio-tecnico",
         },
         {
           h3: "Automatización del proceso",
@@ -177,7 +177,7 @@ export const productSeo: Record<string, SeoSection[]> = {
         {
           h3: "Menos paradas por falla",
           body: "La continuidad se protege con un programa de",
-          link: "mantenimiento-industrial",
+          link: "servicio-tecnico",
         },
       ],
     },
@@ -207,7 +207,7 @@ export const productSeo: Record<string, SeoSection[]> = {
         {
           h3: "Reducción de costos a largo plazo",
           body: "El retorno se maximiza con un plan de",
-          link: "mantenimiento-industrial",
+          link: "servicio-tecnico",
         },
         {
           h3: "Complemento del equipo humano",
@@ -218,40 +218,6 @@ export const productSeo: Record<string, SeoSection[]> = {
     },
   ],
 
-  desbastadoras: [
-    {
-      h2: "¿Qué es una desbastadora de concreto?",
-      intro:
-        "Las desbastadoras preparan, nivelan y pulen superficies de concreto, removiendo recubrimientos antiguos y dejando el piso listo para acabados de alta resistencia.",
-      blocks: [
-        {
-          h3: "Preparación para recubrimientos",
-          body: "Tras el desbaste el piso queda listo para aplicar",
-          link: "pintura-epoxica",
-        },
-        {
-          h3: "Concreto pulido de acabado espejo",
-          body: "El brillo final se logra combinando el desbaste con la",
-          link: "brilladora-industrial-17",
-        },
-      ],
-    },
-    {
-      h2: "Ventajas de las desbastadoras",
-      blocks: [
-        {
-          h3: "Base de una restauración duradera",
-          body: "Es el primer paso de nuestro servicio de",
-          link: "restauracion-de-pisos",
-        },
-        {
-          h3: "Acceso por proyecto",
-          body: "Para obras temporales conviene el",
-          link: "alquiler",
-        },
-      ],
-    },
-  ],
 };
 
 export const serviceSeo: Record<string, SeoSection[]> = {
@@ -343,38 +309,13 @@ export const serviceSeo: Record<string, SeoSection[]> = {
         },
         {
           h3: "Del correctivo al preventivo",
-          body: "Para evitar fallas repetidas lo complementamos con",
-          link: "mantenimiento-industrial",
+          body: "Para evitar fallas repetidas lo complementamos con un plan de",
+          link: "mantenimiento-preventivo-maquinaria",
         },
         {
           h3: "Cuidado de equipos de acabado",
           body: "También calibramos y afinamos la",
           link: "brilladora-industrial-17",
-        },
-      ],
-    },
-  ],
-
-  "mantenimiento-industrial": [
-    {
-      h2: "Mantenimiento industrial preventivo",
-      intro:
-        "Programas de mantenimiento preventivo y correctivo a la medida de tu planta para reducir fallas, optimizar costos y evitar paradas no planificadas.",
-      blocks: [
-        {
-          h3: "Cronogramas a la medida",
-          body: "Explicamos el retorno de esta inversión en el artículo sobre",
-          link: "mantenimiento-preventivo-maquinaria",
-        },
-        {
-          h3: "Diagnóstico especializado",
-          body: "Se apoya en el trabajo puntual de nuestro",
-          link: "servicio-tecnico",
-        },
-        {
-          h3: "Cuidado de tu flota",
-          body: "Mantenemos en marcha equipos como los",
-          link: "scrubbers",
         },
       ],
     },
@@ -388,18 +329,18 @@ export const serviceSeo: Record<string, SeoSection[]> = {
       blocks: [
         {
           h3: "Preparación de la superficie",
-          body: "El proceso arranca nivelando el piso con",
-          link: "desbastadoras",
-        },
-        {
-          h3: "Acabado y brillo",
-          body: "El pulido final se realiza con la",
+          body: "El proceso arranca preparando y nivelando el piso; para el acabado espejo lo combinamos con la",
           link: "brilladora-industrial-17",
         },
         {
-          h3: "Protección de larga duración",
-          body: "Para máxima resistencia rematamos con",
-          link: "pintura-epoxica",
+          h3: "Acabado y brillo",
+          body: "El brillo final y el mantenimiento de retail se sostienen alternando con el paso de los",
+          link: "scrubbers",
+        },
+        {
+          h3: "Lavado y desinfección de superficies",
+          body: "Complementamos el mantenimiento de pisos con lavado profundo de alfombras, mobiliario y superficies de alto tráfico usando",
+          link: "aspiradoras-industriales",
         },
       ],
     },
@@ -415,70 +356,6 @@ export const serviceSeo: Record<string, SeoSection[]> = {
     },
   ],
 
-  "limpieza-especializada": [
-    {
-      h2: "Limpieza industrial especializada",
-      intro:
-        "Protocolos técnicos de limpieza profunda para plantas, bodegas, parqueaderos y superficies críticas, con equipos y químicos adecuados para cada material.",
-      blocks: [
-        {
-          h3: "Equipos de lavado a presión",
-          body: "Para grasa y suciedad incrustada usamos la",
-          link: "hidrolavadora-industrial-1900-psi",
-        },
-        {
-          h3: "Control de polvo y residuos",
-          body: "El material particulado se gestiona con",
-          link: "aspiradoras-industriales",
-        },
-        {
-          h3: "Recuperación de pisos",
-          body: "Cuando la superficie está deteriorada sumamos",
-          link: "restauracion-de-pisos",
-        },
-      ],
-    },
-  ],
-
-  "pintura-epoxica": [
-    {
-      h2: "Pintura epóxica para pisos industriales",
-      intro:
-        "Sistemas epóxicos que aportan resistencia química, mecánica y estética a pisos de plantas, laboratorios y zonas de producción.",
-      blocks: [
-        {
-          h3: "Preparación de la base",
-          body: "La adherencia depende de un buen desbaste con",
-          link: "desbastadoras",
-        },
-        {
-          h3: "Parte de una restauración integral",
-          body: "Suele aplicarse dentro de nuestro servicio de",
-          link: "restauracion-de-pisos",
-        },
-      ],
-    },
-  ],
-
-  "mantenimientos-locativos": [
-    {
-      h2: "Mantenimientos locativos",
-      intro:
-        "Servicios integrales para conservar tus instalaciones en óptimas condiciones: adecuaciones, reparaciones y acabados con personal calificado.",
-      blocks: [
-        {
-          h3: "Gestión llave en mano",
-          body: "Se articula con el",
-          link: "mantenimiento-industrial",
-        },
-        {
-          h3: "Acabados y recubrimientos",
-          body: "Cuando el piso lo requiere, aplicamos",
-          link: "pintura-epoxica",
-        },
-      ],
-    },
-  ],
 };
 
 export function getProductSeo(slug: string): SeoSection[] {
