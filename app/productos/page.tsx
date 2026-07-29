@@ -51,7 +51,7 @@ export default function ProductosPage() {
             const count = productsInCategory(cat.slug).length;
             return (
               <Reveal key={cat.slug} delay={(i % 3) * 0.08}>
-                <GlassCard as="article" className="group h-full">
+                <GlassCard as="article" pastel className="group h-full">
                   <Link href={`/productos/categoria/${cat.slug}`} className="flex h-full flex-col">
                     <div className="relative m-2 h-44 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-deep to-brand-blue">
                       {photo ? (

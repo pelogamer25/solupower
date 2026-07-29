@@ -35,7 +35,7 @@ export default function Products() {
             const photo = productPhoto(product.slug);
             return (
             <Reveal key={product.slug} delay={(i % 3) * 0.08}>
-              <GlassCard as="article" className="group h-full">
+              <GlassCard as="article" pastel className="group h-full">
                 <Link href={`/productos/${product.slug}`} className="block">
                   <div className="relative m-2 h-44 overflow-hidden rounded-3xl">
                     {photo ? (

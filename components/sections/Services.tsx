@@ -40,7 +40,7 @@ export default function Services() {
             const photo = serviceImage(service.slug);
             return (
             <Reveal key={service.slug} delay={(i % 3) * 0.08}>
-              <GlassCard as="article" className="group h-full">
+              <GlassCard as="article" pastel className="group h-full">
                 <Link href={`/servicios/${service.slug}`} className="flex h-full flex-col">
                   {/* Real work photo header with the service icon as a glass badge */}
                   <div className="relative m-2 h-44 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-deep to-brand-blue">

@@ -6,6 +6,8 @@ interface GlassCardProps {
   className?: string;
   as?: "div" | "article" | "li" | "section";
   interactive?: boolean;
+  /** Soft pastel-blue halo behind the card (used on service & product cards). */
+  pastel?: boolean;
 }
 
 /**
@@ -17,13 +19,15 @@ export default function GlassCard({
   className,
   as: Tag = "div",
   interactive = true,
+  pastel = false,
 }: GlassCardProps) {
   return (
     <Tag
       className={cn(
         "glass relative overflow-hidden rounded-4xl",
-        interactive &&
-          "transition-all duration-500 ease-smooth hover:-translate-y-1 hover:border-white/70 hover:shadow-glass-lg",
+        pastel && "shadow-pastel",
+        interactive && "transition-all duration-500 ease-smooth hover:-translate-y-1 hover:border-white/70",
+        interactive && (pastel ? "hover:shadow-pastel-lg" : "hover:shadow-glass-lg"),
         className,
       )}
     >

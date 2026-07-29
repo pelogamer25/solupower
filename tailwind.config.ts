@@ -48,6 +48,11 @@ const config: Config = {
         glass: "0 1px 0 rgba(255,255,255,0.6) inset, 0 24px 60px -30px rgba(15,42,80,0.28)",
         "glass-lg": "0 1px 0 rgba(255,255,255,0.7) inset, 0 40px 90px -40px rgba(15,42,80,0.35)",
         glow: "0 0 60px -12px rgba(53,182,216,0.45)",
+        // Soft pastel-blue halo behind cards for contrast on the white canvas
+        pastel:
+          "0 1px 0 rgba(255,255,255,0.65) inset, 0 20px 44px -20px rgba(53,182,216,0.50), 0 12px 30px -16px rgba(30,95,191,0.32)",
+        "pastel-lg":
+          "0 1px 0 rgba(255,255,255,0.75) inset, 0 34px 72px -26px rgba(53,182,216,0.62), 0 20px 46px -20px rgba(30,95,191,0.42)",
       },
       transitionTimingFunction: {
         smooth: "cubic-bezier(0.22, 1, 0.36, 1)",
