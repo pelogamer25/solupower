@@ -63,18 +63,10 @@ export default function Gallery({ photos = [] }: GalleryProps) {
 
         {/* Overlap-proof grid: every tile owns its aspect ratio — no fixed rows, no spans. */}
         <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
-          {tiles.map((tile, i) => (
-            <motion.button
-              key={tile.src + i}
-              type="button"
-              onClick={() => setActive(i)}
-              aria-label={tile.title ?? `Ver foto ${i + 1} de trabajo real de SOLUPOWER`}
-              initial={coarse ? { opacity: 0, scale: 0.96 } : { opacity: 0, scale: 0.94, filter: "blur(10px)" }}
-              whileInView={coarse ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1, filter: "blur(0px)" }}
-              viewport={{ once: true, margin: "-10% 0px" }}
-              transition={{ duration: 0.7, delay: (i % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              className="group glass relative aspect-square overflow-hidden rounded-4xl p-1.5 text-left"
-            >
+          {tiles.map((tile, i) => {
+            const label = tile.title ?? `Ver foto ${i + 1} de trabajo real de SOLUPOWER`;
+            const cls = "group glass relative aspect-square overflow-hidden rounded-4xl p-1.5 text-left";
+            const inner = (
               <div className={`relative h-full w-full overflow-hidden rounded-[1.6rem] bg-gradient-to-br ${tones[i % tones.length]}`}>
                 <Image
                   src={tile.src}
@@ -104,8 +96,42 @@ export default function Gallery({ photos = [] }: GalleryProps) {
                   </>
                 )}
               </div>
-            </motion.button>
-          ))}
+            );
+
+            // Touch: static, always-visible tile. The whileInView + blur reveal
+            // stalls in some mobile in-app browsers, leaving tiles stuck faded/
+            // blurred (home) or invisible (gallery page). Visibility must not
+            // depend on the animation.
+            if (coarse) {
+              return (
+                <button
+                  key={tile.src + i}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  aria-label={label}
+                  className={cls}
+                >
+                  {inner}
+                </button>
+              );
+            }
+
+            return (
+              <motion.button
+                key={tile.src + i}
+                type="button"
+                onClick={() => setActive(i)}
+                aria-label={label}
+                initial={{ opacity: 0, scale: 0.94, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-10% 0px" }}
+                transition={{ duration: 0.7, delay: (i % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                className={cls}
+              >
+                {inner}
+              </motion.button>
+            );
+          })}
         </div>
       </div>
 

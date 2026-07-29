@@ -262,7 +262,7 @@ export default function HeroSequence() {
           <div className="container-x absolute inset-0 z-10 flex items-center">
             <Phase p={scrollYProgress} range={[0.0, 0.06, 0.2, 0.26]} still={coarse}>
               <Eyebrow>Soluciones Industriales RM S.A.S.</Eyebrow>
-              <h1 className="mt-5 max-w-2xl font-display text-hero font-semibold text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.45)]">
+              <h1 className="mt-5 max-w-2xl font-display text-hero font-semibold text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.55),0_2px_14px_rgba(0,0,0,0.35)]">
                 Soluciones industriales para empresas que buscan{" "}
                 <span className="bg-[linear-gradient(100deg,#7ad0ec,#8fe3c9)] bg-clip-text text-transparent">
                   excelencia.
@@ -283,7 +283,7 @@ export default function HeroSequence() {
 
             <Phase p={scrollYProgress} range={[0.28, 0.34, 0.46, 0.52]} still={coarse}>
               <Eyebrow>Ingeniería y precisión</Eyebrow>
-              <h2 className="mt-5 max-w-2xl font-display text-display font-semibold text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.45)]">
+              <h2 className="mt-5 max-w-2xl font-display text-display font-semibold text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.55),0_2px_14px_rgba(0,0,0,0.35)]">
                 Más de una década elevando el estándar de la industria.
               </h2>
               <p className="mt-6 max-w-lg text-lg text-white/80">
@@ -311,7 +311,7 @@ export default function HeroSequence() {
 
             <Phase p={scrollYProgress} range={[0.8, 0.86, 0.98, 1.0]} last still={coarse}>
               <Eyebrow>Comencemos</Eyebrow>
-              <h2 className="mt-5 max-w-2xl font-display text-display font-semibold text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.45)]">
+              <h2 className="mt-5 max-w-2xl font-display text-display font-semibold text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.55),0_2px_14px_rgba(0,0,0,0.35)]">
                 Todo lo que tu operación necesita, en un solo lugar.
               </h2>
               <div className="mt-8">
@@ -352,11 +352,35 @@ function Phase({
   const blur = useTransform(p, [a, b, c, d], [10, 0, 0, last ? 0 : 10]);
   const filter = useTransform(blur, (v) => `blur(${v}px)`);
 
+  // Mobile: discrete show/hide instead of a scroll-linked opacity value.
+  // A continuously-updating motion value keeps the overlay permanently on a
+  // composited layer (will-change), and phones rasterize such layers below
+  // screen resolution → blurry headings. With a plain CSS transition the layer
+  // is released once the fade settles, so the text renders pixel-crisp.
+  const inRange = (v: number) => v >= a && (last ? true : v <= d);
+  const [shown, setShown] = useState(() => inRange(p.get()));
+  useMotionValueEvent(p, "change", (v) => {
+    if (still) setShown(inRange(v));
+  });
+
+  if (still) {
+    return (
+      <div
+        className={`pointer-events-none absolute inset-x-0 px-[inherit] transition-opacity duration-500 ${
+          shown ? "opacity-100" : "opacity-0"
+        }`}
+        aria-hidden={!shown}
+      >
+        <div className={`container-x ${shown ? "pointer-events-auto" : "pointer-events-none"}`}>
+          {children}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <motion.div
-      // Mobile: fade only. A lingering transform (y) keeps this overlay on a
-      // composited layer and the white headings render blurry on phones.
-      style={still ? { opacity } : { opacity, y, filter }}
+      style={{ opacity, y, filter }}
       className="pointer-events-none absolute inset-x-0 px-[inherit]"
     >
       {/* re-enable pointer events for actual controls */}
