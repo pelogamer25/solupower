@@ -27,12 +27,18 @@ export default function Reveal({
   blur = true,
 }: RevealProps) {
   const reduce = useReducedMotion();
-  // Mobile: no transform/blur layers on revealed blocks. A lingering composited
-  // layer (from an animated transform or filter) makes mobile browsers rasterize
-  // the text below device resolution → blurry text. On touch, fade opacity only.
   const coarse = useCoarsePointer();
-  const withBlur = blur && !coarse;
-  const withSlide = !coarse;
+
+  // Touch / reduced-motion: render content statically visible. The scroll-reveal
+  // (opacity + blur + slide) can stall in some mobile in-app browsers, leaving
+  // blocks stuck faded/blurred — so content visibility must never depend on it.
+  // The elegant reveal stays a desktop enhancement.
+  if (coarse || reduce) {
+    return <div className={className}>{children}</div>;
+  }
+
+  const withBlur = blur;
+  const withSlide = true;
 
   const from = !withSlide
     ? {}
