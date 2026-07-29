@@ -262,7 +262,7 @@ export default function HeroSequence() {
           <div className="container-x absolute inset-0 z-10 flex items-center">
             <Phase p={scrollYProgress} range={[0.0, 0.06, 0.2, 0.26]} still={coarse}>
               <Eyebrow>Soluciones Industriales RM S.A.S.</Eyebrow>
-              <h1 className="mt-5 max-w-2xl font-display text-hero font-semibold text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.35)]">
+              <h1 className="mt-5 max-w-2xl font-display text-hero font-semibold text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.45)]">
                 Soluciones industriales para empresas que buscan{" "}
                 <span className="bg-[linear-gradient(100deg,#7ad0ec,#8fe3c9)] bg-clip-text text-transparent">
                   excelencia.
@@ -283,7 +283,7 @@ export default function HeroSequence() {
 
             <Phase p={scrollYProgress} range={[0.28, 0.34, 0.46, 0.52]} still={coarse}>
               <Eyebrow>Ingeniería y precisión</Eyebrow>
-              <h2 className="mt-5 max-w-2xl font-display text-display font-semibold text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.35)]">
+              <h2 className="mt-5 max-w-2xl font-display text-display font-semibold text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.45)]">
                 Más de una década elevando el estándar de la industria.
               </h2>
               <p className="mt-6 max-w-lg text-lg text-white/80">
@@ -311,7 +311,7 @@ export default function HeroSequence() {
 
             <Phase p={scrollYProgress} range={[0.8, 0.86, 0.98, 1.0]} last still={coarse}>
               <Eyebrow>Comencemos</Eyebrow>
-              <h2 className="mt-5 max-w-2xl font-display text-display font-semibold text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.35)]">
+              <h2 className="mt-5 max-w-2xl font-display text-display font-semibold text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.45)]">
                 Todo lo que tu operación necesita, en un solo lugar.
               </h2>
               <div className="mt-8">
@@ -354,7 +354,9 @@ function Phase({
 
   return (
     <motion.div
-      style={still ? { opacity, y } : { opacity, y, filter }}
+      // Mobile: fade only. A lingering transform (y) keeps this overlay on a
+      // composited layer and the white headings render blurry on phones.
+      style={still ? { opacity } : { opacity, y, filter }}
       className="pointer-events-none absolute inset-x-0 px-[inherit]"
     >
       {/* re-enable pointer events for actual controls */}

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { createElement } from "react";
+import { useCoarsePointer } from "@/lib/useCoarsePointer";
 
 interface TextRevealProps {
   text: string;
@@ -21,7 +22,15 @@ export default function TextReveal({
   once = true,
 }: TextRevealProps) {
   const reduce = useReducedMotion();
+  const coarse = useCoarsePointer();
   const words = text.split(" ");
+
+  // Mobile / reduced-motion: render crisp static text. The per-word masked slide
+  // leaves every word on its own composited transform layer, which mobile GPUs
+  // rasterize below device resolution — the headings come out visibly blurry.
+  if (reduce || coarse) {
+    return createElement(as, { className }, text);
+  }
 
   const container: Variants = {
     hidden: {},

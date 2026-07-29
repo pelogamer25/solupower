@@ -27,20 +27,24 @@ export default function Reveal({
   blur = true,
 }: RevealProps) {
   const reduce = useReducedMotion();
-  // Mobile: animating blur() during scroll is a jank source — fade+slide only.
+  // Mobile: no transform/blur layers on revealed blocks. A lingering composited
+  // layer (from an animated transform or filter) makes mobile browsers rasterize
+  // the text below device resolution → blurry text. On touch, fade opacity only.
   const coarse = useCoarsePointer();
   const withBlur = blur && !coarse;
+  const withSlide = !coarse;
 
-  const from =
-    direction === "up"
-      ? { y: offset }
-      : direction === "down"
-      ? { y: -offset }
-      : direction === "left"
-      ? { x: offset }
-      : direction === "right"
-      ? { x: -offset }
-      : {};
+  const from = !withSlide
+    ? {}
+    : direction === "up"
+    ? { y: offset }
+    : direction === "down"
+    ? { y: -offset }
+    : direction === "left"
+    ? { x: offset }
+    : direction === "right"
+    ? { x: -offset }
+    : {};
 
   const variants: Variants = {
     hidden: reduce
@@ -48,8 +52,9 @@ export default function Reveal({
       : { opacity: 0, ...(withBlur ? { filter: "blur(12px)" } : {}), ...from },
     visible: {
       opacity: 1,
-      x: 0,
-      y: 0,
+      // Only write x/y (and thus a transform) when we actually slide — omitting
+      // them on touch keeps the element off a composited layer, so text stays crisp.
+      ...(withSlide ? { x: 0, y: 0 } : {}),
       ...(withBlur ? { filter: "blur(0px)" } : {}),
       transition: {
         duration: 0.85,
