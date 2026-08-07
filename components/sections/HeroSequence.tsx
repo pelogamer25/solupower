@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -14,217 +14,29 @@ import { siteConfig } from "@/config/site";
 import Button from "@/components/ui/Button";
 import { useCoarsePointer } from "@/lib/useCoarsePointer";
 
-const FRAME_COUNT = 40;
-const framePath = (i: number) => `/hero/frame-${String(i).padStart(2, "0")}.jpg`;
+const VIDEO_SRC = "/hero/hero.mp4";
+const POSTER_SRC = "/hero/frame-00.jpg";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 /**
- * Scroll-scrubbed image sequence (Apple-style). A tall wrapper drives a pinned
- * canvas: scroll progress maps 1:1 to the 40 HERO_SCENES frames, while company
- * information fades in and out in phases over the footage. Everything sits on
- * the shared light canvas — the sequence dissolves into the page, no hard break.
+ * Cinematic video hero. A tall wrapper pins the footage while company
+ * information fades in and out in phases over it. Everything sits on the shared
+ * light canvas — the sequence dissolves into the page, no hard break.
+ *
+ * The video autoplays muted on a loop (the only form of autoplay browsers
+ * allow) rather than being scroll-scrubbed: seeking a video on every scroll
+ * event is unreliable on mobile, which is what the old frame sequence worked
+ * around. A native <video> is both simpler and lighter than 40 JPEG frames.
  */
 export default function HeroSequence() {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const imagesRef = useRef<HTMLImageElement[]>([]);
-  /** Pre-decoded, pre-cropped GPU bitmaps (mobile): drawing = trivial blit. */
-  const bitmapsRef = useRef<(ImageBitmap | null)[]>([]);
-  const lastIndexRef = useRef(-1);
-  /** Frame interpolation: a rAF loop lerps `current` toward the scroll target. */
-  const targetRef = useRef(0);
-  const currentRef = useRef(0);
-  const rafRef = useRef(0);
-  const runningRef = useRef(false);
-  const [posterReady, setPosterReady] = useState(false);
   const reduce = useReducedMotion();
-  // Mobile: degrade the expensive parts (canvas DPR, scroll-linked blur/zoom).
   const coarse = useCoarsePointer();
-  const coarseRef = useRef(false);
-  coarseRef.current = coarse;
 
   const { scrollYProgress } = useScroll({
     target: wrapRef,
     offset: ["start start", "end end"],
   });
-
-  // ---- Load the poster frame first (LCP), then preload the rest when idle ----
-  useEffect(() => {
-    const imgs: HTMLImageElement[] = new Array(FRAME_COUNT);
-
-    const poster = new Image();
-    poster.src = framePath(0);
-    // hint the browser this is the important frame
-    try { (poster as HTMLImageElement & { fetchPriority?: string }).fetchPriority = "high"; } catch {}
-    poster.onload = () => {
-      drawFrame(0);
-      setPosterReady(true);
-    };
-    imgs[0] = poster;
-    imagesRef.current = imgs;
-
-    let cancelled = false;
-    const preloadRest = async () => {
-      if (cancelled) return;
-      for (let i = 1; i < FRAME_COUNT; i++) {
-        const img = new Image();
-        img.src = framePath(i);
-        imgs[i] = img;
-      }
-      // Decode every frame OFF the scroll path (first-draw JPEG decode on the
-      // main thread is the #1 cause of scrub jank on phones). On mobile, also
-      // pre-crop + pre-scale each frame to the exact canvas size as ImageBitmap
-      // so every subsequent draw is a trivial 1:1 GPU blit.
-      const canvas = canvasRef.current;
-      const makeBitmaps =
-        coarseRef.current && typeof window.createImageBitmap === "function" && canvas;
-      for (let i = 0; i < FRAME_COUNT; i++) {
-        if (cancelled) return;
-        const img = imgs[i];
-        if (!img) continue;
-        try {
-          await img.decode();
-          if (makeBitmaps) {
-            const cw = canvas.clientWidth;
-            const ch = canvas.clientHeight;
-            if (cw > 0 && ch > 0) {
-              // center-crop the source to the canvas aspect, then resize
-              const ir = img.naturalWidth / img.naturalHeight;
-              const cr = cw / ch;
-              let sw = img.naturalWidth;
-              let sh = img.naturalHeight;
-              let sx = 0;
-              let sy = 0;
-              if (ir > cr) {
-                sw = sh * cr;
-                sx = (img.naturalWidth - sw) / 2;
-              } else {
-                sh = sw / cr;
-                sy = (img.naturalHeight - sh) / 2;
-              }
-              bitmapsRef.current[i] = await createImageBitmap(img, sx, sy, sw, sh, {
-                resizeWidth: cw,
-                resizeHeight: ch,
-                resizeQuality: "medium",
-              });
-            }
-          }
-        } catch {
-          /* frame stays as plain <img>; cover-draw fallback handles it */
-        }
-      }
-    };
-
-    const w = window as Window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-      cancelIdleCallback?: (id: number) => void;
-    };
-    let idleId: number;
-    let timeoutId: ReturnType<typeof setTimeout>;
-    if (w.requestIdleCallback) idleId = w.requestIdleCallback(preloadRest, { timeout: 1500 });
-    else timeoutId = setTimeout(preloadRest, 500);
-
-    return () => {
-      cancelled = true;
-      if (w.cancelIdleCallback && idleId) w.cancelIdleCallback(idleId);
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // ---- Canvas drawing (cover fit, DPR-aware; opaque ctx = faster compositing) ----
-  function drawFrame(index: number) {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const bitmap = bitmapsRef.current[index];
-    const img = imagesRef.current[index];
-    const source: ImageBitmap | HTMLImageElement | null =
-      bitmap ?? (img && img.complete && img.naturalWidth > 0 ? img : null);
-    if (!source) return;
-    const ctx = canvas.getContext("2d", { alpha: false });
-    if (!ctx) return;
-
-    // Mobile GPUs: draw at 1x — the frame is 100svh, DPR2 means 4x the pixels.
-    const dpr = coarseRef.current ? 1 : Math.min(window.devicePixelRatio || 1, 2);
-    const cw = canvas.clientWidth;
-    const ch = canvas.clientHeight;
-    if (canvas.width !== cw * dpr || canvas.height !== ch * dpr) {
-      canvas.width = cw * dpr;
-      canvas.height = ch * dpr;
-    }
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    const sw = "naturalWidth" in source ? source.naturalWidth : source.width;
-    const sh = "naturalHeight" in source ? source.naturalHeight : source.height;
-    if (sw === cw && sh === ch) {
-      // pre-cropped bitmap: 1:1 blit, nothing to compute
-      ctx.drawImage(source, 0, 0, cw, ch);
-      return;
-    }
-    // cover
-    const ir = sw / sh;
-    const cr = cw / ch;
-    let dw = cw;
-    let dh = ch;
-    if (cr > ir) dh = cw / ir;
-    else dw = ch * ir;
-    const dx = (cw - dw) / 2;
-    const dy = (ch - dh) / 2;
-    ctx.drawImage(source, dx, dy, dw, dh);
-  }
-
-  // ---- Map scroll -> frame via an interpolated rAF loop ----
-  // Scroll only updates the *target*; a self-stopping rAF loop lerps the
-  // current frame toward it (max one draw per display frame, smooth catch-up,
-  // zero work once settled). This is what makes the scrub feel fluid on touch.
-  function tick() {
-    const target = targetRef.current;
-    const cur = currentRef.current;
-    const next = Math.abs(target - cur) < 0.04 ? target : cur + (target - cur) * 0.24;
-    currentRef.current = next;
-    const index = Math.round(next);
-    if (index !== lastIndexRef.current) {
-      lastIndexRef.current = index;
-      drawFrame(index);
-    }
-    if (next !== target) {
-      rafRef.current = requestAnimationFrame(tick);
-    } else {
-      runningRef.current = false;
-    }
-  }
-
-  function kick() {
-    if (runningRef.current) return;
-    runningRef.current = true;
-    rafRef.current = requestAnimationFrame(tick);
-  }
-
-  useMotionValueEvent(scrollYProgress, "change", (p) => {
-    targetRef.current = Math.min(FRAME_COUNT - 1, Math.max(0, p * (FRAME_COUNT - 1)));
-    kick();
-  });
-
-  // stop the loop cleanly on unmount; free decoded bitmaps
-  useEffect(() => {
-    const bitmaps = bitmapsRef.current;
-    return () => {
-      cancelAnimationFrame(rafRef.current);
-      runningRef.current = false;
-      for (const b of bitmaps) b?.close?.();
-    };
-  }, []);
-
-  useEffect(() => {
-    const onResize = () => {
-      const p = scrollYProgress.get();
-      const index = Math.min(FRAME_COUNT - 1, Math.round(p * (FRAME_COUNT - 1)));
-      drawFrame(index);
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   // subtle zoom parallax on the footage (hooks must run before any early return)
   const scale = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
@@ -237,26 +49,31 @@ export default function HeroSequence() {
 
   return (
     <section aria-label="Introducción SOLUPOWER" className="relative">
-      {/* Tall driver: scroll scrubs the sequence (shorter ride on mobile) */}
+      {/* Tall driver: scroll advances the phases (shorter ride on mobile) */}
       <div ref={wrapRef} className="relative h-[300vh] md:h-[500vh]">
         {/* Pinned stage */}
         <div className="sticky top-0 h-[100svh] overflow-hidden">
-          {/* Mobile: no scroll-linked zoom — rescaling a full-screen canvas re-rasterizes every frame */}
+          {/* Mobile: no scroll-linked zoom — rescaling full-screen video is costly */}
           <motion.div
             style={coarse ? { opacity: cinematicFade } : { scale, opacity: cinematicFade }}
             className="absolute inset-0"
           >
-            <canvas ref={canvasRef} className="h-full w-full" aria-hidden />
+            <video
+              className="h-full w-full object-cover"
+              src={VIDEO_SRC}
+              poster={POSTER_SRC}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-hidden
+            />
           </motion.div>
 
           {/* Legibility + blend scrims (keep the page's light canvas continuity) */}
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(105deg,rgba(6,17,38,0.62)_0%,rgba(6,17,38,0.28)_38%,transparent_70%)]" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[38vh] bg-[linear-gradient(180deg,transparent,#F5F7FA_92%)]" />
-
-          {/* Loading shimmer until the poster frame is painted */}
-          {!posterReady && (
-            <div className="absolute inset-0 animate-pulse bg-[linear-gradient(120deg,#1E5FBF,#35B6D8_55%,#22A79B)] opacity-40" />
-          )}
 
           {/* --- Progressive company info, phased over the footage --- */}
           <div className="container-x absolute inset-0 z-10 flex items-center">
@@ -269,7 +86,7 @@ export default function HeroSequence() {
                 </span>
               </h1>
               <p className="mt-6 max-w-md text-lg text-white/80">
-                Suministro, renting, mantenimiento y servicio técnico especializado de equipos de limpieza industrial.
+                Alquiler, mantenimiento y servicio técnico especializado de equipos de limpieza industrial.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <Button href="/cotizacion" variant="primary" icon={<ArrowRight size={17} />}>
@@ -417,13 +234,13 @@ function ScrollCue({ p }: { p: MotionValue<number> }) {
   );
 }
 
-/** Reduced-motion fallback: first frame as a static poster + stacked copy. */
+/** Reduced-motion fallback: a static poster + stacked copy, no autoplaying video. */
 function StaticHero() {
   return (
     <section aria-label="Introducción SOLUPOWER" className="relative min-h-[92svh] overflow-hidden pt-28">
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${framePath(0)})` }}
+        style={{ backgroundImage: `url(${POSTER_SRC})` }}
         aria-hidden
       />
       <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(6,17,38,0.6),transparent_70%)]" />
@@ -435,7 +252,7 @@ function StaticHero() {
             Soluciones industriales para empresas que buscan excelencia.
           </h1>
           <p className="mt-6 max-w-md text-lg text-white/80">
-            Suministro, renting, mantenimiento y servicio técnico especializado de equipos de limpieza industrial.
+            Alquiler, mantenimiento y servicio técnico especializado de equipos de limpieza industrial.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Button href="/cotizacion" variant="primary" icon={<ArrowRight size={17} />}>
