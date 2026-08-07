@@ -10,6 +10,7 @@ import ContactCta from "@/components/sections/ContactCta";
 import { pageMetadata } from "@/lib/seo";
 import { stats, values } from "@/lib/data/content";
 import { workPhotos } from "@/lib/workPhotos";
+import { teamPhoto } from "@/lib/teamPhoto";
 
 export const metadata: Metadata = pageMetadata({
   title: "Nosotros | Limpieza y mantenimiento industrial en Medellín y Bogotá",
@@ -20,39 +21,41 @@ export const metadata: Metadata = pageMetadata({
 
 export default function NosotrosPage() {
   const photos = workPhotos();
-  const teamPhoto = photos[0];
-  const strip = photos.slice(1, 7);
+  const team = teamPhoto();
+  const strip = photos.slice(0, 6);
 
   return (
     <>
       <PageHeader
         eyebrow="Sobre nosotros"
         title="Soluciones Industriales Inteligentes"
-        description="SOLUPOWER es una empresa colombiana especializada en soluciones integrales para la limpieza y el mantenimiento industrial. Más que un proveedor, somos un aliado estratégico de nuestros clientes."
+        description="SOLUPOWER es una empresa colombiana especializada en brindar soluciones integrales para la limpieza y el mantenimiento industrial, desde el suministro de equipos hasta el mantenimiento de superficies. Más que un proveedor, somos un aliado estratégico de nuestros clientes."
         crumbs={[{ name: "Nosotros", path: "/nosotros" }]}
       />
 
-      {/* Team photo */}
-      {teamPhoto && (
+      {/* Team photo — portrait framing, so nobody gets cropped out */}
+      {team && (
         <section className="pb-6 pt-2" aria-label="Nuestro equipo">
           <div className="container-x">
             <Reveal>
-              <div className="glass relative aspect-[16/9] w-full overflow-hidden rounded-5xl p-2 sm:aspect-[16/7]">
-                <div className="relative h-full w-full overflow-hidden rounded-[1.7rem]">
-                  <Image
-                    src={teamPhoto}
-                    alt="Equipo de SOLUPOWER — Soluciones Industriales RM S.A.S."
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 1100px"
-                    className="object-cover"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
-                  <span className="absolute bottom-5 left-5 rounded-full bg-white/85 px-4 py-2 text-sm font-medium text-ink backdrop-blur-md">
-                    Nuestro equipo
-                  </span>
+              <figure className="mx-auto max-w-sm">
+                <div className="glass overflow-hidden rounded-5xl p-2">
+                  <div className="relative aspect-[768/1134] w-full overflow-hidden rounded-[1.7rem]">
+                    <Image
+                      src={team}
+                      alt="Equipo de SOLUPOWER — Soluciones Industriales RM S.A.S."
+                      fill
+                      priority
+                      sizes="(max-width: 640px) 90vw, 384px"
+                      className="object-cover"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
+                    <figcaption className="absolute bottom-5 left-5 rounded-full bg-white/85 px-4 py-2 text-sm font-medium text-ink backdrop-blur-md">
+                      Nuestro equipo
+                    </figcaption>
+                  </div>
                 </div>
-              </div>
+              </figure>
             </Reveal>
           </div>
         </section>
