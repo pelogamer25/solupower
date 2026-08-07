@@ -53,14 +53,14 @@ export default function ProductosPage() {
               <Reveal key={cat.slug} delay={(i % 3) * 0.08}>
                 <GlassCard as="article" pastel className="group h-full">
                   <Link href={`/productos/categoria/${cat.slug}`} className="flex h-full flex-col">
-                    <div className="relative m-2 h-44 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-deep to-brand-blue">
+                    <div className="relative m-2 h-56 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-deep to-brand-blue sm:h-60">
                       {photo ? (
                         <Image
                           src={photo}
                           alt={`${cat.name} industriales — SOLUPOWER`}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="bg-white object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                          className="bg-white object-contain p-3 transition-transform duration-500 group-hover:scale-105"
                         />
                       ) : (
                         <div className="grain absolute inset-0 opacity-30" />

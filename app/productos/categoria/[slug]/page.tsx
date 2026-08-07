@@ -126,7 +126,7 @@ export default async function CategoriaPage(props: {
                   <Reveal key={product.slug} delay={(i % 3) * 0.08}>
                     <GlassCard as="article" pastel className="group h-full">
                       <Link href={`/productos/${product.slug}`} className="block">
-                        <div className="relative m-2 h-44 overflow-hidden rounded-3xl">
+                        <div className="relative m-2 h-60 overflow-hidden rounded-3xl sm:h-64">
                           {photo ? (
                             <>
                               <div className="absolute inset-0 bg-white" />
@@ -135,7 +135,7 @@ export default async function CategoriaPage(props: {
                                 alt={`${product.name} — SOLUPOWER`}
                                 fill
                                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                                className="object-contain p-2.5 transition-transform duration-500 group-hover:scale-105"
                               />
                             </>
                           ) : (

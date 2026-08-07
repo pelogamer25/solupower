@@ -77,14 +77,14 @@ export default async function ProductoDetailPage(props: {
           <Reveal>
             <GlassCard className="p-2">
               {photo ? (
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.7rem] bg-white">
+                <div className="relative aspect-square w-full overflow-hidden rounded-[1.7rem] bg-white">
                   <Image
                     src={photo}
                     alt={`${product.name} — equipos de limpieza industrial SOLUPOWER en Colombia`}
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-contain p-6"
+                    className="object-contain p-3"
                   />
                 </div>
               ) : (

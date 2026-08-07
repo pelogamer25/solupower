@@ -64,6 +64,149 @@ export const products: Product[] = [
     imageIndex: 22,
   },
   {
+    slug: "aspiradoras-trabajo-pesado",
+    name: "Aspiradoras para trabajo pesado",
+    category: "Aspiradoras",
+    excerpt: "Equipos especializados para tareas de alta complejidad. Normatividad ATEX.",
+    description:
+      "Ideales para trabajo pesado: equipos especializados y diseñados para tareas concretas como aspirar partículas diminutas, líquidos de alto espesor y demás funciones de alta complejidad. Ideales para las industrias de alimentos, pinturas, carpintería, galpones y demás sectores. Normatividad ATEX.",
+    specs: [
+      { label: "Uso", value: "Trabajo pesado y alta complejidad" },
+      { label: "Aspiran", value: "Partículas diminutas y líquidos de alto espesor" },
+      { label: "Sectores", value: "Alimentos, pinturas, carpintería y galpones" },
+      { label: "Normatividad", value: "ATEX" },
+    ],
+    accent: "teal",
+  },
+  {
+    slug: "aspiradora-15-30-litros",
+    name: "Aspiradora 15 y 30 litros",
+    category: "Aspiradoras",
+    excerpt: "Compacta, ligera y robusta, para húmedo y seco. Tanque en acero inoxidable.",
+    description:
+      "Aspiradora compacta, ligera y robusta, fácil de usar tanto para húmedo como para seco y de fácil transporte, con tanque en acero inoxidable. Ideal para uso en fábricas, bodegas, hospitales, hoteles, colegios y oficinas. Aspira y recoge líquidos dejando la superficie en un 95% seca.",
+    specs: [
+      { label: "Función", value: "Húmedo / seco" },
+      { label: "Motor", value: "Uno by-pass" },
+      { label: "Voltaje", value: "110/120" },
+      { label: "Aspirado", value: "Sólidos y líquidos" },
+      { label: "Potencia motor", value: "1.5 HP" },
+      { label: "Succión columna de agua", value: "2200 mm" },
+      { label: "Paso de aire", value: "170 m³/hora" },
+      { label: "Tanque", value: "Metálico acero inoxidable 15 L y 30 L" },
+      { label: "Filtro", value: "Poliéster" },
+      { label: "Color", value: "Según inventario" },
+      {
+        label: "Accesorios",
+        value:
+          "Boquilla de succión plana, cepillo de piso de vacío, manguera de 35 mm, cepillo redondo pequeño, codo de metal telescópico y rueda angular",
+      },
+    ],
+    accent: "teal",
+  },
+  {
+    slug: "aspiradora-60-70-litros",
+    name: "Aspiradora 60 y 70 litros",
+    category: "Aspiradoras",
+    excerpt: "Multifuncional para suciedad seca, húmeda o líquida, con carro transportador.",
+    description:
+      "Aspiradora multifuncional: puede hacer frente a cualquier tipo de suciedad, ya sea seca, húmeda o líquida. Fácil movilidad con carro transportador y soporte de giro para evacuar los desechos más fácilmente. Compacta, ergonómica y resistente, con tanque fabricado en acero inoxidable.",
+    specs: [
+      { label: "Motores", value: "Motor único" },
+      { label: "Voltaje", value: "110/120" },
+      { label: "Aspirado", value: "Sólidos y líquidos" },
+      { label: "Potencia motor", value: "1500 W" },
+      { label: "Succión columna de agua", value: "2200 mm" },
+      { label: "Paso de aire", value: "170 m³/hora" },
+      { label: "Capacidad del tanque", value: "60 L y 70 L" },
+      { label: "Tanque", value: "Metálico acero inoxidable" },
+      { label: "Filtro", value: "Poliéster" },
+      { label: "Color", value: "Según inventario" },
+      {
+        label: "Accesorios",
+        value:
+          "Boquilla de succión plana, cepillo de piso de vacío, manguera de 35 mm, cepillo redondo pequeño, codo de metal telescópico y rueda angular",
+      },
+    ],
+    accent: "teal",
+  },
+  {
+    slug: "aspiradora-80-litros",
+    name: "Aspiradora 80 litros",
+    category: "Aspiradoras",
+    excerpt: "Multifuncional de tres motores by-pass y 4500 W para las cargas más exigentes.",
+    description:
+      "Aspiradora multifuncional: puede hacer frente a cualquier tipo de suciedad, ya sea seca, húmeda o líquida. Fácil movilidad con carro transportador y soporte de giro para evacuar los desechos más fácilmente. Compacta, ergonómica y resistente, con tanque fabricado en acero inoxidable.",
+    specs: [
+      { label: "Motor", value: "3 by-pass" },
+      { label: "Voltaje", value: "110/120" },
+      { label: "Aspirado", value: "Sólidos y líquidos" },
+      { label: "Potencia motor", value: "4500 W (1500 W c/u)" },
+      { label: "Succión columna de agua", value: "3.300 mm" },
+      { label: "Paso de aire", value: "170 m³/hora" },
+      { label: "Capacidad del tanque", value: "21.13 galones / 80 L" },
+      { label: "Tanque", value: "Metálico acero inoxidable" },
+      { label: "Filtro", value: "0.03 micras poliéster" },
+      { label: "Color", value: "Según inventario" },
+      {
+        label: "Accesorios",
+        value:
+          "Boquilla de succión plana, cepillo de piso de vacío, manguera de 35 mm, cepillo redondo pequeño, codo de metal telescópico y rueda angular",
+      },
+    ],
+    accent: "teal",
+  },
+  {
+    slug: "aspiradora-brushless-20-35-50-litros",
+    name: "Aspiradora Brushless 20, 35 y 50 litros",
+    category: "Aspiradoras",
+    excerpt: "Tecnología Brushless (motor sin escobillas), disponible en 20, 35 y 50 litros.",
+    description:
+      "Aspiradora en tecnología Brushless (motor sin escobillas), disponible en 20, 35 y 50 litros. Caja de metal con fondo amarillo y tapa gris, para uso húmedo y seco, con sistema de enfriamiento por reciclaje.",
+    specs: [
+      { label: "Capacidad", value: "20 L, 35 L y 50 L" },
+      { label: "Motor", value: "Único, Brushless (sin escobillas)" },
+      { label: "Función", value: "Húmedo / seco" },
+      { label: "Voltaje", value: "110/120" },
+      { label: "Aspirado", value: "Sólidos y líquidos" },
+      { label: "Potencia motor", value: "1500 W" },
+      { label: "Succión columna de agua", value: "2000 mm" },
+      { label: "Paso de aire", value: "170 m³/hora" },
+      { label: "Filtro", value: "Poliéster" },
+      { label: "Sistema de enfriamiento", value: "Reciclar" },
+      { label: "Longitud del cable", value: "5 m" },
+      { label: "Apariencia", value: "Caja de metal, fondo amarillo y tapa gris" },
+      { label: "Color", value: "Según inventario" },
+      {
+        label: "Accesorios",
+        value:
+          "Boquilla de succión lateral, cepillo de piso de vacío, manguera de 40 mm, cepillo redondo pequeño, codo de metal y rueda angular",
+      },
+    ],
+    accent: "teal",
+  },
+  {
+    slug: "aspiradora-mochila",
+    name: "Aspiradora de mochila VV-BV-4LU",
+    category: "Aspiradoras",
+    excerpt: "De mochila, 1000 W y 4 L en solo 6,1 kg, para espacios de difícil acceso.",
+    description:
+      "Aspiradora de mochila modelo VV-BV-4LU: 1000 W de potencia y 4 litros de capacidad en un equipo de solo 6,1 kg, con lanza telescópica y cable de extensión de 18 m para cubrir grandes recorridos sin cambiar de toma.",
+    specs: [
+      { label: "Modelo", value: "VV-BV-4LU" },
+      { label: "Potencia", value: "1000 W" },
+      { label: "Capacidad", value: "3.6 gt / 4 L" },
+      { label: "Dimensiones", value: "13 × 13 × 23 in (330 × 330 × 580 mm)" },
+      { label: "Lanza telescópica", value: "25 in / 64 cm" },
+      { label: "Voltaje", value: "110 V" },
+      { label: "Caudal de aire", value: "50 L/s" },
+      { label: "Peso", value: "13.4 lb / 6,1 kg" },
+      { label: "Cable de extensión", value: "59 ft / 18 m" },
+      { label: "Longitud de manguera", value: "4 ft / 1,25 m" },
+    ],
+    accent: "teal",
+  },
+  {
     slug: "scrubbers",
     name: "Fregadoras (Scrubbers)",
     category: "Scrubbers",
@@ -94,6 +237,21 @@ export const products: Product[] = [
     ],
     accent: "green",
     imageIndex: 36,
+  },
+  {
+    slug: "robot-limpieza-pisos",
+    name: "Robot de limpieza de pisos",
+    category: "Robots",
+    excerpt: "Aspiradora y fregadora autónoma con control por aplicación y carga automática.",
+    description:
+      "Robot de limpieza de pisos: aspiradora y fregadora autónoma con control por aplicación y carga automática. Ideal para medianas y grandes superficies.",
+    specs: [
+      { label: "Tipo", value: "Aspiradora y fregadora autónoma" },
+      { label: "Control", value: "Por aplicación" },
+      { label: "Carga", value: "Automática" },
+      { label: "Superficies", value: "Medianas y grandes" },
+    ],
+    accent: "green",
   },
 
   // ---------------------------------------------------------------------------
