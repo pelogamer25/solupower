@@ -3,13 +3,13 @@ export const siteConfig = {
   legalName: "Soluciones Industriales RM S.A.S.",
   tagline: "Soluciones Industriales Inteligentes",
   shortDesc:
-    "Soluciones integrales para la limpieza y el mantenimiento industrial: equipos, insumos, renting y servicio técnico especializado.",
+    "Soluciones integrales para la limpieza y el mantenimiento industrial: equipos, insumos, alquiler y servicio técnico especializado.",
   // Full description (for the About/Organization context — can be long).
   description:
-    "SOLUPOWER (Soluciones Industriales RM S.A.S.) es una empresa colombiana especializada en soluciones integrales para la limpieza y el mantenimiento industrial: suministro de equipos de limpieza profesional e industrial, mantenimiento y limpieza de superficies, servicio técnico especializado y renting (alquiler) de equipos.",
+    "SOLUPOWER (Soluciones Industriales RM S.A.S.) es una empresa colombiana especializada en brindar soluciones integrales para la limpieza y el mantenimiento industrial, desde el suministro de equipos hasta el mantenimiento de superficies: alquiler de equipos, servicio técnico especializado y mantenimiento y limpieza de superficies. Más que un proveedor, somos un aliado estratégico de nuestros clientes.",
   // SEO meta description (≤155 chars, avoids SERP truncation).
   metaDescription:
-    "Suministro, renting y servicio técnico de equipos de limpieza industrial en Medellín y Bogotá: brilladoras, hidrolavadoras, fregadoras, aspiradoras y más.",
+    "Alquiler y servicio técnico de equipos de limpieza industrial en Medellín y Bogotá: brilladoras, hidrolavadoras, fregadoras, aspiradoras y más.",
   url: "https://www.solupower.co",
   locale: "es_CO",
   themeColor: "#F5F7FA",

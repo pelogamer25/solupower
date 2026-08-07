@@ -59,7 +59,7 @@ export default function OpengraphImage() {
             Soluciones industriales para empresas que buscan excelencia
           </div>
           <div style={{ display: "flex", color: "rgba(255,255,255,0.85)", fontSize: "30px", maxWidth: "820px" }}>
-            Suministro, renting y servicio técnico de equipos de limpieza industrial · Medellín y Bogotá
+            Alquiler y servicio técnico de equipos de limpieza industrial · Medellín y Bogotá
           </div>
         </div>
 

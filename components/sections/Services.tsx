@@ -22,7 +22,7 @@ export default function Services() {
           <SectionHeading
             eyebrow="Servicios"
             title="Todo lo que tu operación necesita, en un solo lugar"
-            description="Desde la venta y el alquiler de maquinaria hasta el servicio técnico y la restauración de pisos. Soluciones integrales con estándares de ingeniería."
+            description="Desde el alquiler de maquinaria hasta el servicio técnico y la restauración de pisos. Soluciones integrales con estándares de ingeniería."
           />
           <Reveal delay={0.1}>
             <Link

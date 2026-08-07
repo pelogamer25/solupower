@@ -221,46 +221,6 @@ export const productSeo: Record<string, SeoSection[]> = {
 };
 
 export const serviceSeo: Record<string, SeoSection[]> = {
-  "venta-de-maquinaria": [
-    {
-      h2: "Venta de maquinaria de limpieza industrial",
-      intro:
-        "Comercializamos equipos de las marcas líderes del sector con asesoría técnica para acertar según tu superficie, volumen de trabajo y presupuesto.",
-      blocks: [
-        {
-          h3: "Asesoría para elegir el equipo correcto",
-          body: "Si no sabes por dónde empezar, te ayuda la guía sobre",
-          link: "elegir-hidrolavadora-industrial",
-        },
-        {
-          h3: "Prueba antes de comprar",
-          body: "Puedes validar el equipo en tu operación con el",
-          link: "alquiler",
-        },
-        {
-          h3: "Respaldo posterior a la compra",
-          body: "Cada venta incluye acompañamiento y",
-          link: "servicio-tecnico",
-        },
-      ],
-    },
-    {
-      h2: "Equipos disponibles",
-      blocks: [
-        {
-          h3: "Equipos de lavado a presión",
-          body: "La más solicitada para servicio pesado es la",
-          link: "hidrolavadora-industrial-1900-psi",
-        },
-        {
-          h3: "Equipos de acabado de pisos",
-          body: "Para brillo y mantenimiento de superficies ofrecemos la",
-          link: "brilladora-industrial-17",
-        },
-      ],
-    },
-  ],
-
   alquiler: [
     {
       h2: "Alquiler de maquinaria de limpieza",
@@ -284,8 +244,8 @@ export const serviceSeo: Record<string, SeoSection[]> = {
       blocks: [
         {
           h3: "Cuándo conviene comprar",
-          body: "Si el uso es permanente, evalúa nuestra",
-          link: "venta-de-maquinaria",
+          body: "Si el uso es permanente, evalúa comprar el equipo en el catálogo de",
+          link: "productos",
         },
         {
           h3: "Soporte durante el alquiler",

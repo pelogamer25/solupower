@@ -1,5 +1,13 @@
 import type { LucideIcon } from "lucide-react";
 
+/** A distinct line of work inside a service, shown as its own block on the page. */
+export interface ServicePart {
+  title: string;
+  description: string;
+  items: string[];
+  icon: LucideIcon;
+}
+
 export interface Service {
   slug: string;
   title: string;
@@ -8,6 +16,8 @@ export interface Service {
   icon: LucideIcon;
   features: string[];
   accent: "blue" | "teal" | "cyan" | "green";
+  /** Optional split of the service into separate lines of work. */
+  parts?: ServicePart[];
 }
 
 export interface Product {

@@ -19,6 +19,8 @@ const nextConfig = {
       { source: "/servicios/pintura-epoxica", destination: "/servicios/restauracion-de-pisos", permanent: true },
       { source: "/servicios/mantenimientos-locativos", destination: "/servicios/restauracion-de-pisos", permanent: true },
       { source: "/servicios/mantenimiento-industrial", destination: "/servicios/servicio-tecnico", permanent: true },
+      // "Suministro de equipos" is no longer a service — it lives in the catalog.
+      { source: "/servicios/venta-de-maquinaria", destination: "/productos", permanent: true },
       // Retired product
       { source: "/productos/desbastadoras", destination: "/productos", permanent: true },
     ];

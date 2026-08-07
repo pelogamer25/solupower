@@ -14,7 +14,7 @@ import { serviceImage } from "@/lib/serviceImage";
 export const metadata: Metadata = pageMetadata({
   title: "Servicios de limpieza y mantenimiento industrial",
   description:
-    "Suministro y renting de equipos, servicio técnico especializado y mantenimiento y limpieza de superficies. Soluciones integrales de limpieza y mantenimiento industrial de SOLUPOWER.",
+    "Alquiler de equipos, servicio técnico especializado y mantenimiento y limpieza de superficies. Soluciones integrales de limpieza y mantenimiento industrial de SOLUPOWER.",
   path: "/servicios",
 });
 
@@ -31,7 +31,7 @@ export default function ServiciosPage() {
       <PageHeader
         eyebrow="Servicios"
         title="Soluciones integrales para tu operación"
-        description="Cuatro líneas de servicio diseñadas para cubrir todo el ciclo de vida de tus equipos y superficies industriales."
+        description="Tres líneas de servicio diseñadas para cubrir todo el ciclo de vida de tus equipos y superficies industriales."
         crumbs={[{ name: "Servicios", path: "/servicios" }]}
       />
 

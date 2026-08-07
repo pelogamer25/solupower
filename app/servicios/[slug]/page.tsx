@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, Wrench } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
 import GlassCard from "@/components/ui/GlassCard";
 import Reveal from "@/components/ui/Reveal";
@@ -10,11 +10,13 @@ import SeoProse from "@/components/seo/SeoProse";
 import ContextualCta from "@/components/seo/ContextualCta";
 import RelatedContent from "@/components/seo/RelatedContent";
 import ContactCta from "@/components/sections/ContactCta";
+import RentalCarousel from "@/components/sections/RentalCarousel";
 import { pageMetadata, serviceJsonLd, jsonLdScript } from "@/lib/seo";
 import { services, getService } from "@/lib/data/services";
 import { getServiceSeo } from "@/lib/data/seoContent";
 import { getRelated } from "@/lib/data/relations";
 import { serviceImage } from "@/lib/serviceImage";
+import { serviceExtraPhotos } from "@/lib/serviceExtraPhotos";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -45,6 +47,7 @@ export default async function ServicioDetailPage(props: {
   const related = getRelated(service.slug);
   const ctaProduct = related.productos[0]?.slug ?? "hidrolavadora-industrial-1900-psi";
   const photo = serviceImage(service.slug);
+  const extraPhotos = serviceExtraPhotos(service.slug);
 
   return (
     <>
@@ -84,6 +87,110 @@ export default async function ServicioDetailPage(props: {
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent" />
                 </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      {/* Services split into distinct lines of work, on the same page */}
+      {service.parts && service.parts.length > 0 && (
+        <section className="py-10" aria-label={`Líneas de ${service.title}`}>
+          <div className="container-x grid gap-5 lg:grid-cols-2">
+            {service.parts.map((part, i) => (
+              <Reveal key={part.title} delay={i * 0.08}>
+                <GlassCard as="article" pastel className="h-full p-8">
+                  <div className="flex items-start gap-4">
+                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[linear-gradient(135deg,#1E5FBF,#35B6D8)] text-white shadow-glow">
+                      <part.icon size={24} />
+                    </span>
+                    <div>
+                      <span className="text-xs font-medium uppercase tracking-[0.18em] text-brand-blue">
+                        {i + 1} · Línea de servicio
+                      </span>
+                      <h2 className="mt-1.5 font-display text-xl font-semibold text-ink">
+                        {part.title}
+                      </h2>
+                    </div>
+                  </div>
+                  <p className="mt-5 text-sm leading-relaxed text-ink-soft">{part.description}</p>
+                  <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                    {part.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-ink-soft">
+                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-teal/15 text-brand-teal">
+                          <Check size={12} />
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </GlassCard>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Multi-brand claim + workshop photos (servicio técnico) */}
+      {service.slug === "servicio-tecnico" && (
+        <section className="py-10" aria-label="Somos multimarcas">
+          <div className="container-x">
+            <Reveal>
+              <div className="mx-auto max-w-3xl text-center">
+                <span className="inline-flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,#1E5FBF,#35B6D8)] px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.16em] text-white shadow-glow">
+                  <Wrench size={16} />
+                  Somos multimarcas
+                </span>
+                <p className="mt-5 text-base leading-relaxed text-ink-soft">
+                  Reparamos y mantenemos equipos de limpieza industrial de{" "}
+                  <strong className="font-semibold text-ink">cualquier marca</strong>, con mano de
+                  obra calificada y stock de repuestos y consumibles.
+                </p>
+              </div>
+            </Reveal>
+
+            {extraPhotos.length > 0 && (
+              <div className="mx-auto mt-10 grid max-w-3xl gap-5 sm:grid-cols-2">
+                {extraPhotos.map((p, i) => (
+                  <Reveal key={p.src} delay={i * 0.08}>
+                    <figure className="glass overflow-hidden rounded-4xl p-2">
+                      <div className="relative aspect-square w-full overflow-hidden rounded-[1.6rem] bg-white">
+                        <Image
+                          src={p.src}
+                          alt={p.alt}
+                          fill
+                          sizes="(max-width: 640px) 92vw, 380px"
+                          className="object-cover"
+                        />
+                      </div>
+                      <figcaption className="px-4 pb-3 pt-4 text-center text-sm font-medium text-ink">
+                        {p.caption}
+                      </figcaption>
+                    </figure>
+                  </Reveal>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Equipment available for rent — auto-advancing showcase */}
+      {service.slug === "alquiler" && (
+        <section className="py-10" aria-label="Equipos disponibles en alquiler">
+          <div className="container-x">
+            <Reveal>
+              <h2 className="font-display text-2xl font-semibold text-ink">
+                Equipos disponibles en alquiler
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">
+                Accede al equipo que necesitas por el tiempo que lo necesitas, con respaldo
+                técnico incluido.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mt-7">
+                <RentalCarousel />
               </div>
             </Reveal>
           </div>

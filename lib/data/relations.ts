@@ -48,14 +48,20 @@ export const pillars = {
 /** Canonical keyword anchor text per entity — never generic ("clic aquí"). */
 export const anchors: Record<string, string> = {
   // servicios
-  "venta-de-maquinaria": "venta de maquinaria industrial",
   alquiler: "alquiler de maquinaria de limpieza",
   "servicio-tecnico": "servicio técnico para maquinaria industrial",
   "restauracion-de-pisos": "mantenimiento y limpieza de superficies",
   // productos
   "aspiradoras-industriales": "aspiradoras industriales",
+  "aspiradoras-trabajo-pesado": "aspiradoras para trabajo pesado",
+  "aspiradora-15-30-litros": "aspiradora de 15 y 30 litros",
+  "aspiradora-60-70-litros": "aspiradora de 60 y 70 litros",
+  "aspiradora-80-litros": "aspiradora de 80 litros",
+  "aspiradora-brushless-20-35-50-litros": "aspiradora Brushless",
+  "aspiradora-mochila": "aspiradora de mochila",
   scrubbers: "scrubbers industriales",
   "robots-de-limpieza": "robots de limpieza industrial",
+  "robot-limpieza-pisos": "robot de limpieza de pisos",
   "brilladora-industrial-17": "brilladora industrial 17",
   "brilladora-industrial-k-20": "brilladora industrial K-20",
   "fregadora-hombre-a-pie": "fregadora hombre a pie",
@@ -107,12 +113,59 @@ const graph: Record<string, RelatedRef[]> = {
   "aspiradoras-industriales": [
     { kind: "servicio", slug: "restauracion-de-pisos" },
     { kind: "servicio", slug: "servicio-tecnico" },
-    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "producto", slug: "aspiradora-15-30-litros" },
+    { kind: "producto", slug: "aspiradora-60-70-litros" },
     { kind: "producto", slug: "scrubbers" },
     { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
-    { kind: "producto", slug: "robots-de-limpieza" },
     { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
     { kind: "caso", slug: "lavado-profundo-de-pisos" },
+  ],
+  "aspiradoras-trabajo-pesado": [
+    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "servicio", slug: "alquiler" },
+    { kind: "producto", slug: "aspiradora-80-litros" },
+    { kind: "producto", slug: "aspiradoras-industriales" },
+    { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
+    { kind: "caso", slug: "lavado-profundo-de-pisos" },
+  ],
+  "aspiradora-15-30-litros": [
+    { kind: "servicio", slug: "alquiler" },
+    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "producto", slug: "aspiradora-60-70-litros" },
+    { kind: "producto", slug: "aspiradora-brushless-20-35-50-litros" },
+    { kind: "producto", slug: "aspiradoras-industriales" },
+    { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
+  ],
+  "aspiradora-60-70-litros": [
+    { kind: "servicio", slug: "alquiler" },
+    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "producto", slug: "aspiradora-80-litros" },
+    { kind: "producto", slug: "aspiradora-15-30-litros" },
+    { kind: "producto", slug: "aspiradoras-industriales" },
+    { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
+  ],
+  "aspiradora-80-litros": [
+    { kind: "servicio", slug: "alquiler" },
+    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "producto", slug: "aspiradoras-trabajo-pesado" },
+    { kind: "producto", slug: "aspiradora-60-70-litros" },
+    { kind: "producto", slug: "aspiradoras-industriales" },
+    { kind: "caso", slug: "lavado-profundo-de-pisos" },
+  ],
+  "aspiradora-brushless-20-35-50-litros": [
+    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "servicio", slug: "alquiler" },
+    { kind: "producto", slug: "aspiradora-15-30-litros" },
+    { kind: "producto", slug: "aspiradora-60-70-litros" },
+    { kind: "producto", slug: "aspiradoras-industriales" },
+    { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
+  ],
+  "aspiradora-mochila": [
+    { kind: "servicio", slug: "alquiler" },
+    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "producto", slug: "aspiradora-15-30-litros" },
+    { kind: "producto", slug: "aspiradoras-industriales" },
+    { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
   ],
   scrubbers: [
     { kind: "servicio", slug: "restauracion-de-pisos" },
@@ -127,10 +180,18 @@ const graph: Record<string, RelatedRef[]> = {
   "robots-de-limpieza": [
     { kind: "servicio", slug: "restauracion-de-pisos" },
     { kind: "servicio", slug: "servicio-tecnico" },
-    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "producto", slug: "robot-limpieza-pisos" },
     { kind: "producto", slug: "scrubbers" },
     { kind: "producto", slug: "aspiradoras-industriales" },
-    { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
+    { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
+    { kind: "caso", slug: "lavado-profundo-de-pisos" },
+  ],
+  "robot-limpieza-pisos": [
+    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "servicio", slug: "alquiler" },
+    { kind: "producto", slug: "robots-de-limpieza" },
+    { kind: "producto", slug: "scrubbers" },
+    { kind: "producto", slug: "aspiradoras-industriales" },
     { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
     { kind: "caso", slug: "lavado-profundo-de-pisos" },
   ],
@@ -146,28 +207,17 @@ const graph: Record<string, RelatedRef[]> = {
     { kind: "caso", slug: "lavado-profundo-de-pisos" },
   ],
   alquiler: [
-    { kind: "servicio", slug: "venta-de-maquinaria" },
     { kind: "servicio", slug: "servicio-tecnico" },
-    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "servicio", slug: "restauracion-de-pisos" },
     { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
     { kind: "producto", slug: "scrubbers" },
     { kind: "producto", slug: "aspiradoras-industriales" },
     { kind: "blog", slug: "elegir-hidrolavadora-industrial" },
     { kind: "caso", slug: "recuperacion-de-superficies" },
   ],
-  "venta-de-maquinaria": [
-    { kind: "servicio", slug: "alquiler" },
-    { kind: "servicio", slug: "servicio-tecnico" },
-    { kind: "producto", slug: "brilladora-industrial-17" },
-    { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
-    { kind: "producto", slug: "robots-de-limpieza" },
-    { kind: "blog", slug: "elegir-hidrolavadora-industrial" },
-    { kind: "caso", slug: "lavado-profundo-de-pisos" },
-  ],
   "restauracion-de-pisos": [
     { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "servicio", slug: "alquiler" },
-    { kind: "servicio", slug: "venta-de-maquinaria" },
     { kind: "producto", slug: "desbastadoras" },
     { kind: "producto", slug: "brilladora-industrial-17" },
     { kind: "producto", slug: "extractora-jb-175" },
@@ -188,7 +238,6 @@ const graph: Record<string, RelatedRef[]> = {
   "elegir-hidrolavadora-industrial": [
     { kind: "servicio", slug: "alquiler" },
     { kind: "servicio", slug: "servicio-tecnico" },
-    { kind: "servicio", slug: "venta-de-maquinaria" },
     { kind: "producto", slug: "hidrolavadora-industrial-1900-psi" },
     { kind: "producto", slug: "aspiradoras-industriales" },
     { kind: "blog", slug: "mantenimiento-preventivo-maquinaria" },
@@ -286,6 +335,12 @@ export function getRelated(slug: string): GroupedRelated {
 
 /** { href, anchor } for a contextual inline link, by slug. */
 export function internalLink(slug: string, kind?: EntityKind) {
+  // Pillar pages (/productos, /servicios) are linkable by name — without this
+  // they'd fall through to the "caso" default and produce a dead URL.
+  if (!kind && slug in pillars) {
+    const pillar = pillars[slug as keyof typeof pillars];
+    return { href: pillar.href, anchor: pillar.anchor };
+  }
   const k =
     kind ??
     (services.some((s) => s.slug === slug)

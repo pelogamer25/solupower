@@ -1,45 +1,31 @@
-import { Wrench, Package, Layers } from "lucide-react";
+import { Wrench, Package, Layers, Sparkles, Sofa } from "lucide-react";
 import type { Service } from "@/types";
 
 export const services: Service[] = [
   {
-    slug: "venta-de-maquinaria",
-    title: "Suministro de equipos",
-    excerpt: "Equipos de limpieza profesional e industrial para tu operación.",
-    description:
-      "Suministro de equipos de limpieza profesional e industrial: brilladoras para lavado, pulido y fregado; aspiradoras para sólidos y líquidos; hidrolavadoras de agua fría y caliente; fregadoras (scrubbers) y robots de limpieza autónomos e inteligentes.",
-    icon: Package,
-    features: [
-      "Brilladoras: lavado, pulido y fregado",
-      "Aspiradoras para sólidos y líquidos",
-      "Hidrolavadoras de agua fría y caliente",
-      "Fregadoras (scrubbers) y robots autónomos",
-    ],
-    accent: "blue",
-  },
-  {
     slug: "alquiler",
-    title: "Renting de equipos",
+    title: "Alquiler de equipos",
     excerpt: "Alquiler de equipos de limpieza para trabajo pesado, por el tiempo que lo necesitas.",
     description:
-      "Renting (alquiler) de equipos de limpieza: fregadoras de piso para trabajo pesado que realizan tres procesos en uno; hidrolavadoras de agua fría y caliente de alta presión; brilladoras con platos de 17″ y 20″ que pulen, brillan y lavan; aspiradoras profesionales e industriales de uno, dos y tres motores para agua y polvo; y destroncadora para desbastar, nivelar, rebajar, pulir y brillar sobre concreto, granito y terrazo.",
+      "Alquiler de equipos de limpieza: fregadoras de piso para trabajo pesado que realizan tres procesos en uno; hidrolavadoras de agua fría y caliente de alta presión; brilladoras con platos de 17″ y 20″ que pulen, brillan y lavan; y aspiradoras profesionales e industriales de uno, dos y tres motores para agua y polvo.",
     icon: Package,
     features: [
       "Brilladoras con platos de 17″ y 20″",
       "Aspiradoras de 1, 2 y 3 motores (agua y polvo)",
       "Hidrolavadoras de agua fría y caliente",
-      "Destroncadora para concreto, granito y terrazo",
+      "Fregadoras de piso para trabajo pesado",
     ],
     accent: "teal",
   },
   {
     slug: "servicio-tecnico",
     title: "Servicio técnico especializado",
-    excerpt: "Centro de diagnóstico y reparación para equipos de limpieza.",
+    excerpt: "Somos multimarcas: centro de diagnóstico y reparación para equipos de limpieza.",
     description:
-      "Centro de diagnóstico y reparación con atención personalizada y tiempos de respuesta acordes a su necesidad, minimizando el impacto en su operación. Reparación y mantenimiento de aspiradoras, brilladoras, hidrolavadoras y equipos de limpieza industrial.",
+      "Somos multimarcas: reparamos y mantenemos equipos de limpieza industrial de cualquier marca. Centro de diagnóstico y reparación con atención personalizada y tiempos de respuesta acordes a su necesidad, minimizando el impacto en su operación. Reparación y mantenimiento de aspiradoras, brilladoras, hidrolavadoras y equipos de limpieza industrial.",
     icon: Wrench,
     features: [
+      "SOMOS MULTIMARCAS: atendemos equipos de cualquier marca",
       "Mano de obra calificada",
       "Mantenimientos preventivos y correctivos",
       "Stock de repuestos y consumibles",
@@ -61,6 +47,35 @@ export const services: Service[] = [
       "Lavado profundo de pisos y superficies de alto tráfico",
     ],
     accent: "blue",
+    // Two distinct lines of work, presented separately on the same page.
+    parts: [
+      {
+        title: "Mantenimiento de superficies",
+        description:
+          "Recuperación y acabado de toda clase de superficies: devolvemos el brillo y protegemos el piso frente al tráfico y la humedad.",
+        items: [
+          "Cristalizado de piso",
+          "Brillo natural",
+          "Pulido",
+          "Destronque",
+          "Hidrófugo",
+          "Recuperación de toda clase de superficie",
+        ],
+        icon: Sparkles,
+      },
+      {
+        title: "Lavado profesional y desinfección de alfombras y mobiliario",
+        description:
+          "Lavado profundo en proceso semihúmedo con equipos de inyección y extracción: elimina manchas, olores y recupera las fibras.",
+        items: [
+          "Lavado profundo de alfombras",
+          "Lavado y desinfección de mobiliario",
+          "Proceso semihúmedo de inyección y extracción",
+          "Eliminación de manchas y recuperación de fibras",
+        ],
+        icon: Sofa,
+      },
+    ],
   },
 ];
 
