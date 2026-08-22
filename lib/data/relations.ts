@@ -50,7 +50,8 @@ export const anchors: Record<string, string> = {
   // servicios
   alquiler: "alquiler de maquinaria de limpieza",
   "servicio-tecnico": "servicio técnico para maquinaria industrial",
-  "restauracion-de-pisos": "mantenimiento y limpieza de superficies",
+  "restauracion-de-pisos": "mantenimiento y tratamiento de pisos",
+  "lavado-de-alfombras-y-mobiliario": "lavado y desinfección de alfombras y mobiliario",
   // productos
   "aspiradoras-industriales": "aspiradoras industriales",
   "aspiradoras-trabajo-pesado": "aspiradoras para trabajo pesado",
@@ -216,13 +217,22 @@ const graph: Record<string, RelatedRef[]> = {
     { kind: "caso", slug: "recuperacion-de-superficies" },
   ],
   "restauracion-de-pisos": [
-    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "servicio", slug: "lavado-de-alfombras-y-mobiliario" },
     { kind: "servicio", slug: "alquiler" },
-    { kind: "producto", slug: "desbastadoras" },
+    { kind: "servicio", slug: "servicio-tecnico" },
     { kind: "producto", slug: "brilladora-industrial-17" },
-    { kind: "producto", slug: "extractora-jb-175" },
+    { kind: "producto", slug: "brilladora-industrial-k-20" },
     { kind: "blog", slug: "como-restaurar-pisos-industriales" },
-    { kind: "caso", slug: "recuperacion-de-superficies" },
+    { kind: "caso", slug: "cristalizado-y-pulido-de-pisos" },
+  ],
+  "lavado-de-alfombras-y-mobiliario": [
+    { kind: "servicio", slug: "restauracion-de-pisos" },
+    { kind: "servicio", slug: "alquiler" },
+    { kind: "servicio", slug: "servicio-tecnico" },
+    { kind: "producto", slug: "extractora-jb-175" },
+    { kind: "producto", slug: "aspiradoras-industriales" },
+    { kind: "blog", slug: "como-restaurar-pisos-industriales" },
+    { kind: "caso", slug: "lavado-y-desinfeccion-de-alfombras" },
   ],
 
   // ---------------- Blog ----------------

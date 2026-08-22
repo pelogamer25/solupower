@@ -51,7 +51,15 @@ export function serviceExtraPhotos(slug: string): ResolvedExtraPhoto[] {
     }));
 }
 
+/**
+ * Banner images that illustrate a service but aren't a "result" for the work
+ * gallery (this one is an ultra-wide lineup that would crop to nothing in a
+ * square tile).
+ */
+const bannerOnly = ["perfillimpiadoras.jpg"];
+
 /** Filenames used as service illustrations — excluded from the work gallery. */
-export const serviceExtraFiles = new Set(
-  Object.values(map).flatMap((list) => list.map((e) => e.file)),
-);
+export const serviceExtraFiles = new Set([
+  ...Object.values(map).flatMap((list) => list.map((e) => e.file)),
+  ...bannerOnly,
+]);

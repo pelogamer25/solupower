@@ -31,7 +31,7 @@ export default function ServiciosPage() {
       <PageHeader
         eyebrow="Servicios"
         title="Soluciones integrales para tu operación"
-        description="Tres líneas de servicio diseñadas para cubrir todo el ciclo de vida de tus equipos y superficies industriales."
+        description="Cuatro líneas de servicio diseñadas para cubrir todo el ciclo de vida de tus equipos y superficies industriales."
         crumbs={[{ name: "Servicios", path: "/servicios" }]}
       />
 

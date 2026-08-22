@@ -6,7 +6,7 @@ import { join } from "node:path";
 // Each service mapped to a real SOLUPOWER work photo (public/trabajos) that
 // actually depicts that kind of work. Raw filename → resolved+encoded at runtime.
 const map: Record<string, string> = {
-  alquiler: "WhatsApp Image 2026-07-16 at 4.03.54 PM.jpeg", // máquina fregando piso
+  alquiler: "perfillimpiadoras.jpg", // perfil de equipos disponibles en alquiler
   "servicio-tecnico": "WhatsApp Image 2026-07-16 at 4.112123.03 PM.jpeg", // operario con máquina
   "restauracion-de-pisos": "WhatsApp Image 2026-07-16 at 4.12asd.50 PM.jpeg", // mármol pulido efecto espejo
 };

@@ -33,20 +33,23 @@ export default function NosotrosPage() {
         crumbs={[{ name: "Nosotros", path: "/nosotros" }]}
       />
 
-      {/* Team photo — portrait framing, so nobody gets cropped out */}
+      {/* Team photo — framed at its own aspect ratio, so nobody gets cropped out */}
       {team && (
         <section className="pb-6 pt-2" aria-label="Nuestro equipo">
           <div className="container-x">
             <Reveal>
-              <figure className="mx-auto max-w-sm">
+              <figure className={`mx-auto ${team.width >= team.height ? "max-w-2xl" : "max-w-sm"}`}>
                 <div className="glass overflow-hidden rounded-5xl p-2">
-                  <div className="relative aspect-[768/1134] w-full overflow-hidden rounded-[1.7rem]">
+                  <div
+                    className="relative w-full overflow-hidden rounded-[1.7rem]"
+                    style={{ aspectRatio: `${team.width} / ${team.height}` }}
+                  >
                     <Image
-                      src={team}
+                      src={team.src}
                       alt="Equipo de SOLUPOWER — Soluciones Industriales RM S.A.S."
                       fill
                       priority
-                      sizes="(max-width: 640px) 90vw, 384px"
+                      sizes="(max-width: 640px) 92vw, 672px"
                       className="object-cover"
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />

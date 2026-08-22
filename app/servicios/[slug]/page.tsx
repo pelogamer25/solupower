@@ -93,44 +93,6 @@ export default async function ServicioDetailPage(props: {
         </section>
       )}
 
-      {/* Services split into distinct lines of work, on the same page */}
-      {service.parts && service.parts.length > 0 && (
-        <section className="py-10" aria-label={`Líneas de ${service.title}`}>
-          <div className="container-x grid gap-5 lg:grid-cols-2">
-            {service.parts.map((part, i) => (
-              <Reveal key={part.title} delay={i * 0.08}>
-                <GlassCard as="article" pastel className="h-full p-8">
-                  <div className="flex items-start gap-4">
-                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[linear-gradient(135deg,#1E5FBF,#35B6D8)] text-white shadow-glow">
-                      <part.icon size={24} />
-                    </span>
-                    <div>
-                      <span className="text-xs font-medium uppercase tracking-[0.18em] text-brand-blue">
-                        {i + 1} · Línea de servicio
-                      </span>
-                      <h2 className="mt-1.5 font-display text-xl font-semibold text-ink">
-                        {part.title}
-                      </h2>
-                    </div>
-                  </div>
-                  <p className="mt-5 text-sm leading-relaxed text-ink-soft">{part.description}</p>
-                  <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
-                    {part.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-sm text-ink-soft">
-                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-teal/15 text-brand-teal">
-                          <Check size={12} />
-                        </span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </GlassCard>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-      )}
-
       {/* Multi-brand claim + workshop photos (servicio técnico) */}
       {service.slug === "servicio-tecnico" && (
         <section className="py-10" aria-label="Somos multimarcas">

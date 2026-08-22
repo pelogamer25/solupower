@@ -17,17 +17,20 @@ export default function About() {
           description="SOLUPOWER es una empresa colombiana especializada en brindar soluciones integrales para la limpieza y el mantenimiento industrial, desde el suministro de equipos hasta el mantenimiento de superficies. Más que un proveedor, somos un aliado estratégico de nuestros clientes."
         />
 
-        {/* Team photo — portrait framing, so nobody gets cropped out */}
+        {/* Team photo — framed at its own aspect ratio, so nobody gets cropped out */}
         {team && (
           <Reveal delay={0.1}>
-            <figure className="mx-auto mt-14 max-w-sm">
+            <figure className={`mx-auto mt-14 ${team.width >= team.height ? "max-w-2xl" : "max-w-sm"}`}>
               <div className="glass overflow-hidden rounded-5xl p-2">
-                <div className="relative aspect-[768/1134] w-full overflow-hidden rounded-[1.7rem]">
+                <div
+                  className="relative w-full overflow-hidden rounded-[1.7rem]"
+                  style={{ aspectRatio: `${team.width} / ${team.height}` }}
+                >
                   <Image
-                    src={team}
+                    src={team.src}
                     alt="Equipo de trabajo de SOLUPOWER — Soluciones Industriales RM S.A.S."
                     fill
-                    sizes="(max-width: 640px) 90vw, 384px"
+                    sizes="(max-width: 640px) 92vw, 672px"
                     className="object-cover"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />

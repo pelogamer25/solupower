@@ -1,7 +1,42 @@
-import { Wrench, Package, Layers, Sparkles, Sofa } from "lucide-react";
+import { Wrench, Package, Layers, Sofa } from "lucide-react";
 import type { Service } from "@/types";
 
 export const services: Service[] = [
+  {
+    // Slug kept as-is: the page is indexed and several 308s point at it.
+    slug: "restauracion-de-pisos",
+    title: "Mantenimiento y Tratamiento de Pisos",
+    excerpt:
+      "Cristalizado, brillo natural, pulido, destronque e hidrófugo para toda clase de superficie.",
+    description:
+      "Mantenimiento y tratamiento de pisos: cristalizado, brillo natural, pulido, destronque e hidrófugo para la recuperación de toda clase de superficie. Devolvemos el brillo y protegemos el piso frente al tráfico y la humedad, en mármol, granito, concreto y baldosas.",
+    icon: Layers,
+    features: [
+      "Cristalizado de piso",
+      "Brillo natural",
+      "Pulido",
+      "Destronque",
+      "Hidrófugo",
+      "Recuperación de toda clase de superficie",
+    ],
+    accent: "blue",
+  },
+  {
+    slug: "lavado-de-alfombras-y-mobiliario",
+    title: "Lavado profesional, desinfección de alfombras y mobiliario",
+    excerpt:
+      "Lavado profundo en proceso semihúmedo con equipos de inyección y extracción.",
+    description:
+      "Lavado profesional y desinfección de alfombras y mobiliario: lavado profundo en proceso semihúmedo con equipos de inyección y extracción que elimina manchas y olores, y recupera las fibras de alfombras, tapetes y mobiliario.",
+    icon: Sofa,
+    features: [
+      "Lavado profundo de alfombras",
+      "Lavado y desinfección de mobiliario",
+      "Proceso semihúmedo de inyección y extracción",
+      "Eliminación de manchas y recuperación de fibras",
+    ],
+    accent: "green",
+  },
   {
     slug: "alquiler",
     title: "Alquiler de equipos",
@@ -32,50 +67,6 @@ export const services: Service[] = [
       "Planes de contratación anual",
     ],
     accent: "cyan",
-  },
-  {
-    slug: "restauracion-de-pisos",
-    title: "Mantenimiento y limpieza de superficies",
-    excerpt: "Cristalizado y pulido de pisos, y lavado profesional de alfombras y mobiliario.",
-    description:
-      "Mantenimiento de pisos y toda clase de superficies (cristalizado, abrillantado, pulido y diamantado de mármol, granito, concreto y baldosas) junto con limpieza y desinfección profesional de alfombras, mobiliario y pisos: lavado profundo en proceso semihúmedo con equipos de inyección y extracción, eliminación de manchas y recuperación de fibras y superficies.",
-    icon: Layers,
-    features: [
-      "Cristalizado, abrillantado y pulido diamantado",
-      "Mármol, granito, concreto y baldosas",
-      "Lavado y desinfección de alfombras y mobiliario",
-      "Lavado profundo de pisos y superficies de alto tráfico",
-    ],
-    accent: "blue",
-    // Two distinct lines of work, presented separately on the same page.
-    parts: [
-      {
-        title: "Mantenimiento de superficies",
-        description:
-          "Recuperación y acabado de toda clase de superficies: devolvemos el brillo y protegemos el piso frente al tráfico y la humedad.",
-        items: [
-          "Cristalizado de piso",
-          "Brillo natural",
-          "Pulido",
-          "Destronque",
-          "Hidrófugo",
-          "Recuperación de toda clase de superficie",
-        ],
-        icon: Sparkles,
-      },
-      {
-        title: "Lavado profesional y desinfección de alfombras y mobiliario",
-        description:
-          "Lavado profundo en proceso semihúmedo con equipos de inyección y extracción: elimina manchas, olores y recupera las fibras.",
-        items: [
-          "Lavado profundo de alfombras",
-          "Lavado y desinfección de mobiliario",
-          "Proceso semihúmedo de inyección y extracción",
-          "Eliminación de manchas y recuperación de fibras",
-        ],
-        icon: Sofa,
-      },
-    ],
   },
 ];
 

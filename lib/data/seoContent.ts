@@ -281,15 +281,50 @@ export const serviceSeo: Record<string, SeoSection[]> = {
     },
   ],
 
+  "lavado-de-alfombras-y-mobiliario": [
+    {
+      h2: "Lavado profesional y desinfección de alfombras y mobiliario",
+      intro:
+        "Lavado profundo en proceso semihúmedo con equipos de inyección y extracción: elimina manchas y olores y recupera las fibras, con tiempos de secado cortos que no detienen la operación.",
+      blocks: [
+        {
+          h3: "Inyección y extracción",
+          body: "El lavado profundo de alfombras y mobiliario se realiza con la",
+          link: "extractora-jb-175",
+        },
+        {
+          h3: "Aspirado previo",
+          body: "Antes del lavado retiramos el polvo y los sólidos con",
+          link: "aspiradoras-industriales",
+        },
+        {
+          h3: "Pisos y superficies duras",
+          body: "Para el piso bajo la alfombra y las superficies duras contamos con el",
+          link: "restauracion-de-pisos",
+        },
+      ],
+    },
+    {
+      h2: "Caso relacionado",
+      blocks: [
+        {
+          h3: "Resultados en textiles",
+          body: "Puedes ver un trabajo real en el caso de",
+          link: "lavado-y-desinfeccion-de-alfombras",
+        },
+      ],
+    },
+  ],
+
   "restauracion-de-pisos": [
     {
-      h2: "Restauración de pisos industriales",
+      h2: "Mantenimiento y tratamiento de pisos industriales",
       intro:
-        "Desbaste, pulido y sellado profesional de pisos en concreto, porcelanato y granito, con acabados de alto brillo y protección duradera.",
+        "Cristalizado, brillo natural, pulido, destronque e hidrófugo sobre mármol, granito, concreto y baldosas, con acabados de alto brillo y protección duradera.",
       blocks: [
         {
           h3: "Preparación de la superficie",
-          body: "El proceso arranca preparando y nivelando el piso; para el acabado espejo lo combinamos con la",
+          body: "El proceso arranca con el destronque y la nivelación del piso; para el acabado espejo lo combinamos con la",
           link: "brilladora-industrial-17",
         },
         {
@@ -298,9 +333,9 @@ export const serviceSeo: Record<string, SeoSection[]> = {
           link: "scrubbers",
         },
         {
-          h3: "Lavado y desinfección de superficies",
-          body: "Complementamos el mantenimiento de pisos con lavado profundo de alfombras, mobiliario y superficies de alto tráfico usando",
-          link: "aspiradoras-industriales",
+          h3: "Alfombras y mobiliario",
+          body: "Si además necesitas recuperar textiles, lo cubre nuestro servicio de",
+          link: "lavado-de-alfombras-y-mobiliario",
         },
       ],
     },
