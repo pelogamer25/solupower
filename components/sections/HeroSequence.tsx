@@ -1,11 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import {
   motion,
   useScroll,
   useTransform,
-  useMotionValueEvent,
   useReducedMotion,
   type MotionValue,
 } from "framer-motion";
@@ -16,7 +15,6 @@ import { useCoarsePointer } from "@/lib/useCoarsePointer";
 
 const VIDEO_SRC = "/hero/hero.mp4";
 const POSTER_SRC = "/hero/frame-00.jpg";
-const ease = [0.22, 1, 0.36, 1] as const;
 
 /**
  * Cinematic video hero. A tall wrapper pins the footage while company
@@ -47,17 +45,21 @@ export default function HeroSequence() {
     return <StaticHero />;
   }
 
+  // ---- Touch: one screen, no pinning ----
+  // The pinned stage holds the page for 300vh, so on a phone you swipe through
+  // three screens while the footage stays put — it reads as "scrolling is
+  // broken". Phones get a single-viewport hero that scrolls away normally.
+  if (coarse) {
+    return <MobileHero />;
+  }
+
   return (
     <section aria-label="Introducción SOLUPOWER" className="relative">
       {/* Tall driver: scroll advances the phases (shorter ride on mobile) */}
       <div ref={wrapRef} className="relative h-[300vh] md:h-[500vh]">
         {/* Pinned stage */}
         <div className="sticky top-0 h-[100svh] overflow-hidden">
-          {/* Mobile: no scroll-linked zoom — rescaling full-screen video is costly */}
-          <motion.div
-            style={coarse ? { opacity: cinematicFade } : { scale, opacity: cinematicFade }}
-            className="absolute inset-0"
-          >
+          <motion.div style={{ scale, opacity: cinematicFade }} className="absolute inset-0">
             <video
               className="h-full w-full object-cover"
               src={VIDEO_SRC}
@@ -77,7 +79,7 @@ export default function HeroSequence() {
 
           {/* --- Progressive company info, phased over the footage --- */}
           <div className="container-x absolute inset-0 z-10 flex items-center">
-            <Phase p={scrollYProgress} range={[0.0, 0.06, 0.2, 0.26]} still={coarse}>
+            <Phase p={scrollYProgress} range={[0.0, 0.06, 0.2, 0.26]}>
               <Eyebrow>Soluciones Industriales RM S.A.S.</Eyebrow>
               <h1 className="mt-5 max-w-2xl font-display text-hero font-semibold text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.55),0_2px_14px_rgba(0,0,0,0.35)]">
                 Soluciones industriales para empresas que buscan{" "}
@@ -98,7 +100,7 @@ export default function HeroSequence() {
               </div>
             </Phase>
 
-            <Phase p={scrollYProgress} range={[0.28, 0.34, 0.46, 0.52]} still={coarse}>
+            <Phase p={scrollYProgress} range={[0.28, 0.34, 0.46, 0.52]}>
               <Eyebrow>Ingeniería y precisión</Eyebrow>
               <h2 className="mt-5 max-w-2xl font-display text-display font-semibold text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.55),0_2px_14px_rgba(0,0,0,0.35)]">
                 Más de una década elevando el estándar de la industria.
@@ -109,7 +111,7 @@ export default function HeroSequence() {
               </p>
             </Phase>
 
-            <Phase p={scrollYProgress} range={[0.54, 0.6, 0.72, 0.78]} still={coarse}>
+            <Phase p={scrollYProgress} range={[0.54, 0.6, 0.72, 0.78]}>
               <Eyebrow>Nuestro respaldo</Eyebrow>
               <div className="mt-6 grid max-w-2xl grid-cols-2 gap-x-10 gap-y-8 sm:grid-cols-4">
                 {[
@@ -126,7 +128,7 @@ export default function HeroSequence() {
               </div>
             </Phase>
 
-            <Phase p={scrollYProgress} range={[0.8, 0.86, 0.98, 1.0]} last still={coarse}>
+            <Phase p={scrollYProgress} range={[0.8, 0.86, 0.98, 1.0]} last>
               <Eyebrow>Comencemos</Eyebrow>
               <h2 className="mt-5 max-w-2xl font-display text-display font-semibold text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.55),0_2px_14px_rgba(0,0,0,0.35)]">
                 Todo lo que tu operación necesita, en un solo lugar.
@@ -153,14 +155,11 @@ function Phase({
   p,
   range,
   last = false,
-  still = false,
   children,
 }: {
   p: MotionValue<number>;
   range: [number, number, number, number];
   last?: boolean;
-  /** Mobile: skip the scroll-linked blur filter (repaints are too expensive). */
-  still?: boolean;
   children: React.ReactNode;
 }) {
   const [a, b, c, d] = range;
@@ -168,32 +167,6 @@ function Phase({
   const y = useTransform(p, [a, b, c, d], [40, 0, 0, last ? 0 : -40]);
   const blur = useTransform(p, [a, b, c, d], [10, 0, 0, last ? 0 : 10]);
   const filter = useTransform(blur, (v) => `blur(${v}px)`);
-
-  // Mobile: discrete show/hide instead of a scroll-linked opacity value.
-  // A continuously-updating motion value keeps the overlay permanently on a
-  // composited layer (will-change), and phones rasterize such layers below
-  // screen resolution → blurry headings. With a plain CSS transition the layer
-  // is released once the fade settles, so the text renders pixel-crisp.
-  const inRange = (v: number) => v >= a && (last ? true : v <= d);
-  const [shown, setShown] = useState(() => inRange(p.get()));
-  useMotionValueEvent(p, "change", (v) => {
-    if (still) setShown(inRange(v));
-  });
-
-  if (still) {
-    return (
-      <div
-        className={`pointer-events-none absolute inset-x-0 px-[inherit] transition-opacity duration-500 ${
-          shown ? "opacity-100" : "opacity-0"
-        }`}
-        aria-hidden={!shown}
-      >
-        <div className={`container-x ${shown ? "pointer-events-auto" : "pointer-events-none"}`}>
-          {children}
-        </div>
-      </div>
-    );
-  }
 
   return (
     <motion.div
@@ -231,6 +204,63 @@ function ScrollCue({ p }: { p: MotionValue<number> }) {
         <motion.div style={{ width }} className="h-full bg-[linear-gradient(90deg,#1E5FBF,#35B6D8,#22A79B)]" />
       </div>
     </>
+  );
+}
+
+/**
+ * Touch hero: the footage plays behind one screen of copy, in normal document
+ * flow. No pinning, no scroll-linked values and no phase machinery — scrolling
+ * behaves exactly as the user expects, and the page costs far less to render.
+ */
+function MobileHero() {
+  return (
+    <section aria-label="Introducción SOLUPOWER" className="relative overflow-hidden">
+      <div className="relative flex min-h-[100svh] items-center pt-28">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src={VIDEO_SRC}
+          poster={POSTER_SRC}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden
+        />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(105deg,rgba(6,17,38,0.72)_0%,rgba(6,17,38,0.42)_45%,rgba(6,17,38,0.18)_100%)]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30vh] bg-[linear-gradient(180deg,transparent,#F5F7FA_94%)]" />
+
+        <div className="container-x relative z-10 pb-24">
+          <Eyebrow>Soluciones Industriales RM S.A.S.</Eyebrow>
+          <h1 className="mt-5 max-w-2xl font-display text-hero font-semibold text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.55),0_2px_14px_rgba(0,0,0,0.35)]">
+            Soluciones industriales para empresas que buscan{" "}
+            <span className="bg-[linear-gradient(100deg,#7ad0ec,#8fe3c9)] bg-clip-text text-transparent">
+              excelencia.
+            </span>
+          </h1>
+          <p className="mt-6 max-w-md text-lg text-white/85">
+            Alquiler, mantenimiento y servicio técnico especializado de equipos de limpieza
+            industrial.
+          </p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Button href="/cotizacion" variant="primary" icon={<ArrowRight size={17} />}>
+              Solicitar cotización
+            </Button>
+            <Button href={siteConfig.contact.whatsapp} external variant="glass" icon={<MessageCircle size={17} />}>
+              WhatsApp
+            </Button>
+          </div>
+        </div>
+
+        <span
+          aria-hidden
+          className="absolute inset-x-0 bottom-7 z-10 flex flex-col items-center gap-1.5 text-white/70"
+        >
+          <span className="text-[11px] uppercase tracking-[0.22em]">Scroll</span>
+          <ChevronDown size={18} className="animate-float" />
+        </span>
+      </div>
+    </section>
   );
 }
 
