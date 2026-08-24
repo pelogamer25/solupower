@@ -15,7 +15,7 @@ import { pageMetadata, serviceJsonLd, jsonLdScript } from "@/lib/seo";
 import { services, getService } from "@/lib/data/services";
 import { getServiceSeo } from "@/lib/data/seoContent";
 import { getRelated } from "@/lib/data/relations";
-import { serviceImage } from "@/lib/serviceImage";
+import { serviceBanner } from "@/lib/serviceImage";
 import { serviceExtraPhotos } from "@/lib/serviceExtraPhotos";
 import { rentalEquipmentWithPhotos } from "@/lib/rentalPhoto";
 import { floorFinishes } from "@/lib/floorFinishes";
@@ -49,7 +49,7 @@ export default async function ServicioDetailPage(props: {
   const seo = getServiceSeo(service.slug);
   const related = getRelated(service.slug);
   const ctaProduct = related.productos[0]?.slug ?? "hidrolavadora-industrial-1900-psi";
-  const photo = serviceImage(service.slug);
+  const photo = serviceBanner(service.slug);
   const extraPhotos = serviceExtraPhotos(service.slug);
   const finishes = service.slug === "restauracion-de-pisos" ? floorFinishes() : [];
   const carpetGroups =
