@@ -13,6 +13,7 @@ import { pageMetadata } from "@/lib/seo";
 import { caseStudies, getCaseStudy } from "@/lib/data/content";
 import { getRelated } from "@/lib/data/relations";
 import { workPhotos } from "@/lib/workPhotos";
+import { caseComparisons } from "@/lib/caseBeforeAfter";
 
 export function generateStaticParams() {
   return caseStudies.map((c) => ({ slug: c.slug }));
@@ -40,6 +41,7 @@ export default async function CasoDetailPage(props: {
 
   const related = getRelated(study.slug);
   const photos = workPhotos().slice(0, 6);
+  const comparisons = caseComparisons(study.slug);
 
   return (
     <>
@@ -92,6 +94,65 @@ export default async function CasoDetailPage(props: {
           </Reveal>
         </div>
       </section>
+
+      {/* Before / after comparisons */}
+      {comparisons.length > 0 && (
+        <section className="py-8" aria-label="Antes y después">
+          <div className="container-x">
+            <Reveal>
+              <h2 className="font-display text-2xl font-semibold text-ink">Antes y después</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">
+                El mismo piso, fotografiado antes de intervenirlo y una vez terminado el proceso.
+              </p>
+            </Reveal>
+
+            <div className="mt-7 space-y-6">
+              {comparisons.map((c, i) => (
+                <Reveal key={c.key} delay={i * 0.08}>
+                  <article className="glass overflow-hidden rounded-5xl p-5 sm:p-7">
+                    <h3 className="font-display text-lg font-semibold text-ink">{c.title}</h3>
+                    <p className="mt-1.5 max-w-3xl text-sm leading-relaxed text-ink-soft">
+                      {c.description}
+                    </p>
+
+                    {/* Stacks on mobile, side by side from sm up */}
+                    <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                      {[
+                        { src: c.antes, label: "Antes", after: false },
+                        { src: c.despues, label: "Después", after: true },
+                      ].map((side) => (
+                        <figure key={side.label} className="relative">
+                          {/* Fixed ratio reserves the space, so nothing jumps while loading */}
+                          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-4xl bg-white ring-1 ring-white/60">
+                            <Image
+                              src={side.src}
+                              alt={`${c.title} — ${side.label.toLowerCase()} del trabajo de SOLUPOWER`}
+                              fill
+                              loading="lazy"
+                              sizes="(max-width: 640px) 92vw, 46vw"
+                              className="object-cover"
+                            />
+                            {/* Label carries the meaning in text, never colour alone */}
+                            <figcaption
+                              className={
+                                side.after
+                                  ? "absolute left-4 top-4 rounded-full bg-[linear-gradient(135deg,#1E5FBF,#35B6D8)] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-glow"
+                                  : "absolute left-4 top-4 rounded-full bg-ink/75 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md"
+                              }
+                            >
+                              {side.label}
+                            </figcaption>
+                          </div>
+                        </figure>
+                      ))}
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Real work photos (from /public/trabajos) */}
       {photos.length > 0 && (

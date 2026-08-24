@@ -1,0 +1,24 @@
+FOTOS "ANTES Y DESPUES" DE LOS CASOS DE EXITO
+=============================================
+
+Cada comparacion necesita SUS DOS FOTOS (antes y despues). Si falta una de
+las dos, esa comparacion no se muestra.
+
+La extension puede ser .png, .jpg, .jpeg o .webp.
+
+  CASO: Recuperacion de superficies
+      pulido-destronque-concreto-antes.jpg
+      pulido-destronque-concreto-despues.jpg
+
+  CASO: Cristalizado, abrillantado y pulido diamantado
+      cristalizado-brillo-antes.jpg
+      cristalizado-brillo-despues.jpg
+
+      abrillantado-natural-antes.jpg
+      abrillantado-natural-despues.jpg
+
+No hace falta tocar nada mas: la pagina las detecta sola.
+Los acentos y las mayusculas no importan ("despues" o "despues" funcionan).
+
+Recomendado: que las dos fotos del par tengan el MISMO encuadre y proporcion
+para que la comparacion se vea pareja. Horizontales, 1200-2000 px de ancho.
