@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ChevronDown, ArrowUpRight } from "lucide-react";
 import { navLinks, siteConfig } from "@/config/site";
 import { services } from "@/lib/data/services";
-import { productCategoryMeta, productsInCategory } from "@/lib/data/products";
+import { productCategoryMeta } from "@/lib/data/products";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import Logo from "@/components/ui/Logo";
@@ -139,7 +139,6 @@ export default function Navbar() {
                       <DropdownPanel label="Productos" className="w-[min(92vw,34rem)]">
                         <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
                           {productCategoryMeta.map((c) => {
-                            const count = productsInCategory(c.slug).length;
                             const catActive = pathname === `/productos/categoria/${c.slug}`;
                             return (
                               <Link
@@ -155,12 +154,7 @@ export default function Navbar() {
                                 <IconBadge accent={c.accent}>
                                   <c.icon size={18} />
                                 </IconBadge>
-                                <span className="min-w-0">
-                                  <span className="block text-sm font-semibold text-ink">{c.name}</span>
-                                  <span className="mt-0.5 block text-xs text-ink-soft">
-                                    {count} {count === 1 ? "modelo" : "modelos"}
-                                  </span>
-                                </span>
+                                <span className="min-w-0 text-sm font-semibold text-ink">{c.name}</span>
                               </Link>
                             );
                           })}
