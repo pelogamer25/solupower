@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { readdirSync } from "node:fs";
 import { join } from "node:path";
 
 // SERVER-ONLY. Do not import from a "use client" component.
@@ -49,15 +49,31 @@ export interface ResolvedCarpetGroup extends CarpetGroup {
  * photos with no code change. Groups without photos are dropped, and the
  * section hides itself while there are none — never a broken or empty block.
  */
+/** Strips accents and case so "extracción-profunda-1" matches "extraccion-profunda-1". */
+function normalize(name: string): string {
+  return name.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+}
+
 export function carpetCleaningGroups(): ResolvedCarpetGroup[] {
+  // Index the folder once by normalized filename, so a photo uploaded with an
+  // accent or different casing is still found (and served under its real name).
+  let files: string[] = [];
+  try {
+    files = readdirSync(join(process.cwd(), "public", DIR));
+  } catch {
+    return [];
+  }
+  const byNormalized = new Map<string, string>();
+  for (const file of files) byNormalized.set(normalize(file), file);
+
   const out: ResolvedCarpetGroup[] = [];
   for (const group of groups) {
     const photos: string[] = [];
     for (let n = 1; n <= MAX_PER_GROUP; n++) {
       for (const ext of EXTS) {
-        const rel = `${DIR}/${group.key}-${n}.${ext}`;
-        if (existsSync(join(process.cwd(), "public", rel))) {
-          photos.push(`/${rel}`);
+        const actual = byNormalized.get(normalize(`${group.key}-${n}.${ext}`));
+        if (actual) {
+          photos.push(`/${DIR}/${encodeURIComponent(actual)}`);
           break;
         }
       }
