@@ -1,0 +1,27 @@
+FOTOS DE "LAVADO PROFESIONAL, DESINFECCION DE ALFOMBRAS Y MOBILIARIO"
+=====================================================================
+
+Deja aqui las fotos con EXACTAMENTE estos nombres (la extension puede ser
+.png, .jpg, .jpeg o .webp):
+
+  Lavado con equipos industriales (3 imagenes)
+      lavado-equipos-1.jpg
+      lavado-equipos-2.jpg
+      lavado-equipos-3.jpg
+
+  Extraccion profunda de suciedad (2 imagenes)
+      extraccion-profunda-1.jpg
+      extraccion-profunda-2.jpg
+
+  Lavado de sillas y mobiliario (2 imagenes)
+      sillas-mobiliario-1.jpg
+      sillas-mobiliario-2.jpg
+
+IMPORTANTE: el numero final va siempre, empezando en 1 y sin saltarse ninguno.
+Si quieres mas fotos en un grupo, sigue la numeracion (-4, -5 ... hasta -8).
+
+No hace falta tocar nada mas: la pagina las detecta sola.
+Puedes subirlas de a poco: solo se muestra lo que exista, y mientras no haya
+ninguna la seccion no aparece.
+
+Recomendado: fotos horizontales, de 1200 a 2000 px de ancho.

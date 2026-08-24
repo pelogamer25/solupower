@@ -19,6 +19,7 @@ import { serviceImage } from "@/lib/serviceImage";
 import { serviceExtraPhotos } from "@/lib/serviceExtraPhotos";
 import { rentalEquipmentWithPhotos } from "@/lib/rentalPhoto";
 import { floorFinishes } from "@/lib/floorFinishes";
+import { carpetCleaningGroups } from "@/lib/carpetCleaning";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -51,6 +52,8 @@ export default async function ServicioDetailPage(props: {
   const photo = serviceImage(service.slug);
   const extraPhotos = serviceExtraPhotos(service.slug);
   const finishes = service.slug === "restauracion-de-pisos" ? floorFinishes() : [];
+  const carpetGroups =
+    service.slug === "lavado-de-alfombras-y-mobiliario" ? carpetCleaningGroups() : [];
 
   return (
     <>
@@ -92,6 +95,51 @@ export default async function ServicioDetailPage(props: {
                 </div>
               </div>
             </Reveal>
+          </div>
+        </section>
+      )}
+
+      {/* Carpet & upholstery work, grouped by stage of the process */}
+      {carpetGroups.length > 0 && (
+        <section className="py-10" aria-label="Nuestro proceso de lavado">
+          <div className="container-x">
+            <Reveal>
+              <h2 className="font-display text-2xl font-semibold text-ink">Nuestro proceso</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">
+                Del lavado con equipo industrial a la recuperación de sillas y mobiliario.
+              </p>
+            </Reveal>
+
+            <div className="mt-8 space-y-10">
+              {carpetGroups.map((group, gi) => (
+                <div key={group.key}>
+                  <Reveal delay={gi * 0.05}>
+                    <h3 className="font-display text-lg font-semibold text-ink">{group.title}</h3>
+                    <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-ink-soft">
+                      {group.description}
+                    </p>
+                  </Reveal>
+                  <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {group.photos.map((src, i) => (
+                      <Reveal key={src} delay={(i % 3) * 0.06}>
+                        <div className="glass overflow-hidden rounded-4xl p-2">
+                          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.6rem] bg-white">
+                            <Image
+                              src={src}
+                              alt={`${group.title} — trabajo real de SOLUPOWER`}
+                              fill
+                              loading="lazy"
+                              sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 33vw"
+                              className="object-cover"
+                            />
+                          </div>
+                        </div>
+                      </Reveal>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
