@@ -4,12 +4,16 @@ FOTOS DE "MANTENIMIENTO Y TRATAMIENTO DE PISOS"
 Deja aqui las fotos con EXACTAMENTE estos nombres (la extension puede ser
 .png, .jpg, .jpeg o .webp):
 
-    cristalizado.jpg        -> Cristalizado
-    brillo-natural.jpg      -> Acabados en brillo natural y espejo
-    pulido-diamantado.jpg   -> Pulido y diamantado
+    cristalizado.jpg          -> Cristalizado
+    brillo-natural.jpg        -> Acabados en brillo natural y espejo
+    pulido-diamantado.jpg     -> Pulido y diamantado
+    sellado-hidrofugado.jpg   -> Proceso de sellado e hidrofugado
+    resane-juntas.jpg         -> Resane y fraguado de juntas
+    pulido-concreto.jpg       -> Pulido de concreto con discos especializados
+    lavado-desmanche.jpg      -> Lavado y desmanche de pisos
 
 No hace falta tocar nada mas: la pagina las detecta sola.
-Puedes subir una, dos o las tres: solo se muestran las que existan, y
-mientras no haya ninguna la seccion no aparece.
+Puedes subirlas de a poco: solo se muestran las que existan, y mientras no
+haya ninguna la seccion no aparece.
 
 Recomendado: fotos horizontales, de 1200 a 2000 px de ancho.

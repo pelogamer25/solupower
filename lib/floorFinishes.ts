@@ -13,7 +13,7 @@ interface FloorFinish {
   description: string;
 }
 
-/** The finishes shown on /servicios/restauracion-de-pisos. */
+/** The processes and finishes shown on /servicios/restauracion-de-pisos. */
 const finishes: FloorFinish[] = [
   {
     key: "cristalizado",
@@ -32,6 +32,30 @@ const finishes: FloorFinish[] = [
     title: "Pulido y diamantado",
     description:
       "Pulido y diamantado para nivelar, rebajar y recuperar toda clase de superficie.",
+  },
+  {
+    key: "sellado-hidrofugado",
+    title: "Proceso de sellado e hidrofugado",
+    description:
+      "Sella la superficie y la protege frente a la humedad y las manchas.",
+  },
+  {
+    key: "resane-juntas",
+    title: "Resane y fraguado de juntas",
+    description:
+      "Resane y fraguado de juntas para devolver la uniformidad y el sellado del piso.",
+  },
+  {
+    key: "pulido-concreto",
+    title: "Pulido de concreto con discos especializados",
+    description:
+      "Pulido de concreto con discos especializados para un acabado uniforme y duradero.",
+  },
+  {
+    key: "lavado-desmanche",
+    title: "Lavado y desmanche de pisos",
+    description:
+      "Lavado profundo y desmanche de pisos y superficies de alto tráfico.",
   },
 ];
 

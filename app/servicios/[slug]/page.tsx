@@ -96,17 +96,17 @@ export default async function ServicioDetailPage(props: {
         </section>
       )}
 
-      {/* Floor finishes we deliver, each with a real photo */}
+      {/* Floor processes and finishes we deliver, each with a real photo */}
       {finishes.length > 0 && (
-        <section className="py-10" aria-label="Acabados de piso">
+        <section className="py-10" aria-label="Procesos y acabados de piso">
           <div className="container-x">
             <Reveal>
               <h2 className="font-display text-2xl font-semibold text-ink">
-                Nuestros acabados
+                Nuestros procesos y acabados
               </h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">
-                Elegimos el tratamiento según el material y el nivel de tráfico de cada
-                superficie.
+                Elegimos el tratamiento según el material, el estado y el nivel de tráfico
+                de cada superficie.
               </p>
             </Reveal>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
