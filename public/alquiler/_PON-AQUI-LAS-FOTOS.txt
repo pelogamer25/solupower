@@ -1,13 +1,14 @@
 FOTOS DEL CARRUSEL DE "ALQUILER DE EQUIPOS"
 ===========================================
 
-Deja aquí las fotos con EXACTAMENTE estos nombres (la extension puede ser
+Deja aqui las fotos con EXACTAMENTE estos nombres (la extension puede ser
 .png, .jpg, .jpeg o .webp):
 
     fregadoras.png       -> Fregadoras de piso
     hidrolavadoras.png   -> Hidrolavadoras
     brilladoras.png      -> Brilladoras
     aspiradoras.png      -> Aspiradoras
+    destroncadora.png    -> Destroncadora
 
 No hace falta tocar nada mas: la pagina las detecta sola.
 Mientras un archivo no este, se sigue mostrando la foto del catalogo.

@@ -5,9 +5,10 @@ import { join } from "node:path";
 
 // Each service mapped to a real SOLUPOWER work photo (public/trabajos) that
 // actually depicts that kind of work. Raw filename → resolved+encoded at runtime.
+// A service with no entry here simply renders without a banner — "servicio-tecnico"
+// is deliberately absent: it leads with its workshop photos instead.
 const map: Record<string, string> = {
   alquiler: "perfillimpiadoras.jpg", // perfil de equipos disponibles en alquiler
-  "servicio-tecnico": "WhatsApp Image 2026-07-16 at 4.112123.03 PM.jpeg", // operario con máquina
   "restauracion-de-pisos": "WhatsApp Image 2026-07-16 at 4.12asd.50 PM.jpeg", // mármol pulido efecto espejo
 };
 

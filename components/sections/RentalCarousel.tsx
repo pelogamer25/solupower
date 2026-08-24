@@ -92,7 +92,7 @@ export default function RentalCarousel({ items }: { items: ResolvedRentalEquipme
                 tabIndex={i === index ? 0 : -1}
                 className="group mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-brand-blue"
               >
-                Ver {item.name.toLowerCase()}
+                {item.linkLabel ?? `Ver ${item.name.toLowerCase()}`}
                 <ArrowUpRight
                   size={15}
                   className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

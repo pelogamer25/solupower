@@ -16,6 +16,8 @@ export interface RentalEquipment {
   fallbackPhoto: string;
   /** Category page this equipment belongs to. */
   href: string;
+  /** Overrides the default "Ver <nombre>" link label. */
+  linkLabel?: string;
 }
 
 export const rentalEquipment: RentalEquipment[] = [
@@ -50,5 +52,15 @@ export const rentalEquipment: RentalEquipment[] = [
       "Profesionales e industriales de uno, dos y tres motores, para agua y polvo.",
     fallbackPhoto: "/products/aspiradoras-industriales.jpg",
     href: "/productos/categoria/aspiradoras",
+  },
+  {
+    key: "destroncadora",
+    name: "Destroncadora",
+    description:
+      "Desbasta, nivela, rebaja, pule y brilla sobre concreto, granito y terrazo.",
+    // Only offered for rent — it has no page in the product catalog.
+    fallbackPhoto: "/products/brilladora-industrial-17.png",
+    href: "/cotizacion",
+    linkLabel: "Cotizar destroncadora",
   },
 ];
