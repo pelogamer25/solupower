@@ -26,6 +26,9 @@ const nextConfig = {
       { source: "/productos/aspiradoras-industriales", destination: "/productos/categoria/aspiradoras", permanent: true },
       { source: "/productos/scrubbers", destination: "/productos/categoria/scrubbers", permanent: true },
       { source: "/productos/durasweep-70bt", destination: "/productos/categoria/barredoras", permanent: true },
+      // Renamed products (brand dropped in favour of the model code)
+      { source: "/productos/grande-brio-ride-on-75-650-ecoray", destination: "/productos/fregadora-hombre-a-bordo-sl-75", permanent: true },
+      { source: "/productos/grande-brio-ride-on-145-1000-plus", destination: "/productos/fregadora-hombre-a-bordo-sl-145", permanent: true },
     ];
   },
 };

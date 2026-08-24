@@ -296,12 +296,12 @@ export const products: Product[] = [
     imageIndex: 30,
   },
   {
-    slug: "grande-brio-ride-on-75-650-ecoray",
-    name: "Grande Brio Ride on 75 – 650 Ecoray",
+    slug: "fregadora-hombre-a-bordo-sl-75",
+    name: "Fregadora Hombre a bordo SL-75",
     category: "Scrubbers",
     excerpt: "Fregadora hombre a bordo con sistema Ecoray para grandes áreas.",
     description:
-      "Fregadora Grande Brio Ride on 75 – 650 Ecoray, excelente para limpiar grandes áreas: aumenta la productividad y la limpieza y reduce el esfuerzo de trabajo. Incorpora el sistema Ecoray con fuente UV de larga vida y 750 mm de ancho de fregado.",
+      "Fregadora hombre a bordo SL-75, excelente para limpiar grandes áreas: aumenta la productividad y la limpieza y reduce el esfuerzo de trabajo. Incorpora el sistema Ecoray con fuente UV de larga vida y 750 mm de ancho de fregado.",
     specs: [
       { label: "Ancho de fregado", value: "750 mm" },
       { label: "Sistema Ecoray", value: "100 microW/mm²" },
@@ -319,12 +319,12 @@ export const products: Product[] = [
     imageIndex: 31,
   },
   {
-    slug: "grande-brio-ride-on-145-1000-plus",
-    name: "Grande Brio Ride on 145-1000 Plus",
+    slug: "fregadora-hombre-a-bordo-sl-145",
+    name: "Fregadora Hombre a bordo SL-145",
     category: "Scrubbers",
     excerpt: "Fregadora hombre a bordo de gran formato, 1100 mm de ancho de fregado.",
     description:
-      "Las fregadoras de hombre a bordo son excelentes para limpiar grandes áreas: aumentan la productividad y la limpieza y reducen el esfuerzo de trabajo. La Grande Brio Ride on 145-1000 Plus ofrece 1100 mm de ancho de fregado para las operaciones más exigentes.",
+      "Las fregadoras de hombre a bordo son excelentes para limpiar grandes áreas: aumentan la productividad y la limpieza y reducen el esfuerzo de trabajo. La SL-145 ofrece 1100 mm de ancho de fregado para las operaciones más exigentes.",
     specs: [
       { label: "Ancho de fregado", value: "1100 mm" },
       { label: "Diámetro cepillos", value: "2 × 525 mm" },
