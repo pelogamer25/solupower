@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { rentalEquipment } from "@/lib/data/rentalEquipment";
+import type { ResolvedRentalEquipment } from "@/lib/rentalPhoto";
 
 const INTERVAL = 4500;
 
@@ -17,8 +17,7 @@ const INTERVAL = 4500;
  * in-app browsers and leave a slide stuck invisible. Autoplay pauses on hover,
  * on focus and when the tab is hidden, and never starts under reduced motion.
  */
-export default function RentalCarousel() {
-  const items = rentalEquipment;
+export default function RentalCarousel({ items }: { items: ResolvedRentalEquipment[] }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const reduce = useReducedMotion();

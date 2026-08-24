@@ -17,6 +17,7 @@ import { getServiceSeo } from "@/lib/data/seoContent";
 import { getRelated } from "@/lib/data/relations";
 import { serviceImage } from "@/lib/serviceImage";
 import { serviceExtraPhotos } from "@/lib/serviceExtraPhotos";
+import { rentalEquipmentWithPhotos } from "@/lib/rentalPhoto";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -152,7 +153,7 @@ export default async function ServicioDetailPage(props: {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-7">
-                <RentalCarousel />
+                <RentalCarousel items={rentalEquipmentWithPhotos()} />
               </div>
             </Reveal>
           </div>
