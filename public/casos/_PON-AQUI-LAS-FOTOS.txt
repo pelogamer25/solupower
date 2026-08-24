@@ -1,24 +1,44 @@
 FOTOS "ANTES Y DESPUES" DE LOS CASOS DE EXITO
 =============================================
 
-Cada comparacion necesita SUS DOS FOTOS (antes y despues). Si falta una de
-las dos, esa comparacion no se muestra.
+Cada comparacion necesita fotos EN LOS DOS LADOS (antes y despues). Si falta
+un lado entero, esa comparacion no se muestra.
 
 La extension puede ser .png, .jpg, .jpeg o .webp.
+Los acentos y las mayusculas no importan.
 
-  CASO: Recuperacion de superficies
-      pulido-destronque-concreto-antes.jpg
-      pulido-destronque-concreto-despues.jpg
+Cuando un lado tiene UNA sola foto, va sin numero.
+Cuando tiene VARIAS, se numeran -1, -2, ... (hasta -6).
 
-  CASO: Cristalizado, abrillantado y pulido diamantado
-      cristalizado-brillo-antes.jpg
-      cristalizado-brillo-despues.jpg
+--------------------------------------------------------------------
+CASO: Recuperacion de superficies
+    pulido-destronque-concreto-antes.jpg
+    pulido-destronque-concreto-despues.jpg
 
-      abrillantado-natural-antes.jpg
-      abrillantado-natural-despues.jpg
+--------------------------------------------------------------------
+CASO: Cristalizado, abrillantado y pulido diamantado
+    cristalizado-brillo-antes.jpg
+    cristalizado-brillo-despues.jpg
 
-No hace falta tocar nada mas: la pagina las detecta sola.
-Los acentos y las mayusculas no importan ("despues" o "despues" funcionan).
+    abrillantado-natural-antes.jpg
+    abrillantado-natural-despues.jpg
 
-Recomendado: que las dos fotos del par tengan el MISMO encuadre y proporcion
-para que la comparacion se vea pareja. Horizontales, 1200-2000 px de ancho.
+--------------------------------------------------------------------
+CASO: Lavado profundo y desmanche de pisos
+    lavado-desmanche-pisos-antes.jpg
+    lavado-desmanche-pisos-despues-1.jpg
+    lavado-desmanche-pisos-despues-2.jpg
+
+--------------------------------------------------------------------
+CASO: Lavado y desinfeccion de alfombras y mobiliario
+    lavado-alfombras-antes.jpg
+    lavado-alfombras-despues.jpg
+
+    desmanche-mobiliario-antes-1.jpg      (las sillas)
+    desmanche-mobiliario-antes-2.jpg
+    desmanche-mobiliario-despues-1.jpg
+    desmanche-mobiliario-despues-2.jpg
+
+--------------------------------------------------------------------
+Recomendado: que las fotos de una misma comparacion tengan el MISMO encuadre
+y proporcion, para que se vea pareja. 1200-2000 px de ancho.

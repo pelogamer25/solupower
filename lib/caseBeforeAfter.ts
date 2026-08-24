@@ -6,9 +6,14 @@ import { imageSize } from "./imageSize";
 
 const DIR = "casos";
 const EXTS = ["png", "jpg", "jpeg", "webp"] as const;
+/** How many numbered photos to look for per side. */
+const MAX_PER_SIDE = 6;
 
 interface Comparison {
-  /** Files are <key>-antes.<ext> and <key>-despues.<ext> in /public/casos. */
+  /**
+   * Files are <key>-antes.<ext> / <key>-despues.<ext> for a single photo, or
+   * <key>-antes-1.<ext>, <key>-antes-2.<ext>, … when a side has several.
+   */
   key: string;
   title: string;
   description: string;
@@ -38,16 +43,38 @@ const map: Record<string, Comparison[]> = {
         "Pisos de mármol, granito y todo tipo de piedra, recuperando su brillo natural.",
     },
   ],
+  "lavado-profundo-de-pisos": [
+    {
+      key: "lavado-desmanche-pisos",
+      title: "Lavado profundo y desmanche de pisos",
+      description:
+        "Lavado industrial de superficies duras de alto tráfico con equipos que maximizan la eficiencia del proceso.",
+    },
+  ],
+  "lavado-y-desinfeccion-de-alfombras": [
+    {
+      key: "lavado-alfombras",
+      title: "Lavado profundo y desinfección de alfombras y mobiliario",
+      description:
+        "Lavado profundo en proceso semihúmedo con equipos de inyección y extracción, que elimina manchas y recupera las fibras.",
+    },
+    {
+      key: "desmanche-mobiliario",
+      title: "Lavado y desmanche de mobiliario",
+      description:
+        "Lavado profesional de sillas y mobiliario, con eliminación de manchas y extracción de agentes contaminantes.",
+    },
+  ],
 };
 
 export interface ResolvedComparison extends Comparison {
-  antes: string;
-  despues: string;
+  antes: string[];
+  despues: string[];
   /**
-   * One frame ratio shared by both photos. A before/after only reads evenly if
-   * the two sit in identical frames, so we average the pair's real ratios and
-   * crop both to that — instead of forcing a fixed landscape box that would
-   * lop the top off portrait shots.
+   * One frame ratio shared by every photo of the comparison. A before/after
+   * only reads evenly if the shots sit in identical frames, so we average the
+   * real ratios and crop all of them to that — instead of forcing a fixed box
+   * that would lop the top off portrait shots.
    */
   ratio: string;
 }
@@ -58,12 +85,12 @@ function normalize(name: string): string {
 }
 
 /**
- * Before/after pairs for a case study, resolved by convention:
- *   public/casos/<key>-antes.(png|jpg|jpeg|webp)
- *   public/casos/<key>-despues.(png|jpg|jpeg|webp)
+ * Before/after photos for a case study, resolved by convention from
+ * /public/casos. A side may hold one photo (<key>-antes.jpg) or several
+ * (<key>-antes-1.jpg, -2 …); both spellings are accepted at once.
  *
- * Only complete pairs are returned — a lone "antes" would render a comparison
- * with nothing to compare against, so it waits until its partner is uploaded.
+ * Only comparisons with photos on BOTH sides are returned — a lone "antes"
+ * would render a comparison with nothing to compare against.
  */
 export function caseComparisons(caseSlug: string): ResolvedComparison[] {
   const entries = map[caseSlug];
@@ -78,9 +105,9 @@ export function caseComparisons(caseSlug: string): ResolvedComparison[] {
   const byNormalized = new Map<string, string>();
   for (const file of files) byNormalized.set(normalize(file), file);
 
-  const find = (key: string, side: string) => {
+  const lookup = (base: string) => {
     for (const ext of EXTS) {
-      const actual = byNormalized.get(normalize(`${key}-${side}.${ext}`));
+      const actual = byNormalized.get(normalize(`${base}.${ext}`));
       if (actual) {
         return {
           src: `/${DIR}/${encodeURIComponent(actual)}`,
@@ -91,17 +118,32 @@ export function caseComparisons(caseSlug: string): ResolvedComparison[] {
     return undefined;
   };
 
+  /** Unnumbered photo first, then -1, -2, … so both conventions can coexist. */
+  const side = (key: string, which: string) => {
+    const found = [];
+    const single = lookup(`${key}-${which}`);
+    if (single) found.push(single);
+    for (let n = 1; n <= MAX_PER_SIDE; n++) {
+      const numbered = lookup(`${key}-${which}-${n}`);
+      if (numbered) found.push(numbered);
+    }
+    return found;
+  };
+
   const out: ResolvedComparison[] = [];
   for (const entry of entries) {
-    const antes = find(entry.key, "antes");
-    const despues = find(entry.key, "despues");
-    if (!antes || !despues) continue;
+    const antes = side(entry.key, "antes");
+    const despues = side(entry.key, "despues");
+    if (antes.length === 0 || despues.length === 0) continue;
+
+    const all = [...antes, ...despues];
     const average =
-      (antes.size.width / antes.size.height + despues.size.width / despues.size.height) / 2;
+      all.reduce((sum, p) => sum + p.size.width / p.size.height, 0) / all.length;
+
     out.push({
       ...entry,
-      antes: antes.src,
-      despues: despues.src,
+      antes: antes.map((p) => p.src),
+      despues: despues.map((p) => p.src),
       ratio: `${average.toFixed(4)} / 1`,
     });
   }
