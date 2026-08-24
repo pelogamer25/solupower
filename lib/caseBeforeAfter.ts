@@ -1,5 +1,6 @@
 import { readdirSync } from "node:fs";
 import { join } from "node:path";
+import { imageSize } from "./imageSize";
 
 // SERVER-ONLY. Do not import from a "use client" component.
 
@@ -42,6 +43,13 @@ const map: Record<string, Comparison[]> = {
 export interface ResolvedComparison extends Comparison {
   antes: string;
   despues: string;
+  /**
+   * One frame ratio shared by both photos. A before/after only reads evenly if
+   * the two sit in identical frames, so we average the pair's real ratios and
+   * crop both to that — instead of forcing a fixed landscape box that would
+   * lop the top off portrait shots.
+   */
+  ratio: string;
 }
 
 /** Strips accents and case, so "despues" also matches a file named "después". */
@@ -73,7 +81,12 @@ export function caseComparisons(caseSlug: string): ResolvedComparison[] {
   const find = (key: string, side: string) => {
     for (const ext of EXTS) {
       const actual = byNormalized.get(normalize(`${key}-${side}.${ext}`));
-      if (actual) return `/${DIR}/${encodeURIComponent(actual)}`;
+      if (actual) {
+        return {
+          src: `/${DIR}/${encodeURIComponent(actual)}`,
+          size: imageSize(join(process.cwd(), "public", DIR, actual)),
+        };
+      }
     }
     return undefined;
   };
@@ -82,7 +95,15 @@ export function caseComparisons(caseSlug: string): ResolvedComparison[] {
   for (const entry of entries) {
     const antes = find(entry.key, "antes");
     const despues = find(entry.key, "despues");
-    if (antes && despues) out.push({ ...entry, antes, despues });
+    if (!antes || !despues) continue;
+    const average =
+      (antes.size.width / antes.size.height + despues.size.width / despues.size.height) / 2;
+    out.push({
+      ...entry,
+      antes: antes.src,
+      despues: despues.src,
+      ratio: `${average.toFixed(4)} / 1`,
+    });
   }
   return out;
 }

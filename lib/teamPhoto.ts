@@ -1,5 +1,6 @@
-import { existsSync, openSync, readSync, closeSync, statSync } from "node:fs";
+import { existsSync } from "node:fs";
 import { join } from "node:path";
+import { imageSize } from "./imageSize";
 
 // SERVER-ONLY. Do not import from a "use client" component.
 
@@ -13,65 +14,6 @@ export interface TeamPhoto {
   /** Intrinsic size, so the frame matches the photo instead of cropping it. */
   width: number;
   height: number;
-}
-
-/** Fallback used when the header can't be parsed (e.g. AVIF). */
-const FALLBACK = { width: 4, height: 3 };
-
-/**
- * Reads intrinsic dimensions straight from the file header (JPEG/PNG/WebP).
- * Done by hand rather than with sharp: sharp is only a transitive dependency
- * here, so importing it in app code would be fragile.
- */
-function imageSize(path: string): { width: number; height: number } {
-  let fd: number | undefined;
-  try {
-    const size = Math.min(statSync(path).size, 512 * 1024);
-    const buf = Buffer.alloc(size);
-    fd = openSync(path, "r");
-    readSync(fd, buf, 0, size, 0);
-
-    // PNG: IHDR width/height at bytes 16..24
-    if (buf.length > 24 && buf.readUInt32BE(0) === 0x89504e47) {
-      return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
-    }
-
-    // WebP: "RIFF"…"WEBP"
-    if (buf.length > 30 && buf.toString("latin1", 0, 4) === "RIFF" && buf.toString("latin1", 8, 12) === "WEBP") {
-      const fmt = buf.toString("latin1", 12, 16);
-      if (fmt === "VP8X") {
-        return {
-          width: 1 + buf.readUIntLE(24, 3),
-          height: 1 + buf.readUIntLE(27, 3),
-        };
-      }
-      if (fmt === "VP8 ") {
-        return { width: buf.readUInt16LE(26) & 0x3fff, height: buf.readUInt16LE(28) & 0x3fff };
-      }
-    }
-
-    // JPEG: walk the markers to the SOFn frame header
-    if (buf.length > 4 && buf.readUInt16BE(0) === 0xffd8) {
-      let i = 2;
-      while (i + 9 < buf.length) {
-        if (buf[i] !== 0xff) {
-          i++;
-          continue;
-        }
-        const marker = buf[i + 1];
-        // SOF0..SOF15, excluding DHT (c4), JPG (c8) and DAC (cc)
-        if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
-          return { width: buf.readUInt16BE(i + 7), height: buf.readUInt16BE(i + 5) };
-        }
-        i += 2 + buf.readUInt16BE(i + 2);
-      }
-    }
-  } catch {
-    /* fall through */
-  } finally {
-    if (fd !== undefined) closeSync(fd);
-  }
-  return FALLBACK;
 }
 
 /**

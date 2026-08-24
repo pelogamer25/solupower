@@ -123,7 +123,10 @@ export default async function CasoDetailPage(props: {
                       ].map((side) => (
                         <figure key={side.label} className="relative">
                           {/* Fixed ratio reserves the space, so nothing jumps while loading */}
-                          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-4xl bg-white ring-1 ring-white/60">
+                          <div
+                            className="relative w-full overflow-hidden rounded-4xl bg-white ring-1 ring-white/60"
+                            style={{ aspectRatio: c.ratio }}
+                          >
                             <Image
                               src={side.src}
                               alt={`${c.title} — ${side.label.toLowerCase()} del trabajo de SOLUPOWER`}
