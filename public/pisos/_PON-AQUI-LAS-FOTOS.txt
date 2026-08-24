@@ -1,0 +1,15 @@
+FOTOS DE "MANTENIMIENTO Y TRATAMIENTO DE PISOS"
+==============================================
+
+Deja aqui las fotos con EXACTAMENTE estos nombres (la extension puede ser
+.png, .jpg, .jpeg o .webp):
+
+    cristalizado.jpg        -> Cristalizado
+    brillo-natural.jpg      -> Acabados en brillo natural y espejo
+    pulido-diamantado.jpg   -> Pulido y diamantado
+
+No hace falta tocar nada mas: la pagina las detecta sola.
+Puedes subir una, dos o las tres: solo se muestran las que existan, y
+mientras no haya ninguna la seccion no aparece.
+
+Recomendado: fotos horizontales, de 1200 a 2000 px de ancho.

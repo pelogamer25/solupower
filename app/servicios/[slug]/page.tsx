@@ -18,6 +18,7 @@ import { getRelated } from "@/lib/data/relations";
 import { serviceImage } from "@/lib/serviceImage";
 import { serviceExtraPhotos } from "@/lib/serviceExtraPhotos";
 import { rentalEquipmentWithPhotos } from "@/lib/rentalPhoto";
+import { floorFinishes } from "@/lib/floorFinishes";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -49,6 +50,7 @@ export default async function ServicioDetailPage(props: {
   const ctaProduct = related.productos[0]?.slug ?? "hidrolavadora-industrial-1900-psi";
   const photo = serviceImage(service.slug);
   const extraPhotos = serviceExtraPhotos(service.slug);
+  const finishes = service.slug === "restauracion-de-pisos" ? floorFinishes() : [];
 
   return (
     <>
@@ -90,6 +92,49 @@ export default async function ServicioDetailPage(props: {
                 </div>
               </div>
             </Reveal>
+          </div>
+        </section>
+      )}
+
+      {/* Floor finishes we deliver, each with a real photo */}
+      {finishes.length > 0 && (
+        <section className="py-10" aria-label="Acabados de piso">
+          <div className="container-x">
+            <Reveal>
+              <h2 className="font-display text-2xl font-semibold text-ink">
+                Nuestros acabados
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">
+                Elegimos el tratamiento según el material y el nivel de tráfico de cada
+                superficie.
+              </p>
+            </Reveal>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {finishes.map((finish, i) => (
+                <Reveal key={finish.key} delay={(i % 3) * 0.08}>
+                  <figure className="glass h-full overflow-hidden rounded-4xl p-2">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.6rem] bg-white">
+                      <Image
+                        src={finish.src}
+                        alt={`${finish.title} de pisos — trabajo real de SOLUPOWER`}
+                        fill
+                        loading="lazy"
+                        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 33vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <figcaption className="p-5">
+                      <h3 className="font-display text-lg font-semibold text-ink">
+                        {finish.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                        {finish.description}
+                      </p>
+                    </figcaption>
+                  </figure>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
       )}
