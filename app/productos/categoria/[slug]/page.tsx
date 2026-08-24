@@ -8,11 +8,13 @@ import Reveal from "@/components/ui/Reveal";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import PillarSection from "@/components/seo/PillarSection";
+import SeoProse from "@/components/seo/SeoProse";
 import ContactCta from "@/components/sections/ContactCta";
 import { pageMetadata, jsonLdScript } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { productCategoryMeta, getCategoryMeta, productsInCategory } from "@/lib/data/products";
 import { productPhoto } from "@/lib/productPhoto";
+import { getProductSeo } from "@/lib/data/seoContent";
 
 export function generateStaticParams() {
   return productCategoryMeta.map((c) => ({ slug: c.slug }));
@@ -47,6 +49,8 @@ export default async function CategoriaPage(props: {
   if (!cat) notFound();
 
   const items = productsInCategory(cat.slug);
+  // SEO body kept from the retired overview products, whose slug was the category's.
+  const seo = getProductSeo(cat.slug);
 
   const collectionJsonLd = {
     "@context": "https://schema.org",
@@ -169,6 +173,14 @@ export default async function CategoriaPage(props: {
           )}
         </div>
       </section>
+
+      {seo.length > 0 && (
+        <section className="py-8" aria-label="Información detallada">
+          <div className="container-x">
+            <SeoProse sections={seo} />
+          </div>
+        </section>
+      )}
 
       <PillarSection variant="productos" />
 

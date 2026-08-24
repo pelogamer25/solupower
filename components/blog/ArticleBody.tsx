@@ -180,7 +180,7 @@ function ElegirHidrolavadora() {
       <h2>Complementa tu equipo</h2>
       <p>
         En muchas operaciones la hidrolavadora trabaja junto a otros equipos: las{" "}
-        <L slug="aspiradoras-industriales" /> para recoger el agua y los residuos, o los{" "}
+        <L slug="aspiradoras" /> para recoger el agua y los residuos, o los{" "}
         <L slug="scrubbers" /> para el lavado y secado de grandes superficies. Pensar en el proceso
         completo, y no en una sola máquina, es lo que diferencia a una operación eficiente.
       </p>
@@ -242,7 +242,7 @@ function MantenimientoPreventivo() {
         Un plan preventivo reduce las paradas no planificadas, alarga la vida útil de los equipos y
         estabiliza el presupuesto de mantenimiento (dejas de tener “sorpresas” de reparación). En
         nuestra experiencia con flotas de <L slug="scrubbers" /> y{" "}
-        <L slug="aspiradoras-industriales" />, un cronograma bien ejecutado disminuye
+        <L slug="aspiradoras" />, un cronograma bien ejecutado disminuye
         drásticamente las fallas críticas y mejora la disponibilidad de la maquinaria.
       </p>
 

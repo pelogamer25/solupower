@@ -35,7 +35,7 @@ export const productSeo: Record<string, SeoSection[]> = {
         {
           h3: "Aplicaciones en centros comerciales",
           body: "Parqueaderos, fachadas y zonas comunes de alto tránsito se mantienen impecables combinando hidrolavado con",
-          link: "aspiradoras-industriales",
+          link: "aspiradoras",
         },
       ],
     },
@@ -113,7 +113,7 @@ export const productSeo: Record<string, SeoSection[]> = {
     },
   ],
 
-  "aspiradoras-industriales": [
+  aspiradoras: [
     {
       h2: "¿Qué es una aspiradora industrial?",
       intro:
@@ -157,7 +157,7 @@ export const productSeo: Record<string, SeoSection[]> = {
         {
           h3: "Rendimiento en grandes superficies",
           body: "Cuando el volumen crece, la operación se optimiza sumando",
-          link: "aspiradoras-industriales",
+          link: "aspiradoras",
         },
         {
           h3: "Modelos hombre a bordo y acompañante",
@@ -212,7 +212,7 @@ export const productSeo: Record<string, SeoSection[]> = {
         {
           h3: "Complemento del equipo humano",
           body: "El polvo y los residuos finos se cubren con",
-          link: "aspiradoras-industriales",
+          link: "aspiradoras",
         },
       ],
     },
@@ -295,7 +295,7 @@ export const serviceSeo: Record<string, SeoSection[]> = {
         {
           h3: "Aspirado previo",
           body: "Antes del lavado retiramos el polvo y los sólidos con",
-          link: "aspiradoras-industriales",
+          link: "aspiradoras",
         },
         {
           h3: "Pisos y superficies duras",

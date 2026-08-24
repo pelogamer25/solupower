@@ -48,22 +48,6 @@ export function productsInCategory(slug: string) {
 
 export const products: Product[] = [
   {
-    slug: "aspiradoras-industriales",
-    name: "Aspiradoras industriales",
-    category: "Aspiradoras",
-    excerpt: "Para sólidos y líquidos, con uno, dos o tres motores.",
-    description:
-      "Aspiradoras profesionales e industriales para sólidos y líquidos, libres de mantenimiento y de uso específico. Disponibles con uno, dos y tres motores para aspirar agua y polvo.",
-    specs: [
-      { label: "Uso", value: "Profesional e industrial" },
-      { label: "Aspiran", value: "Sólidos y líquidos (agua y polvo)" },
-      { label: "Motores", value: "1, 2 o 3" },
-      { label: "Mantenimiento", value: "Libres de mantenimiento" },
-    ],
-    accent: "teal",
-    imageIndex: 22,
-  },
-  {
     slug: "aspiradoras-trabajo-pesado",
     name: "Aspiradoras para trabajo pesado",
     category: "Aspiradoras",
@@ -205,22 +189,6 @@ export const products: Product[] = [
       { label: "Longitud de manguera", value: "4 ft / 1,25 m" },
     ],
     accent: "teal",
-  },
-  {
-    slug: "scrubbers",
-    name: "Fregadoras (Scrubbers)",
-    category: "Scrubbers",
-    excerpt: "Tres procesos en uno: lavan, refriegan, aspiran y secan.",
-    description:
-      "Fregadoras (scrubbers) ideales para la limpieza de grandes superficies. Realizan tres procesos en uno: lavan, refriegan, aspiran y secan.",
-    specs: [
-      { label: "Ideales para", value: "Grandes superficies" },
-      { label: "Procesos", value: "3 en 1" },
-      { label: "Funciones", value: "Lavan, refriegan, aspiran y secan" },
-      { label: "Tipo", value: "Hombre a pie / hombre a bordo" },
-    ],
-    accent: "blue",
-    imageIndex: 30,
   },
   {
     slug: "robots-de-limpieza",
@@ -447,35 +415,6 @@ export const products: Product[] = [
     ],
     accent: "green",
     imageIndex: 14,
-  },
-  {
-    slug: "durasweep-70bt",
-    name: "Durasweep 70BT",
-    category: "Barredoras",
-    excerpt: "Barredora a batería con tracción eléctrica y 710 mm de ancho de barrido.",
-    description:
-      "Barredora Durasweep 70BT con alimentación a batería de 12 V y tracción eléctrica. Ancho de barrido central de 710 mm (880 mm con cepillo lateral), filtro de panel horizontal de 2 m² y emisiones sonoras de 62,5 dB(A).",
-    specs: [
-      { label: "Alimentación", value: "Batería 12 V" },
-      { label: "Tracción", value: "Eléctrica" },
-      { label: "Ancho de barrido central", value: "710 mm" },
-      { label: "Ancho con cepillo lateral", value: "880 mm" },
-      { label: "Potencia total", value: "400 W" },
-      { label: "Pendiente máxima", value: "2 %" },
-      { label: "Cargador de batería", value: "12 A/h" },
-      { label: "Capacidad batería máx.", value: "185 Ah/5" },
-      { label: "Compartimiento baterías", value: "377 × 244 × 280 mm" },
-      { label: "Superficie de filtro", value: "2 m²" },
-      { label: "Tipo de filtro", value: "Panel horizontal" },
-      { label: "Agitador de filtro", value: "Manual" },
-      { label: "Emisiones sonoras", value: "62,5 dB(A)" },
-      { label: "Dimensiones", value: "1.260 × 830 × 850 mm" },
-      { label: "Peso sin baterías", value: "120 kg" },
-      { label: "Peso con batería", value: "158,50 kg" },
-      { label: "Embalaje", value: "1.180 × 900 × 960 mm" },
-    ],
-    accent: "green",
-    imageIndex: 15,
   },
 
   // ----- Hidrolavadoras -----

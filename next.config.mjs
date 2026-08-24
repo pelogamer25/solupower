@@ -21,8 +21,11 @@ const nextConfig = {
       { source: "/servicios/mantenimiento-industrial", destination: "/servicios/servicio-tecnico", permanent: true },
       // "Suministro de equipos" is no longer a service — it lives in the catalog.
       { source: "/servicios/venta-de-maquinaria", destination: "/productos", permanent: true },
-      // Retired product
+      // Retired products → their category page
       { source: "/productos/desbastadoras", destination: "/productos", permanent: true },
+      { source: "/productos/aspiradoras-industriales", destination: "/productos/categoria/aspiradoras", permanent: true },
+      { source: "/productos/scrubbers", destination: "/productos/categoria/scrubbers", permanent: true },
+      { source: "/productos/durasweep-70bt", destination: "/productos/categoria/barredoras", permanent: true },
     ];
   },
 };
