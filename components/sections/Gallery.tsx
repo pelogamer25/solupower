@@ -23,6 +23,8 @@ const tones = [
 
 interface Tile {
   src: string;
+  /** Per-image alt text: describes this frame, never shared with another tile. */
+  alt: string;
   /** Caption data — only for the illustrative placeholder items. */
   title?: string;
   tag?: string;
@@ -30,9 +32,16 @@ interface Tile {
   real: boolean;
 }
 
+/** Shape of lib/workPhotos.ts — redeclared here because that module is server-only. */
+interface WorkPhoto {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
 interface GalleryProps {
   /** Real work photos (from /public/trabajos). If present they replace the placeholders. */
-  photos?: string[];
+  photos?: WorkPhoto[];
 }
 
 export default function Gallery({ photos = [] }: GalleryProps) {
@@ -41,9 +50,10 @@ export default function Gallery({ photos = [] }: GalleryProps) {
   const coarse = useCoarsePointer();
 
   const tiles: Tile[] = photos.length
-    ? photos.map((src) => ({ src, real: true }))
+    ? photos.map((p) => ({ src: p.src, alt: p.alt, real: true }))
     : galleryItems.map((item, i) => ({
         src: frameSrc(i),
+        alt: `${item.title} — ${item.tag} de limpieza industrial por SOLUPOWER`,
         title: item.title,
         tag: item.tag,
         real: false,
@@ -64,17 +74,13 @@ export default function Gallery({ photos = [] }: GalleryProps) {
         {/* Overlap-proof grid: every tile owns its aspect ratio — no fixed rows, no spans. */}
         <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
           {tiles.map((tile, i) => {
-            const label = tile.title ?? `Ver foto ${i + 1} de trabajo real de SOLUPOWER`;
+            const label = tile.title ?? `Ampliar foto: ${tile.alt}`;
             const cls = "group glass relative aspect-square overflow-hidden rounded-4xl p-1.5 text-left";
             const inner = (
               <div className={`relative h-full w-full overflow-hidden rounded-[1.6rem] bg-gradient-to-br ${tones[i % tones.length]}`}>
                 <Image
                   src={tile.src}
-                  alt={
-                    tile.title
-                      ? `${tile.title} — ${tile.tag} de limpieza industrial por SOLUPOWER`
-                      : "Trabajo real de limpieza y mantenimiento industrial realizado por SOLUPOWER"
-                  }
+                  alt={tile.alt}
                   fill
                   loading="lazy"
                   sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 25vw"
@@ -155,11 +161,7 @@ export default function Gallery({ photos = [] }: GalleryProps) {
               <div className={`relative aspect-[16/10] w-full overflow-hidden rounded-[1.9rem] ${activeTile.real ? "bg-ink/5" : `bg-gradient-to-br ${tones[active % tones.length]}`}`}>
                 <Image
                   src={activeTile.src}
-                  alt={
-                    activeTile.title
-                      ? `${activeTile.title} — ${activeTile.tag} de limpieza industrial por SOLUPOWER`
-                      : "Trabajo real de limpieza y mantenimiento industrial realizado por SOLUPOWER"
-                  }
+                  alt={activeTile.alt}
                   fill
                   sizes="(max-width: 768px) 100vw, 768px"
                   className={activeTile.real ? "object-contain" : "object-cover"}

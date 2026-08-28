@@ -7,7 +7,7 @@ import { join } from "node:path";
 // of work. Paths are relative to /public, so a service can draw from whichever
 // folder its photos live in. Resolved + encoded at runtime.
 const map: Record<string, string> = {
-  "restauracion-de-pisos": "trabajos/WhatsApp Image 2026-07-16 at 4.12asd.50 PM.jpeg", // mármol pulido efecto espejo
+  "restauracion-de-pisos": "trabajos/marmol-pulido-efecto-espejo.jpeg",
   "lavado-de-alfombras-y-mobiliario": "alfombras/extraccion-profunda-1.jpg", // extracción sobre alfombra
   alquiler: "trabajos/perfillimpiadoras.jpg", // perfil de equipos disponibles en alquiler
   "servicio-tecnico": "trabajos/serviciotecnicoarreglando.png", // técnico reparando un equipo

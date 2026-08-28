@@ -182,12 +182,12 @@ export default async function CasoDetailPage(props: {
               </Link>
             </div>
             <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
-              {photos.map((src) => (
-                <div key={src} className="glass relative aspect-[4/3] overflow-hidden rounded-4xl p-1.5">
+              {photos.map((photo) => (
+                <div key={photo.src} className="glass relative aspect-[4/3] overflow-hidden rounded-4xl p-1.5">
                   <div className="relative h-full w-full overflow-hidden rounded-[1.6rem]">
                     <Image
-                      src={src}
-                      alt={`${study.title} — trabajo real de SOLUPOWER`}
+                      src={photo.src}
+                      alt={photo.alt}
                       fill
                       loading="lazy"
                       sizes="(max-width: 640px) 50vw, 33vw"

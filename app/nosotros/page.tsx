@@ -137,13 +137,13 @@ export default function NosotrosPage() {
               </Link>
             </div>
             <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
-              {strip.map((src, i) => (
-                <Reveal key={src} delay={(i % 3) * 0.06}>
+              {strip.map((photo, i) => (
+                <Reveal key={photo.src} delay={(i % 3) * 0.06}>
                   <div className="glass relative aspect-[4/3] overflow-hidden rounded-4xl p-1.5">
                     <div className="relative h-full w-full overflow-hidden rounded-[1.6rem]">
                       <Image
-                        src={src}
-                        alt="Trabajo real de limpieza y mantenimiento industrial de SOLUPOWER"
+                        src={photo.src}
+                        alt={photo.alt}
                         fill
                         loading="lazy"
                         sizes="(max-width: 640px) 50vw, 33vw"
