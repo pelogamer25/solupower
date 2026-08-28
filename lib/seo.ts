@@ -61,7 +61,15 @@ export function organizationJsonLd() {
     name: siteConfig.name,
     legalName: siteConfig.legalName,
     url: siteConfig.url,
-    logo: new URL("/opengraph-image", siteConfig.url).toString(),
+    // Real brand mark (512×512, transparent) — Google prefers the logo itself
+    // over the social card for the knowledge-panel logo.
+    logo: {
+      "@type": "ImageObject",
+      url: new URL("/logo.png", siteConfig.url).toString(),
+      width: 512,
+      height: 512,
+    },
+    image: new URL("/opengraph-image", siteConfig.url).toString(),
     description: siteConfig.description,
     email: siteConfig.contact.email,
     telephone: siteConfig.contact.phone,
@@ -90,6 +98,7 @@ export function localBusinessJsonLd() {
     name: siteConfig.name,
     legalName: siteConfig.legalName,
     url: siteConfig.url,
+    logo: new URL("/logo.png", siteConfig.url).toString(),
     image: new URL("/opengraph-image", siteConfig.url).toString(),
     description: siteConfig.metaDescription,
     email: siteConfig.contact.email,

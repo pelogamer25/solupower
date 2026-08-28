@@ -1,5 +1,12 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/config/site";
+
+// The isotype knocked out in white, inlined so Satori can rasterize it.
+const markDataUri =
+  "data:image/svg+xml;base64," +
+  readFileSync(join(process.cwd(), "public", "logo-white.svg")).toString("base64");
 
 export const alt = `${siteConfig.name} — Soluciones industriales de limpieza`;
 export const size = { width: 1200, height: 630 };
@@ -23,22 +30,8 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "72px",
-              height: "72px",
-              borderRadius: "20px",
-              background: "rgba(255,255,255,0.16)",
-              color: "white",
-              fontSize: "40px",
-              fontWeight: 800,
-            }}
-          >
-            S
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={markDataUri} width={84} height={84} alt="" />
           <div style={{ display: "flex", color: "white", fontSize: "34px", fontWeight: 700, letterSpacing: "-1px" }}>
             SOLUPOWER
           </div>
