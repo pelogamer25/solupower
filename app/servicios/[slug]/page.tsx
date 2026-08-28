@@ -32,8 +32,8 @@ export async function generateMetadata(props: {
   const service = getService(slug);
   if (!service) return {};
   return pageMetadata({
-    title: service.title,
-    description: service.description,
+    title: service.seoTitle ?? service.title,
+    description: service.seoDescription ?? service.description,
     path: `/servicios/${service.slug}`,
     keywords: [service.title.toLowerCase(), "limpieza industrial", "mantenimiento industrial"],
   });

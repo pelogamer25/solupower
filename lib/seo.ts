@@ -19,6 +19,10 @@ export function pageMetadata({
   keywords,
 }: PageMetaOptions): Metadata {
   const url = new URL(path, siteConfig.url).toString();
+  // Clamped centrally so no page — including ones added later — ships a snippet
+  // Google will cut mid-word. Pages with tuned copy are already under the limit
+  // and pass through untouched.
+  description = clampSnippet(description);
   return {
     title,
     description,
@@ -196,4 +200,39 @@ export function jsonLdScript(data: object) {
   return {
     __html: JSON.stringify(data),
   };
+}
+
+/**
+ * SERP snippet limit. Google renders roughly 155–160 characters before the
+ * ellipsis; anything past that is written for nobody.
+ */
+const SNIPPET_MAX = 158;
+
+/** Clip to the last whole word that fits, so a snippet never ends mid-word. */
+export function clampSnippet(text: string, max = SNIPPET_MAX): string {
+  const t = text.replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max);
+  return cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:—-]$/, "") + "…";
+}
+
+/**
+ * Closing line for a product snippet, by category. The product `excerpt` is a
+ * tight one-liner (~75 chars) that leaves room for the keyword + city that the
+ * model name alone doesn't carry. One per category so 20 products don't all
+ * ship the same boilerplate tail.
+ */
+const categoryTail: Record<string, string> = {
+  Aspiradoras: "Aspiradoras industriales en Medellín, con servicio técnico y repuestos.",
+  Hidrolavadoras: "Hidrolavadoras industriales en Medellín: venta, alquiler y repuestos.",
+  Brilladoras: "Brilladoras y pulidoras de pisos: venta y alquiler en Medellín.",
+  Scrubbers: "Fregadoras industriales en Medellín: venta, alquiler y soporte técnico.",
+  Barredoras: "Barredoras industriales en Medellín y Bogotá, con soporte multimarcas.",
+  Extractoras: "Extractoras para lavado de tapetes y alfombras, con servicio técnico.",
+  Robots: "Robots de limpieza autónomos para grandes superficies en Colombia.",
+};
+
+/** Meta description for a product: explicit override, else excerpt + category tail. */
+export function productSnippet(p: { excerpt: string; category: string; seoDescription?: string }) {
+  return clampSnippet(p.seoDescription ?? `${p.excerpt} ${categoryTail[p.category] ?? ""}`);
 }

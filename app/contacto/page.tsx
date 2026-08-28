@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contacto | Equipos de limpieza industrial en Medellín y Bogotá",
+  title: "Contacto — Medellín y Bogotá",
   description:
     "Contáctanos para venta, alquiler o mantenimiento de equipos de limpieza industrial. Teléfono, correo, WhatsApp y formulario. SOLUPOWER, Colombia.",
   path: "/contacto",

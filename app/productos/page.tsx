@@ -12,9 +12,9 @@ import { productCategoryMeta, productsInCategory } from "@/lib/data/products";
 import { productPhoto } from "@/lib/productPhoto";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Productos y maquinaria de limpieza industrial",
+  title: "Maquinaria de limpieza industrial en Colombia",
   description:
-    "Explora nuestra maquinaria de limpieza industrial por tipo: brilladoras, hidrolavadoras, aspiradoras, scrubbers, barredoras, extractoras y robots. Equipos de alto rendimiento SOLUPOWER.",
+    "Brilladoras, hidrolavadoras, fregadoras industriales, aspiradoras, barredoras, extractoras y robots de limpieza. Venta y alquiler en Medellín y Bogotá.",
   path: "/productos",
 });
 

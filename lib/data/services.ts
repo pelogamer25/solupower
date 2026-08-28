@@ -5,6 +5,9 @@ export const services: Service[] = [
   {
     // Slug kept as-is: the page is indexed and several 308s point at it.
     slug: "restauracion-de-pisos",
+    seoTitle: "Mantenimiento y pulido de pisos en Medellín",
+    seoDescription:
+      "Cristalizado, brillo natural, pulido y destronque de pisos en Medellín y Bogotá. Recuperamos mármol, granito, concreto y baldosa, y protegemos el piso.",
     title: "Mantenimiento y Tratamiento de Pisos",
     excerpt:
       "Cristalizado, brillo natural, pulido, destronque e hidrófugo para toda clase de superficie.",
@@ -23,6 +26,9 @@ export const services: Service[] = [
   },
   {
     slug: "lavado-de-alfombras-y-mobiliario",
+    seoTitle: "Lavado de tapetes y alfombras en Medellín",
+    seoDescription:
+      "Lavado de tapetes y alfombras y limpieza de alfombras industrial en Medellín: inyección y extracción que quita manchas y olores, con secado rápido.",
     title: "Lavado profesional, desinfección de alfombras y mobiliario",
     excerpt:
       "Lavado profundo en proceso semihúmedo con equipos de inyección y extracción.",
@@ -39,6 +45,9 @@ export const services: Service[] = [
   },
   {
     slug: "alquiler",
+    seoTitle: "Alquiler de hidrolavadoras y equipos en Medellín",
+    seoDescription:
+      "Alquiler de hidrolavadoras en Medellín, más fregadoras, brilladoras y aspiradoras industriales. Por día, semana o proyecto, con entrega y soporte.",
     title: "Alquiler de equipos",
     excerpt: "Alquiler de equipos de limpieza para trabajo pesado, por el tiempo que lo necesitas.",
     description:
@@ -54,6 +63,9 @@ export const services: Service[] = [
   },
   {
     slug: "servicio-tecnico",
+    seoTitle: "Servicio técnico de hidrolavadoras y equipos",
+    seoDescription:
+      "Técnico de hidrolavadoras, aspiradoras y brilladoras en Medellín. Somos multimarcas: diagnóstico, reparación y repuestos originales para cualquier marca.",
     title: "Servicio técnico especializado",
     excerpt: "Somos multimarcas: centro de diagnóstico y reparación para equipos de limpieza.",
     description:

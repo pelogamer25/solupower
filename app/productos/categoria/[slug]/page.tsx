@@ -16,6 +16,21 @@ import { productCategoryMeta, getCategoryMeta, productsInCategory } from "@/lib/
 import { productPhoto } from "@/lib/productPhoto";
 import { getProductSeo } from "@/lib/data/seoContent";
 
+/**
+ * SERP title per category. The internal label isn't always what people type:
+ * nobody searches "Scrubbers industriales" in Colombia — they search
+ * "fregadoras industriales". See seo/keywords.md.
+ */
+const categoryTitle: Record<string, string> = {
+  brilladoras: "Brilladoras y pulidoras de pisos industriales",
+  hidrolavadoras: "Hidrolavadoras industriales en Medellín",
+  aspiradoras: "Aspiradoras industriales en Medellín y Bogotá",
+  scrubbers: "Fregadoras industriales (scrubbers)",
+  barredoras: "Barredoras industriales en Medellín y Bogotá",
+  extractoras: "Extractoras para alfombras y tapicería",
+  robots: "Robots de limpieza autónomos",
+};
+
 export function generateStaticParams() {
   return productCategoryMeta.map((c) => ({ slug: c.slug }));
 }
@@ -27,7 +42,7 @@ export async function generateMetadata(props: {
   const cat = getCategoryMeta(slug);
   if (!cat) return {};
   return pageMetadata({
-    title: `${cat.name} industriales`,
+    title: categoryTitle[cat.slug] ?? `${cat.name} industriales`,
     description: cat.tagline,
     path: `/productos/categoria/${cat.slug}`,
     keywords: [cat.name.toLowerCase(), "equipos de limpieza industrial", "maquinaria industrial"],

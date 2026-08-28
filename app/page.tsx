@@ -17,8 +17,9 @@ import { workPhotos } from "@/lib/workPhotos";
 import { beforeAfterPhotos } from "@/lib/beforeAfterPhotos";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Soluciones industriales para empresas que buscan excelencia",
-  description: siteConfig.metaDescription,
+  title: "Limpieza y mantenimiento industrial en Medellín",
+  description:
+    "Empresa de limpieza industrial en Medellín y Bogotá: alquiler de equipos, servicio técnico multimarcas, pulido de pisos y lavado de alfombras.",
   path: "/",
 });
 

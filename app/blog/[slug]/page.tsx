@@ -23,7 +23,7 @@ export async function generateMetadata(props: {
   const post = getPost(slug);
   if (!post) return {};
   return pageMetadata({
-    title: post.title,
+    title: post.seoTitle ?? post.title,
     description: post.excerpt,
     path: `/blog/${post.slug}`,
     keywords: [post.category.toLowerCase(), "limpieza industrial", "blog industrial"],

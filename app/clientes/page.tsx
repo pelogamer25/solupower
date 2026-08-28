@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo";
 import { clients } from "@/lib/data/content";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Clientes | Limpieza y mantenimiento industrial en Colombia",
+  title: "Clientes en logística, retail e industria",
   description:
     "Empresas de logística, manufactura, retail e industria que confían en SOLUPOWER para sus soluciones de limpieza y mantenimiento industrial.",
   path: "/clientes",

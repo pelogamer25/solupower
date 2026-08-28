@@ -13,9 +13,9 @@ import { workPhotos } from "@/lib/workPhotos";
 import { teamPhoto } from "@/lib/teamPhoto";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Nosotros | Limpieza y mantenimiento industrial en Medellín y Bogotá",
+  title: "Nosotros — Empresa de limpieza industrial",
   description:
-    "Conoce a SOLUPOWER (Soluciones Industriales RM S.A.S.): empresa colombiana especializada en soluciones integrales para la limpieza y el mantenimiento industrial.",
+    "Conoce a SOLUPOWER (Soluciones Industriales RM S.A.S.), empresa colombiana de limpieza y mantenimiento industrial en Medellín y Bogotá.",
   path: "/nosotros",
 });
 

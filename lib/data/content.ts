@@ -153,6 +153,7 @@ export function getCaseStudy(slug: string) {
 export const posts: Post[] = [
   {
     slug: "como-restaurar-pisos-industriales",
+    seoTitle: "Cómo restaurar pisos industriales",
     title: "Cómo restaurar pisos industriales sin detener tu operación",
     excerpt:
       "Guía práctica sobre desbaste, pulido y sellado de pisos de concreto en entornos de alto tránsito.",

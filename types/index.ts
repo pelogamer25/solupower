@@ -5,6 +5,10 @@ export interface Service {
   title: string;
   excerpt: string;
   description: string;
+  /** SERP title, when the on-page title isn't the phrase people search for. */
+  seoTitle?: string;
+  /** SERP snippet, when `description` is too long for the ~160-char cut. */
+  seoDescription?: string;
   icon: LucideIcon;
   features: string[];
   accent: "blue" | "teal" | "cyan" | "green";
@@ -16,6 +20,10 @@ export interface Product {
   category: string;
   excerpt: string;
   description: string;
+  /** SERP title, when the model name alone isn't the phrase people search for. */
+  seoTitle?: string;
+  /** SERP snippet override; otherwise built from `excerpt` + the category tail. */
+  seoDescription?: string;
   specs: { label: string; value: string }[];
   accent: "blue" | "teal" | "cyan" | "green";
   /** Illustrative "desde" price in COP. PLACEHOLDER — replace with real pricing. */
@@ -61,6 +69,8 @@ export interface CaseStudy {
 export interface Post {
   slug: string;
   title: string;
+  /** SERP title, when the headline is too long for the ~60-char cut. */
+  seoTitle?: string;
   excerpt: string;
   category: string;
   date: string;

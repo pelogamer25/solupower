@@ -10,7 +10,7 @@ import SeoProse from "@/components/seo/SeoProse";
 import ContextualCta from "@/components/seo/ContextualCta";
 import RelatedContent from "@/components/seo/RelatedContent";
 import ContactCta from "@/components/sections/ContactCta";
-import { pageMetadata, productJsonLd, jsonLdScript } from "@/lib/seo";
+import { pageMetadata, productJsonLd, jsonLdScript, productSnippet } from "@/lib/seo";
 import { products, getProduct, formatCOP, categorySlugOf } from "@/lib/data/products";
 import { getProductSeo } from "@/lib/data/seoContent";
 import { getRelated } from "@/lib/data/relations";
@@ -27,8 +27,8 @@ export async function generateMetadata(props: {
   const product = getProduct(slug);
   if (!product) return {};
   return pageMetadata({
-    title: product.name,
-    description: product.description,
+    title: product.seoTitle ?? product.name,
+    description: productSnippet(product),
     path: `/productos/${product.slug}`,
     keywords: [product.name.toLowerCase(), product.category.toLowerCase(), "equipos industriales"],
   });

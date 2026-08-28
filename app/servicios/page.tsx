@@ -12,9 +12,9 @@ import { services } from "@/lib/data/services";
 import { serviceImage } from "@/lib/serviceImage";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Servicios de limpieza y mantenimiento industrial",
+  title: "Servicios de limpieza industrial en Medellín",
   description:
-    "Alquiler de equipos, servicio técnico especializado y mantenimiento y limpieza de superficies. Soluciones integrales de limpieza y mantenimiento industrial de SOLUPOWER.",
+    "Limpiezas técnicas industriales en Medellín y Bogotá: alquiler de equipos, servicio técnico multimarcas, tratamiento de pisos y lavado de alfombras.",
   path: "/servicios",
 });
 
