@@ -44,8 +44,10 @@ Solo enlaces dentro del contenido (se excluye la navegación global de arriba).
 | Anchor text | Destino |
 |---|---|
 | Blog de limpieza industrial | `/blog` |
+| Ver más casos de pulido de pisos y lavado de alfombras | `/casos-de-exito` |
 | Nuestros clientes | `/clientes` |
 | Galería de proyectos | `/galeria` |
+| Conoce la empresa de limpieza industrial detrás de SOLUPOWER | `/nosotros` |
 | Ver catálogo completo | `/productos` |
 | Equipos de limpieza industrial | `/productos` |
 | Aspiradoras | `/productos/aspiradora-15-30-litros` |
@@ -71,6 +73,10 @@ Solo enlaces dentro del contenido (se excluye la navegación global de arriba).
 | Descubre nuestros servicios | `/servicios` |
 | Ver todos los servicios | `/servicios` |
 | Servicios de limpieza y mantenimiento industrial | `/servicios` |
+| Alquiler de equipos Alquiler de equipos de limpieza para trabajo pesado, por el tiempo que lo necesitas. Conocer más | `/servicios/alquiler` |
+| Lavado profesional, desinfección de alfombras y mobiliario Lavado profundo en proceso semihúmedo con equipos de inyección y extracción. Conocer más | `/servicios/lavado-de-alfombras-y-mobiliario` |
+| Mantenimiento y Tratamiento de Pisos Cristalizado, brillo natural, pulido, destronque e hidrófugo para toda clase de superficie. Conocer más | `/servicios/restauracion-de-pisos` |
+| Servicio técnico especializado Somos multimarcas: centro de diagnóstico y reparación para equipos de limpieza. Conocer más | `/servicios/servicio-tecnico` |
 
 ### `/nosotros`
 
@@ -89,6 +95,10 @@ Solo enlaces dentro del contenido (se excluye la navegación global de arriba).
 | brilladora industrial 17 | `/productos/brilladora-industrial-17` |
 | scrubbers industriales | `/productos/categoria/scrubbers` |
 | hidrolavadora industrial 1900 PSI | `/productos/hidrolavadora-industrial-1900-psi` |
+| Alquiler de equipos Alquiler de equipos de limpieza para trabajo pesado, por el tiempo que lo necesitas. Conocer más | `/servicios/alquiler` |
+| Lavado profesional, desinfección de alfombras y mobiliario Lavado profundo en proceso semihúmedo con equipos de inyección y extracción. Conocer más | `/servicios/lavado-de-alfombras-y-mobiliario` |
+| Mantenimiento y Tratamiento de Pisos Cristalizado, brillo natural, pulido, destronque e hidrófugo para toda clase de superficie. Conocer más | `/servicios/restauracion-de-pisos` |
+| Servicio técnico especializado Somos multimarcas: centro de diagnóstico y reparación para equipos de limpieza. Conocer más | `/servicios/servicio-tecnico` |
 
 ### `/productos`
 
@@ -98,6 +108,21 @@ Solo enlaces dentro del contenido (se excluye la navegación global de arriba).
 | Cristalizado, abrillantado y pulido diamantado | `/casos-de-exito/cristalizado-y-pulido-de-pisos` |
 | Lavado y desinfección de alfombras y mobiliario | `/casos-de-exito/lavado-y-desinfeccion-de-alfombras` |
 | Recuperación de superficies: antes y después | `/casos-de-exito/recuperacion-de-superficies` |
+| 6 modelos Aspiradoras Aspiradoras profesionales e industriales para sólidos y líquidos, con uno, dos o tres motores. Ver aspiradoras | `/productos/categoria/aspiradoras` |
+| 3 modelos Barredoras Barredoras industriales de conducción y a batería para grandes áreas y alto tráfico. Ver barredoras | `/productos/categoria/barredoras` |
+| 2 modelos Brilladoras Brilladoras industriales de alta velocidad para pulir y abrillantar pisos de alto tránsito. Ver brilladoras | `/productos/categoria/brilladoras` |
+| 1 modelo Extractoras Extractoras para el lavado profesional de alfombras, muebles y superficies textiles. Ver extractoras | `/productos/categoria/extractoras` |
+| 3 modelos Hidrolavadoras Hidrolavadoras industriales de agua fría y caliente y alta presión para el lavado más exigente. Ver hidrolavadoras | `/productos/categoria/hidrolavadoras` |
+| 2 modelos Robots Robots de limpieza autónomos e inteligentes con control desde app y carga automática. Ver robots | `/productos/categoria/robots` |
+| 3 modelos Scrubbers Fregadoras (scrubbers) que lavan, refriegan, aspiran y secan grandes superficies en una sola pasada. Ver scrubbers | `/productos/categoria/scrubbers` |
+
+### `/blog`
+
+| Anchor text | Destino |
+|---|---|
+| Restauración 6 min Cómo restaurar pisos industriales sin detener tu operación Guía práctica sobre desbaste, pulido y sellado de pisos de concreto en entornos de alto tránsito. 17 de mayo de 2026 | `/blog/como-restaurar-pisos-industriales` |
+| Equipos 5 min Cómo elegir la hidrolavadora industrial correcta Presión, caudal y temperatura: los factores clave para acertar en tu próxima compra. 29 de abril de 2026 | `/blog/elegir-hidrolavadora-industrial` |
+| Mantenimiento 4 min Mantenimiento preventivo: el ahorro que no se ve Por qué un buen plan preventivo reduce costos y evita paradas críticas en tu planta. 21 de marzo de 2026 | `/blog/mantenimiento-preventivo-maquinaria` |
 
 ### `/servicios/restauracion-de-pisos`
 
@@ -176,6 +201,7 @@ Solo enlaces dentro del contenido (se excluye la navegación global de arriba).
 
 | Anchor text | Destino |
 |---|---|
+| cómo restaurar pisos industriales | `/blog/como-restaurar-pisos-industriales` |
 | Mantenimiento preventivo: el ahorro que no se ve | `/blog/mantenimiento-preventivo-maquinaria` |
 | Cristalizado, abrillantado y pulido diamantado | `/casos-de-exito/cristalizado-y-pulido-de-pisos` |
 | Lavado y desinfección de alfombras y mobiliario | `/casos-de-exito/lavado-y-desinfeccion-de-alfombras` |
@@ -183,11 +209,13 @@ Solo enlaces dentro del contenido (se excluye la navegación global de arriba).
 | Productos | `/productos` |
 | Brilladoras | `/productos/brilladora-industrial-17` |
 | Brilladoras | `/productos/brilladora-industrial-k-20` |
+| scrubbers industriales | `/productos/categoria/scrubbers` |
 
 ### `/productos/categoria/hidrolavadoras`
 
 | Anchor text | Destino |
 |---|---|
+| elegir una hidrolavadora industrial | `/blog/elegir-hidrolavadora-industrial` |
 | Mantenimiento preventivo: el ahorro que no se ve | `/blog/mantenimiento-preventivo-maquinaria` |
 | Cristalizado, abrillantado y pulido diamantado | `/casos-de-exito/cristalizado-y-pulido-de-pisos` |
 | Lavado y desinfección de alfombras y mobiliario | `/casos-de-exito/lavado-y-desinfeccion-de-alfombras` |
@@ -234,6 +262,7 @@ Solo enlaces dentro del contenido (se excluye la navegación global de arriba).
 
 | Anchor text | Destino |
 |---|---|
+| mantenimiento preventivo de maquinaria | `/blog/mantenimiento-preventivo-maquinaria` |
 | Mantenimiento preventivo: el ahorro que no se ve | `/blog/mantenimiento-preventivo-maquinaria` |
 | Cristalizado, abrillantado y pulido diamantado | `/casos-de-exito/cristalizado-y-pulido-de-pisos` |
 | Lavado y desinfección de alfombras y mobiliario | `/casos-de-exito/lavado-y-desinfeccion-de-alfombras` |
@@ -242,6 +271,8 @@ Solo enlaces dentro del contenido (se excluye la navegación global de arriba).
 | Barredoras | `/productos/barredora-u-190` |
 | Barredoras | `/productos/barredora-u-200` |
 | Barredoras | `/productos/barredora-u90` |
+| aspiradoras industriales | `/productos/categoria/aspiradoras` |
+| scrubbers industriales | `/productos/categoria/scrubbers` |
 
 ### `/productos/categoria/extractoras`
 
@@ -252,6 +283,7 @@ Solo enlaces dentro del contenido (se excluye la navegación global de arriba).
 | Lavado y desinfección de alfombras y mobiliario | `/casos-de-exito/lavado-y-desinfeccion-de-alfombras` |
 | Recuperación de superficies: antes y después | `/casos-de-exito/recuperacion-de-superficies` |
 | Productos | `/productos` |
+| aspiradoras industriales | `/productos/categoria/aspiradoras` |
 | Extractoras | `/productos/extractora-jb-175` |
 
 ### `/productos/categoria/robots`
@@ -263,6 +295,7 @@ Solo enlaces dentro del contenido (se excluye la navegación global de arriba).
 | Lavado y desinfección de alfombras y mobiliario | `/casos-de-exito/lavado-y-desinfeccion-de-alfombras` |
 | Recuperación de superficies: antes y después | `/casos-de-exito/recuperacion-de-superficies` |
 | Productos | `/productos` |
+| scrubbers industriales | `/productos/categoria/scrubbers` |
 | Robots | `/productos/robot-limpieza-pisos` |
 | Robots | `/productos/robots-de-limpieza` |
 
@@ -574,10 +607,5 @@ Solo enlaces dentro del contenido (se excluye la navegación global de arriba).
 
 Solo llegan desde el menú o el footer:
 
-- `/nosotros`
-- `/casos-de-exito`
 - `/privacidad`
 - `/terminos`
-- `/productos/categoria/barredoras`
-- `/productos/categoria/extractoras`
-- `/productos/categoria/robots`

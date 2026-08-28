@@ -82,7 +82,7 @@ export default function HeroSequence() {
             <Phase p={scrollYProgress} range={[0.0, 0.06, 0.2, 0.26]}>
               <Eyebrow>Soluciones Industriales RM S.A.S.</Eyebrow>
               <h1 className="mt-5 max-w-2xl font-display text-hero font-semibold text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.55),0_2px_14px_rgba(0,0,0,0.35)]">
-                Soluciones industriales para empresas que buscan{" "}
+                Limpieza y mantenimiento industrial para empresas que buscan{" "}
                 <span className="bg-[linear-gradient(100deg,#7ad0ec,#8fe3c9)] bg-clip-text text-transparent">
                   excelencia.
                 </span>
@@ -233,7 +233,7 @@ function MobileHero() {
         <div className="container-x relative z-10 pb-24">
           <Eyebrow>Soluciones Industriales RM S.A.S.</Eyebrow>
           <h1 className="mt-5 max-w-2xl font-display text-hero font-semibold text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.55),0_2px_14px_rgba(0,0,0,0.35)]">
-            Soluciones industriales para empresas que buscan{" "}
+            Limpieza y mantenimiento industrial para empresas que buscan{" "}
             <span className="bg-[linear-gradient(100deg,#7ad0ec,#8fe3c9)] bg-clip-text text-transparent">
               excelencia.
             </span>
@@ -279,7 +279,7 @@ function StaticHero() {
         <div className="max-w-2xl">
           <Eyebrow>Soluciones Industriales RM S.A.S.</Eyebrow>
           <h1 className="mt-5 font-display text-hero font-semibold text-white">
-            Soluciones industriales para empresas que buscan excelencia.
+            Limpieza y mantenimiento industrial para empresas que buscan excelencia.
           </h1>
           <p className="mt-6 max-w-md text-lg text-white/80">
             Alquiler, mantenimiento y servicio técnico especializado de equipos de limpieza industrial.

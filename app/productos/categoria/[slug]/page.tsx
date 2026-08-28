@@ -64,6 +64,9 @@ export default async function CategoriaPage(props: {
   if (!cat) notFound();
 
   const items = productsInCategory(cat.slug);
+  // "Scrubber" is the industry's word, not the buyer's: in Colombia the search
+  // is "fregadoras industriales". The H1 leads with that and keeps the term.
+  const heading = cat.slug === "scrubbers" ? "Fregadoras industriales (scrubbers)" : `${cat.name} industriales`;
   // SEO body kept from the retired overview products, whose slug was the category's.
   const seo = getProductSeo(cat.slug);
 
@@ -91,7 +94,7 @@ export default async function CategoriaPage(props: {
 
       <PageHeader
         eyebrow="Productos"
-        title={`${cat.name} industriales`}
+        title={heading}
         description={cat.tagline}
         crumbs={[
           { name: "Productos", path: "/productos" },

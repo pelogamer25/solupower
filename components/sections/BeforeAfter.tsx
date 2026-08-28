@@ -2,7 +2,8 @@
 
 import { useRef, useState, useCallback } from "react";
 import Image from "next/image";
-import { MoveHorizontal } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, MoveHorizontal } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 interface BeforeAfterProps {
@@ -112,6 +113,16 @@ export default function BeforeAfter({ antes, despues }: BeforeAfterProps) {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="mt-10 text-center">
+          <Link
+            href="/casos-de-exito"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-brand-blue"
+          >
+            Ver más casos de pulido de pisos y lavado de alfombras
+            <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
         </div>
       </div>
     </section>

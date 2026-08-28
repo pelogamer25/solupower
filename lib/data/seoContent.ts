@@ -80,8 +80,8 @@ export const productSeo: Record<string, SeoSection[]> = {
         "Las brilladoras industriales pulen y dan acabado espejo a pisos de alto tránsito con motores de alta velocidad, logrando superficies uniformes con mínimo esfuerzo operativo.",
       blocks: [
         {
-          h3: "Acabado en pisos de porcelanato y granito",
-          body: "Para recuperar pisos muy desgastados el pulido se apoya en nuestro servicio de",
+          h3: "Pulidora de pisos para porcelanato y granito",
+          body: "Una pulidora de pisos recupera porcelanato y granito desgastado; el trabajo completo lo cubre nuestro servicio de",
           link: "restauracion-de-pisos",
         },
         {
@@ -155,8 +155,8 @@ export const productSeo: Record<string, SeoSection[]> = {
         "Un scrubber lava, restriega y seca el piso en una sola pasada, multiplicando la productividad en bodegas, supermercados y plantas con grandes superficies.",
       blocks: [
         {
-          h3: "Rendimiento en grandes superficies",
-          body: "Cuando el volumen crece, la operación se optimiza sumando",
+          h3: "Fregadoras industriales para grandes superficies",
+          body: "Las fregadoras industriales rinden más cuando se combinan con",
           link: "aspiradoras",
         },
         {
@@ -218,6 +218,139 @@ export const productSeo: Record<string, SeoSection[]> = {
     },
   ],
 
+
+  // --- Bloques por categoría. La página /productos/categoria/<slug> los toma
+  // con getProductSeo(cat.slug), así que la clave ES el slug de la categoría.
+  brilladoras: [
+    {
+      h2: "Brilladoras y pulidoras de pisos industriales",
+      intro:
+        "Las brilladoras industriales giran a alta velocidad para pulir, abrillantar y lavar pisos de alto tránsito, con platos de 17″ y 20″ y accesorios intercambiables según el acabado que busques.",
+      blocks: [
+        {
+          h3: "Pulidora de pisos para mármol, granito y porcelanato",
+          body: "Una pulidora de pisos devuelve el brillo a mármol, granito y porcelanato desgastado; el proceso completo lo cubre nuestro servicio de",
+          link: "restauracion-de-pisos",
+        },
+        {
+          h3: "Máquina abrillantadora industrial para alto tránsito",
+          body: "La máquina abrillantadora industrial mantiene el acabado entre jornadas y se alterna con el paso de los",
+          link: "scrubbers",
+        },
+        {
+          h3: "Pulido de concreto con discos diamantados",
+          body: "Para pulir pisos de concreto usamos discos diamantados de grano progresivo; el paso a paso está en la guía sobre",
+          link: "como-restaurar-pisos-industriales",
+        },
+      ],
+    },
+    {
+      h2: "Comprar o alquilar una brilladora",
+      blocks: [
+        {
+          h3: "Pulidoras en Medellín por proyecto",
+          body: "Si necesitas pulidoras en Medellín solo para una obra puntual, sale mejor el",
+          link: "alquiler",
+        },
+        {
+          h3: "Vida útil del equipo",
+          body: "El desgaste de platos, discos y motor se controla con un plan de",
+          link: "servicio-tecnico",
+        },
+      ],
+    },
+  ],
+
+  hidrolavadoras: [
+    {
+      h2: "Hidrolavadoras industriales en Medellín",
+      intro:
+        "Agua a alta presión, fría o caliente, para remover grasa, cemento, hollín y suciedad incrustada que la limpieza manual no alcanza. Equipos pensados para operación continua, no para uso doméstico.",
+      blocks: [
+        {
+          h3: "Agua fría y agua caliente",
+          body: "El agua caliente disuelve grasas pesadas y acelera el secado; cómo elegir presión y caudal está en la guía sobre",
+          link: "elegir-hidrolavadora-industrial",
+        },
+        {
+          h3: "Alquiler de hidrolavadoras en Medellín",
+          body: "Puedes validar el equipo en tu operación antes de comprarlo con el",
+          link: "alquiler",
+        },
+        {
+          h3: "Repuestos y reparación multimarcas",
+          body: "Reparamos hidrolavadoras de cualquier marca con repuestos originales en nuestro",
+          link: "servicio-tecnico",
+        },
+      ],
+    },
+  ],
+
+  barredoras: [
+    {
+      h2: "Barredoras industriales para grandes áreas",
+      intro:
+        "Barredoras de conducción y a batería que recogen polvo, escombro y residuo suelto en bodegas, parqueaderos y exteriores, cubriendo en una pasada lo que un equipo de aseo tarda horas en barrer.",
+      blocks: [
+        {
+          h3: "Barredora industrial hombre caminando o a bordo",
+          body: "Elegir entre barredora industrial de acompañante o de conducción depende del área; para superficies muy grandes conviene sumar",
+          link: "scrubbers",
+        },
+        {
+          h3: "Polvo fino y residuo suelto",
+          body: "El material fino que la barredora levanta se recoge después con",
+          link: "aspiradoras",
+        },
+        {
+          h3: "Disponibilidad de la flota",
+          body: "Las paradas por falla se evitan con un plan de",
+          link: "mantenimiento-preventivo-maquinaria",
+        },
+      ],
+    },
+  ],
+
+  extractoras: [
+    {
+      h2: "Extractoras para alfombras, tapetes y tapicería",
+      intro:
+        "Equipos de inyección y extracción que aplican solución de limpieza a presión y la recuperan con la suciedad disuelta, en proceso semihúmedo y con tiempos de secado cortos.",
+      blocks: [
+        {
+          h3: "Lavado de tapetes y alfombras en sitio",
+          body: "Para el lavado de tapetes y alfombras sin desmontar nada, ofrecemos también el servicio completo de",
+          link: "lavado-de-alfombras-y-mobiliario",
+        },
+        {
+          h3: "Aspirado previo obligatorio",
+          body: "Antes de inyectar agua hay que retirar el sólido seco con",
+          link: "aspiradoras",
+        },
+      ],
+    },
+  ],
+
+  robots: [
+    {
+      h2: "Robots de limpieza autónomos",
+      intro:
+        "Navegación inteligente, mapeo del espacio y carga automática: limpian de forma consistente y sin supervisión constante, liberando al equipo humano para el trabajo que sí requiere criterio.",
+      blocks: [
+        {
+          h3: "Automatización de grandes superficies",
+          body: "El robot cubre la rutina diaria y deja el trabajo pesado y puntual a las",
+          link: "scrubbers",
+        },
+        {
+          h3: "Puesta en marcha y calibración",
+          body: "El mapeo inicial y la calibración los acompaña nuestro",
+          link: "servicio-tecnico",
+        },
+      ],
+    },
+  ],
+
 };
 
 export const serviceSeo: Record<string, SeoSection[]> = {
@@ -228,13 +361,13 @@ export const serviceSeo: Record<string, SeoSection[]> = {
         "Planes flexibles por día, semana o proyecto, con entrega, soporte y mantenimiento incluidos. Ideal para picos de producción u obras temporales.",
       blocks: [
         {
-          h3: "Alquiler para picos de operación",
-          body: "El equipo más pedido por temporada es la",
+          h3: "Alquiler de hidrolavadoras en Medellín",
+          body: "El alquiler de hidrolavadoras en Medellín es nuestro servicio más pedido por temporada; el equipo estrella es la",
           link: "hidrolavadora-industrial-1900-psi",
         },
         {
-          h3: "Grandes superficies por proyecto",
-          body: "Para bodegas y plantas conviene alquilar",
+          h3: "Renting de fregadoras industriales por proyecto",
+          body: "Para bodegas y plantas el renting de fregadoras industriales sale mejor que comprar; trabajamos con",
           link: "scrubbers",
         },
       ],
@@ -263,8 +396,8 @@ export const serviceSeo: Record<string, SeoSection[]> = {
         "Técnicos certificados y repuestos originales para diagnosticar, reparar y calibrar equipos de cualquier marca, con reportes claros y tiempos de respuesta ágiles.",
       blocks: [
         {
-          h3: "Diagnóstico y reparación",
-          body: "El servicio cubre equipos de lavado como la",
+          h3: "Técnico de hidrolavadoras y equipos industriales",
+          body: "Nuestro técnico de hidrolavadoras atiende cualquier marca, empezando por la",
           link: "hidrolavadora-industrial-1900-psi",
         },
         {
@@ -288,13 +421,13 @@ export const serviceSeo: Record<string, SeoSection[]> = {
         "Lavado profundo en proceso semihúmedo con equipos de inyección y extracción: elimina manchas y olores y recupera las fibras, con tiempos de secado cortos que no detienen la operación.",
       blocks: [
         {
-          h3: "Inyección y extracción",
-          body: "El lavado profundo de alfombras y mobiliario se realiza con la",
+          h3: "Lavado de tapetes y alfombras con inyección y extracción",
+          body: "El lavado de tapetes y alfombras se hace en proceso semihúmedo con la",
           link: "extractora-jb-175",
         },
         {
-          h3: "Aspirado previo",
-          body: "Antes del lavado retiramos el polvo y los sólidos con",
+          h3: "Limpieza de alfombras industrial en sitio",
+          body: "La limpieza de alfombras industrial arranca retirando el polvo y los sólidos con",
           link: "aspiradoras",
         },
         {
@@ -323,8 +456,8 @@ export const serviceSeo: Record<string, SeoSection[]> = {
         "Cristalizado, brillo natural, pulido, destronque e hidrófugo sobre mármol, granito, concreto y baldosas, con acabados de alto brillo y protección duradera.",
       blocks: [
         {
-          h3: "Preparación de la superficie",
-          body: "El proceso arranca con el destronque y la nivelación del piso; para el acabado espejo lo combinamos con la",
+          h3: "Limpieza y pulido de pisos: preparación de la superficie",
+          body: "La limpieza y pulido de pisos arranca con el destronque y la nivelación; para el acabado espejo lo combinamos con la",
           link: "brilladora-industrial-17",
         },
         {

@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import GlassCard from "@/components/ui/GlassCard";
@@ -70,6 +72,16 @@ export default function About() {
               </GlassCard>
             </Reveal>
           ))}
+        </div>
+
+        <div className="mt-10">
+          <Link
+            href="/nosotros"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-brand-blue"
+          >
+            Conoce la empresa de limpieza industrial detrás de SOLUPOWER
+            <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
         </div>
       </div>
     </section>
