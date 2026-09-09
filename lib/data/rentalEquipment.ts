@@ -26,7 +26,7 @@ export const rentalEquipment: RentalEquipment[] = [
     name: "Fregadoras de piso",
     description:
       "Trabajo pesado con tres procesos en uno: lavan, friegan y secan en una sola pasada.",
-    fallbackPhoto: "/products/fregadora-hombre-a-pie.png",
+    fallbackPhoto: "/products/fregadora-hombre-a-pie.webp",
     href: "/productos/categoria/scrubbers",
   },
   {
@@ -34,7 +34,7 @@ export const rentalEquipment: RentalEquipment[] = [
     name: "Hidrolavadoras",
     description:
       "Agua fría y caliente de alta presión para desengrase y limpieza profunda.",
-    fallbackPhoto: "/products/hidrolavadora-industrial-1900-psi.png",
+    fallbackPhoto: "/products/hidrolavadora-industrial-1900-psi.webp",
     href: "/productos/categoria/hidrolavadoras",
   },
   {
@@ -42,7 +42,7 @@ export const rentalEquipment: RentalEquipment[] = [
     name: "Brilladoras",
     description:
       "Platos de 17″ y 20″ que pulen, brillan y lavan todo tipo de superficies.",
-    fallbackPhoto: "/products/brilladora-industrial-17.png",
+    fallbackPhoto: "/products/brilladora-industrial-17.webp",
     href: "/productos/categoria/brilladoras",
   },
   {
@@ -59,7 +59,7 @@ export const rentalEquipment: RentalEquipment[] = [
     description:
       "Desbasta, nivela, rebaja, pule y brilla sobre concreto, granito y terrazo.",
     // Only offered for rent — it has no page in the product catalog.
-    fallbackPhoto: "/products/brilladora-industrial-17.png",
+    fallbackPhoto: "/products/brilladora-industrial-17.webp",
     href: "/cotizacion",
     linkLabel: "Cotizar destroncadora",
   },

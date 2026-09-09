@@ -25,7 +25,7 @@ export default function ContactoPage() {
       />
 
       <section className="py-12" aria-label="Formulario e información de contacto">
-        <div className="container-x grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
+        <div className="container-x grid gap-6 [&>*]:min-w-0 lg:grid-cols-[1.3fr_0.7fr]">
           <Reveal>
             <QuoteForm />
           </Reveal>

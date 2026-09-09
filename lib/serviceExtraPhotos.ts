@@ -20,12 +20,12 @@ interface ExtraPhoto {
 const map: Record<string, ExtraPhoto[]> = {
   "servicio-tecnico": [
     {
-      file: "serviciotecnicoarreglando.png",
+      file: "serviciotecnicoarreglando.webp",
       caption: "Reparación en taller",
       alt: "Técnico de SOLUPOWER reparando un equipo de limpieza industrial",
     },
     {
-      file: "stockderepuestos.png",
+      file: "stockderepuestos.webp",
       caption: "Stock de repuestos",
       alt: "Stock de repuestos y consumibles para equipos de limpieza industrial de SOLUPOWER",
     },

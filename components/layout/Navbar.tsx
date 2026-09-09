@@ -214,7 +214,7 @@ export default function Navbar() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={open}
-            className="grid h-10 w-10 place-items-center rounded-full text-ink lg:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>

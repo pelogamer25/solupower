@@ -97,7 +97,7 @@ export default function QuoteForm({ product }: { product?: string }) {
         </span>
       </p>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-5 [&>*]:min-w-0 sm:grid-cols-2">
         <Field label="Nombre" name="name" error={errors.name} autoComplete="name" />
         <Field label="Empresa" name="company" required={false} autoComplete="organization" />
         <Field label="Correo" name="email" type="email" required={false} error={errors.email} autoComplete="email" />
@@ -109,7 +109,9 @@ export default function QuoteForm({ product }: { product?: string }) {
             id="service"
             name="service"
             defaultValue=""
-            className="mt-2 h-12 w-full rounded-2xl border border-white/50 bg-white/50 px-4 text-sm text-ink outline-none backdrop-blur-md transition focus:border-brand-blue"
+            // min-w-0 + truncate: sin esto la opción más larga fija el ancho
+            // mínimo del formulario y lo saca de la pantalla en un celular.
+            className="mt-2 h-12 w-full min-w-0 truncate rounded-2xl border border-white/50 bg-white/50 px-4 text-sm text-ink outline-none backdrop-blur-md transition focus:border-brand-blue"
           >
             <option value="">Selecciona una opción</option>
             {services.map((s) => (

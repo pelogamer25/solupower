@@ -54,7 +54,11 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-24 px-3 pb-6 sm:px-5">
+    <footer
+      // pb generoso en celular: la burbuja de WhatsApp flota sobre la esquina
+      // inferior derecha y sin esto se apoya encima de los enlaces legales.
+      className="relative mt-24 px-3 pb-[calc(5.5rem+env(safe-area-inset-bottom))] sm:px-5 sm:pb-6"
+    >
       <div className="glass container-x overflow-hidden rounded-5xl px-6 py-14 sm:px-12">
         <div className="grid gap-12 lg:grid-cols-[1.5fr_repeat(5,1fr)]">
           <div className="max-w-sm lg:col-span-1">
@@ -129,7 +133,7 @@ function SocialLink({ href, label, children }: { href: string; label: string; ch
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="grid h-10 w-10 place-items-center rounded-full border border-white/50 bg-white/40 text-ink-soft transition-all duration-300 hover:-translate-y-0.5 hover:text-brand-blue"
+      className="grid h-11 w-11 place-items-center rounded-full border border-white/50 bg-white/40 text-ink-soft transition-all duration-300 hover:-translate-y-0.5 hover:text-brand-blue"
     >
       {children}
     </a>

@@ -39,7 +39,7 @@ export default async function CotizacionPage(props: {
       />
 
       <section className="py-12" aria-label="Formulario de cotización">
-        <div className="container-x grid gap-6 lg:grid-cols-[0.7fr_1.3fr]">
+        <div className="container-x grid gap-6 [&>*]:min-w-0 lg:grid-cols-[0.7fr_1.3fr]">
           <Reveal>
             <GlassCard className="h-full p-8">
               <h2 className="font-display text-xl font-semibold text-ink">¿Por qué cotizar con nosotros?</h2>

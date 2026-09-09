@@ -186,7 +186,7 @@ export default function Gallery({ photos = [] }: GalleryProps) {
                 type="button"
                 onClick={() => setActive(null)}
                 aria-label="Cerrar"
-                className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white/85 text-ink backdrop-blur-md transition-transform hover:scale-105"
+                className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white/85 text-ink backdrop-blur-md transition-transform hover:scale-105"
               >
                 <X size={18} />
               </button>

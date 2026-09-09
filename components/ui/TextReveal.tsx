@@ -62,7 +62,9 @@ export default function TextReveal({
     words.map((w, i) => (
       <span
         key={`${w}-${i}`}
-        className="inline-block overflow-hidden align-bottom"
+        // max-w-full + corte de palabra: un inline-block no rompe por dentro,
+        // así que una palabra larga en un titular grande se salía del ancho.
+        className="inline-block max-w-full overflow-hidden align-bottom [overflow-wrap:anywhere]"
         style={{ paddingBottom: "0.08em", marginBottom: "-0.08em" }}
       >
         <motion.span variants={word} className="inline-block">

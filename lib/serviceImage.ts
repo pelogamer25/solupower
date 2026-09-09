@@ -10,7 +10,7 @@ const map: Record<string, string> = {
   "restauracion-de-pisos": "trabajos/marmol-pulido-efecto-espejo.jpeg",
   "lavado-de-alfombras-y-mobiliario": "alfombras/extraccion-profunda-1.jpg", // extracción sobre alfombra
   alquiler: "trabajos/perfillimpiadoras.jpg", // perfil de equipos disponibles en alquiler
-  "servicio-tecnico": "trabajos/serviciotecnicoarreglando.png", // técnico reparando un equipo
+  "servicio-tecnico": "trabajos/serviciotecnicoarreglando.webp", // técnico reparando un equipo
 };
 
 /**

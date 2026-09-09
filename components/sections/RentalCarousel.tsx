@@ -23,18 +23,30 @@ export default function RentalCarousel({ items }: { items: ResolvedRentalEquipme
   const reduce = useReducedMotion();
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  // Una vez que la persona elige diapositiva, ya dijo qué quiere ver: el avance
+  // automático se detiene para siempre en lugar de arrebatarle el control.
+  const [taken, setTaken] = useState(false);
+
   const go = useCallback(
     (next: number) => setIndex(((next % items.length) + items.length) % items.length),
     [items.length],
   );
 
+  const pick = useCallback(
+    (next: number) => {
+      setTaken(true);
+      go(next);
+    },
+    [go],
+  );
+
   useEffect(() => {
-    if (reduce || paused || items.length < 2) return;
+    if (reduce || paused || taken || items.length < 2) return;
     timer.current = setInterval(() => setIndex((i) => (i + 1) % items.length), INTERVAL);
     return () => {
       if (timer.current) clearInterval(timer.current);
     };
-  }, [reduce, paused, items.length]);
+  }, [reduce, paused, taken, items.length]);
 
   // Don't advance in a background tab (saves battery, avoids a jump on return)
   useEffect(() => {
@@ -48,6 +60,9 @@ export default function RentalCarousel({ items }: { items: ResolvedRentalEquipme
       className="glass overflow-hidden rounded-5xl p-2"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      // En táctil no hay hover: el dedo sobre el carrusel es la señal de que
+      // alguien está leyendo, así que ahí también se detiene.
+      onTouchStart={() => setPaused(true)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
       role="region"
@@ -113,8 +128,8 @@ export default function RentalCarousel({ items }: { items: ResolvedRentalEquipme
               role="tab"
               aria-selected={i === index}
               aria-label={item.name}
-              onClick={() => go(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${
+              onClick={() => pick(i)}
+              className={`relative h-2 rounded-full transition-all duration-300 before:absolute before:left-1/2 before:top-1/2 before:h-11 before:w-11 before:-translate-x-1/2 before:-translate-y-1/2 before:content-[''] ${
                 i === index ? "w-7 bg-brand-blue" : "w-2 bg-ink/20 hover:bg-ink/35"
               }`}
             />
@@ -124,17 +139,17 @@ export default function RentalCarousel({ items }: { items: ResolvedRentalEquipme
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={() => go(index - 1)}
+            onClick={() => pick(index - 1)}
             aria-label="Equipo anterior"
-            className="grid h-9 w-9 place-items-center rounded-full border border-white/50 bg-white/50 text-ink transition-colors hover:bg-white/80"
+            className="grid h-11 w-11 place-items-center rounded-full border border-white/50 bg-white/50 text-ink transition-colors hover:bg-white/80"
           >
             <ChevronLeft size={17} />
           </button>
           <button
             type="button"
-            onClick={() => go(index + 1)}
+            onClick={() => pick(index + 1)}
             aria-label="Equipo siguiente"
-            className="grid h-9 w-9 place-items-center rounded-full border border-white/50 bg-white/50 text-ink transition-colors hover:bg-white/80"
+            className="grid h-11 w-11 place-items-center rounded-full border border-white/50 bg-white/50 text-ink transition-colors hover:bg-white/80"
           >
             <ChevronRight size={17} />
           </button>

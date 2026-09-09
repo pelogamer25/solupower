@@ -224,7 +224,9 @@ function MobileHero() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
+          // 1,96 MB por datos móviles antes de poder usar la página: el póster
+          // cubre el primer pintado y el video llega detrás.
           aria-hidden
         />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(105deg,rgba(6,17,38,0.72)_0%,rgba(6,17,38,0.42)_45%,rgba(6,17,38,0.18)_100%)]" />

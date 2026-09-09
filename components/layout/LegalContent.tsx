@@ -18,7 +18,7 @@ export default function LegalContent({ sections }: { sections: LegalSection[] })
                     <span className="mr-2 text-brand-blue">{String(i + 1).padStart(2, "0")}.</span>
                     {s.heading}
                   </h2>
-                  <div className="mt-3 space-y-3 text-sm leading-relaxed text-ink-soft">
+                  <div className="mt-3 space-y-3 break-words text-sm leading-relaxed text-ink-soft">
                     {s.body.map((p, j) => (
                       <p key={j}>{p}</p>
                     ))}
