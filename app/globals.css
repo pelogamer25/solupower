@@ -172,3 +172,22 @@ html.lenis body {
     -webkit-backdrop-filter: blur(14px) saturate(135%);
   }
 }
+
+/* The floating WhatsApp bubble sits above the header (z-80 vs z-50), so it
+   would cover the open mobile menu. Navbar flags <html data-menu-open>. */
+[data-menu-open] .wa-bubble {
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+}
+
+/* iOS Safari zooms the whole page when a focused field's text is under 16px.
+   The form is set in 14px for rhythm, so bump the controls on touch only —
+   desktop keeps the smaller type. */
+@media (pointer: coarse) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}

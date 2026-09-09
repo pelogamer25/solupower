@@ -23,7 +23,7 @@ export default function WhatsAppBubble() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escríbenos por WhatsApp"
-      className="group fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-[80] flex items-center gap-2.5 rounded-full bg-[#25D366] p-4 text-white shadow-[0_6px_16px_-4px_rgba(0,0,0,0.35)] outline-none transition-[transform,box-shadow] duration-300 ease-smooth hover:shadow-[0_10px_28px_-6px_rgba(37,211,102,0.65)] focus-visible:ring-4 focus-visible:ring-[#25D366]/40 motion-safe:hover:-translate-y-0.5 sm:px-5 sm:py-4"
+      className="wa-bubble group fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-[80] flex items-center gap-2.5 rounded-full bg-[#25D366] p-4 text-white shadow-[0_6px_16px_-4px_rgba(0,0,0,0.35)] outline-none transition-[transform,box-shadow] duration-300 ease-smooth hover:shadow-[0_10px_28px_-6px_rgba(37,211,102,0.65)] focus-visible:ring-4 focus-visible:ring-[#25D366]/40 motion-safe:hover:-translate-y-0.5 sm:px-5 sm:py-4"
     >
       {/* Brand glyph: a generic chat icon doesn't read as "WhatsApp" at 24px. */}
       <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden focusable="false" className="shrink-0">

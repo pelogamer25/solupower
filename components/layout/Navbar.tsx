@@ -35,6 +35,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // The floating WhatsApp bubble sits above the header, so it would land on
+  // top of the open mobile menu. Flag it on <html> and let CSS pull it out.
+  useEffect(() => {
+    const root = document.documentElement;
+    if (open) root.setAttribute("data-menu-open", "");
+    else root.removeAttribute("data-menu-open");
+    return () => root.removeAttribute("data-menu-open");
+  }, [open]);
+
   // Close everything on route change
   useEffect(() => {
     setOpen(false);
@@ -219,7 +228,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="glass absolute inset-x-3 top-[4.6rem] max-h-[80vh] overflow-y-auto rounded-4xl p-5 lg:hidden"
+            className="glass absolute inset-x-3 top-[4.6rem] max-h-[75dvh] overflow-y-auto rounded-4xl p-5 lg:hidden"
           >
             <ul className="flex flex-col gap-1">
               {navLinks.map((link) => {
