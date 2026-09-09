@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Check, ArrowRight, Wrench } from "lucide-react";
+import { ArrowRight, Check, MessageCircle, Wrench } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
 import GlassCard from "@/components/ui/GlassCard";
 import Reveal from "@/components/ui/Reveal";
@@ -20,6 +20,7 @@ import { serviceExtraPhotos } from "@/lib/serviceExtraPhotos";
 import { rentalEquipmentWithPhotos } from "@/lib/rentalPhoto";
 import { floorFinishes } from "@/lib/floorFinishes";
 import { carpetCleaningGroups } from "@/lib/carpetCleaning";
+import { serviceQuoteLink } from "@/lib/whatsapp";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -71,7 +72,7 @@ export default async function ServicioDetailPage(props: {
           { name: service.title, path: `/servicios/${service.slug}` },
         ]}
       >
-        <Button href="/cotizacion" variant="primary" icon={<ArrowRight size={17} />}>
+        <Button href={serviceQuoteLink(service.slug, service.title)} external variant="whatsapp" icon={<MessageCircle size={17} />}>
           Solicitar cotización
         </Button>
       </PageHeader>
@@ -306,7 +307,7 @@ export default async function ServicioDetailPage(props: {
         lead={`¿Buscas ${service.title.toLowerCase()}? También ofrecemos`}
         slug={ctaProduct}
         tail=" y equipos de alto rendimiento para complementar tu operación."
-        cta={{ href: "/cotizacion", label: "Solicitar cotización" }}
+        cta={{ href: serviceQuoteLink(service.slug, service.title), label: "Cotizar por WhatsApp" }}
       />
 
       {/* "También te puede interesar" */}

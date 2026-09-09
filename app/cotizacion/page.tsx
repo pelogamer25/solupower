@@ -5,6 +5,7 @@ import Reveal from "@/components/ui/Reveal";
 import GlassCard from "@/components/ui/GlassCard";
 import QuoteForm from "@/components/sections/QuoteForm";
 import { pageMetadata } from "@/lib/seo";
+import { getProduct } from "@/lib/data/products";
 
 export const metadata: Metadata = pageMetadata({
   title: "Solicitar cotización",
@@ -24,6 +25,9 @@ export default async function CotizacionPage(props: {
   searchParams: Promise<{ producto?: string }>;
 }) {
   const { producto } = await props.searchParams;
+  // The param carries a PRODUCT slug; it used to be fed into a select of
+  // SERVICE slugs, so it never matched and the interest was silently lost.
+  const product = producto ? getProduct(producto)?.name : undefined;
 
   return (
     <>
@@ -53,7 +57,7 @@ export default async function CotizacionPage(props: {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <QuoteForm defaultProduct={producto} />
+            <QuoteForm product={product} />
           </Reveal>
         </div>
       </section>

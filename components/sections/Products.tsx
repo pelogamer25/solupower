@@ -7,6 +7,7 @@ import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import { products } from "@/lib/data/products";
 import { productPhoto } from "@/lib/productPhoto";
+import { productQuoteLink } from "@/lib/whatsapp";
 
 const visual: Record<string, string> = {
   blue: "from-brand-deep via-brand-blue to-brand-cyan",
@@ -79,8 +80,8 @@ export default function Products() {
                   </dl>
 
                   <div className="mt-5">
-                    <Button href={`/cotizacion?producto=${product.slug}`} variant="ghost" className="w-full py-2.5 text-[13px]">
-                      Cotizar
+                    <Button href={productQuoteLink(product)} external variant="whatsapp" className="w-full py-2.5 text-[13px]">
+                      Cotizar por WhatsApp
                     </Button>
                   </div>
                 </div>

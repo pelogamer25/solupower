@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
 import GlassCard from "@/components/ui/GlassCard";
 import Reveal from "@/components/ui/Reveal";
@@ -15,6 +15,7 @@ import { products, getProduct, formatCOP, categorySlugOf } from "@/lib/data/prod
 import { getProductSeo } from "@/lib/data/seoContent";
 import { getRelated } from "@/lib/data/relations";
 import { productPhoto } from "@/lib/productPhoto";
+import { productQuoteLink } from "@/lib/whatsapp";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -130,8 +131,8 @@ export default async function ProductoDetailPage(props: {
               )}
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button href={`/cotizacion?producto=${product.slug}`} variant="primary" icon={<ArrowRight size={17} />}>
-                  Cotizar este equipo
+                <Button href={productQuoteLink(product)} external variant="whatsapp" icon={<MessageCircle size={17} />}>
+                  Cotizar este equipo por WhatsApp
                 </Button>
                 <Button href="/contacto" variant="ghost">
                   Hablar con un asesor
@@ -156,7 +157,7 @@ export default async function ProductoDetailPage(props: {
         lead={`Si su empresa necesita ${product.name.toLowerCase()}, conozca también nuestro`}
         slug={ctaService}
         tail=" para acceder al equipo con total flexibilidad."
-        cta={{ href: `/cotizacion?producto=${product.slug}`, label: "Solicitar cotización" }}
+        cta={{ href: productQuoteLink(product), label: "Cotizar por WhatsApp" }}
       />
 
       {/* "También te puede interesar" — related services, products, articles, cases */}

@@ -10,6 +10,7 @@ import Footer from "@/components/layout/Footer";
 import AmbientBackground from "@/components/ui/AmbientBackground";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import Cursor from "@/components/ui/Cursor";
+import WhatsAppBubble from "@/components/ui/WhatsAppBubble";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -98,6 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="main">{children}</main>
           <Footer />
         </SmoothScroll>
+        <WhatsAppBubble />
       </body>
     </html>
   );

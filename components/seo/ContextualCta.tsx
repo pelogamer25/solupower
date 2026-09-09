@@ -13,6 +13,27 @@ interface ContextualCtaProps {
   cta?: { href: string; label: string };
 }
 
+/** The CTA may point at WhatsApp, which has to leave the SPA in a new tab. */
+function CtaButton({ href, label }: { href: string; label: string }) {
+  const cls =
+    "group inline-flex shrink-0 items-center gap-2 rounded-full bg-[linear-gradient(100deg,#0A3D91,#1E5FBF_45%,#35B6D8)] px-6 py-3 text-sm font-medium text-white shadow-glow transition hover:brightness-110";
+  const body = (
+    <>
+      {label}
+      <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+    </>
+  );
+  return /^https?:/.test(href) ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+      {body}
+    </a>
+  ) : (
+    <Link href={href} className={cls}>
+      {body}
+    </Link>
+  );
+}
+
 /**
  * A contextual CTA placed after important blocks. The message carries a natural,
  * keyword-anchored internal link (never "clic aquí") to distribute authority.
@@ -32,15 +53,7 @@ export default function ContextualCta({ lead, slug, tail = ".", cta }: Contextua
           </Link>
           {tail}
         </p>
-        {cta && (
-          <Link
-            href={cta.href}
-            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[linear-gradient(100deg,#0A3D91,#1E5FBF_45%,#35B6D8)] px-6 py-3 text-sm font-medium text-white shadow-glow transition hover:brightness-110"
-          >
-            {cta.label}
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        )}
+        {cta && <CtaButton {...cta} />}
       </div>
     </aside>
   );

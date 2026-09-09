@@ -15,6 +15,7 @@ import { siteConfig } from "@/config/site";
 import { productCategoryMeta, getCategoryMeta, productsInCategory } from "@/lib/data/products";
 import { productPhoto } from "@/lib/productPhoto";
 import { getProductSeo } from "@/lib/data/seoContent";
+import { productQuoteLink } from "@/lib/whatsapp";
 
 /**
  * SERP title per category. The internal label isn't always what people type:
@@ -178,8 +179,8 @@ export default async function CategoriaPage(props: {
                         <h2 className="font-display text-lg font-semibold text-ink">{product.name}</h2>
                         <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">{product.excerpt}</p>
                         <div className="mt-5">
-                          <Button href={`/cotizacion?producto=${product.slug}`} variant="ghost" className="w-full py-2.5 text-[13px]">
-                            Cotizar
+                          <Button href={productQuoteLink(product)} external variant="whatsapp" className="w-full py-2.5 text-[13px]">
+                            Cotizar por WhatsApp
                           </Button>
                         </div>
                       </div>
